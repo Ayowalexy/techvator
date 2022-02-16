@@ -1,13 +1,13 @@
-import { Link, useTheme } from "@chakra-ui/react"
+import { Link, LinkProps, useTheme } from "@chakra-ui/react"
 import  NextLink from "next/link"
 
 
-type ButtonProps = {
+type ButtonProps = LinkProps & {
     label: string;
     href: string;
 }
 
-function Button({ label, href }: ButtonProps): JSX.Element {
+function Button({ label, href, _hover,  ...rest }: ButtonProps): JSX.Element {
     const theme = useTheme()
   return (
     <NextLink href={href}>
@@ -19,9 +19,11 @@ function Button({ label, href }: ButtonProps): JSX.Element {
       textDecoration='none !important'
       textTransform='uppercase'
       transition='all 250ms ease-in-out'
+      {...rest}
       _hover={{
         backgroundColor: theme.colors.brand.roti,
-        border:`2px solid ${theme.colors.brand.roti}`
+        border:`2px solid ${theme.colors.brand.roti}`,
+        ..._hover
       }}
     >
        {label}

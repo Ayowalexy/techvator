@@ -23,9 +23,5 @@ export const navigation = [
     {
         label: 'Black-Excellence',
         path: '/home'
-    },
-    {
-        label: 'Reach Out',
-        path: '/home'
-    },
+    }
 ]

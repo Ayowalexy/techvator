@@ -1,7 +1,9 @@
 import { extendTheme } from "@chakra-ui/react";
 
+
+
 // Brand Theming
-const colors = {
+let colors = {
     brand: {
         black: "#000000",
         brass: "#AA8E48",
@@ -14,13 +16,29 @@ const colors = {
     }
 }
 
+// Fonts
 const fonts = {
      heading: 'Century Gothic',
      body: 'Montserrat'
 }
 
 
+
+// Global Style
+const global = {
+    'html': {
+        fontSize: '62.5%',
+    },
+    'body': {
+        background: colors.brand.black,
+        color: colors.brand.white,
+        fontSize: '1.4rem',
+    }
+}
+
+
 const theme = extendTheme({
+    styles:{global},
     colors,
     fonts,
 })

@@ -2,9 +2,7 @@ import { Box, BoxProps } from '@chakra-ui/react'
 import { useTheme } from '@emotion/react'
 import React from 'react'
 
-type ContainerProps = BoxProps & {
-   children: JSX.Element
-}
+type ContainerProps = BoxProps 
 
 function Container({ children, ...rest}: ContainerProps): JSX.Element {
  const theme =  useTheme()

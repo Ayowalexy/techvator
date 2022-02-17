@@ -18,10 +18,10 @@ function Hero() {
         <Text fontSize='2.4rem' lineHeight='2' mt='.7rem' mb='3.5rem'>
            Now’s your time to take sight of all you are capable of achieving in this here African-ness… you inheritably possess.
         </Text>
-        <Button p='1.5rem 3rem' label='Learn More'  href='' textTransform='capitalize' fontSize='1.8rem' />
+        <Button pos='relative' zIndex={2} p='1.5rem 3rem' label='Learn More'  href='' textTransform='capitalize' fontSize='1.8rem' />
        </Box>
 
-       <Box pos='absolute' bgGradient={`linear(to-t,${roti} , transparent)`} w='100%' h='12.0rem' bottom='0' left='0' />
+       <Box  pos='absolute' bgGradient={`linear(to-t,${roti} , transparent)`} w='100%' h='12.0rem' bottom='0' left='0' />
        </>
    </Container>
   )

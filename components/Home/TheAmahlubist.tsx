@@ -16,7 +16,7 @@ function TheAmahlubist(): JSX.Element {
        );
    }
   return (
-    <Container pos='relative' pt='10rem' pb='5rem'  bgColor={rotiLight} bg='url("/imgs/amhubist-background-01.jpg")' bgSize='cover' bgRepeat='no-repeat'>
+    <Container pos='relative' pt='10rem' pb='5rem'  bgColor={rotiLight} bg='url("/imgs/amhubist-background-01.jpg")' bgSize='contain' bgRepeat='no-repeat'>
         <Box pos='relative' zIndex={2}>
             <Heading as='h3' my='3rem' color={black} fontSize='3.1rem' fontFamily='Century Gothic' fontWeight='600' textAlign='center'> 
                 Meet 'THE' Amahlubists 

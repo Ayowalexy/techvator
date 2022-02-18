@@ -10,6 +10,7 @@ let colors = {
         metallicSunburst: "#917A34",
         red: "#F21C1C",
         roti: "#B49A43",
+        rotiLight: 'rgba(180, 154, 67, 0.7)',
         sirocco: "#6F7070",
         white: "#ffffff"
 
@@ -18,7 +19,7 @@ let colors = {
 
 // Fonts
 const fonts = {
-     heading: 'Century Gothic',
+     heading: 'Roboto',
      body: 'Montserrat'
 }
 

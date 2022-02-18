@@ -6,14 +6,14 @@ import Button from "./Button"
 
 function Navigation() {
   const theme = useTheme()
-  const { roti, white, black} = theme.colors.brand
+  const { rotiLight, white, black} = theme.colors.brand
   return (
-    <List display={'flex'} pos='relative' zIndex={3}  bgColor='rgba(180, 154, 67, 0.7)' w='100%'  px='2.4rem' justifyContent='space-between' alignItems='center'>
+    <List display={'flex'} pos='relative' zIndex={3}  bgColor={rotiLight} w='100%'  px='2.4rem' justifyContent='space-between' alignItems='center'>
         {
           navigation.map((nav, idx) => (
             <ListItem key={idx}  p='2.0rem' pl={idx === 0 && '0'}>
               <NextLink href={nav.path}>
-                 <Link color={white}  fontSize='1.6rem' fontFamily='Century Gothic'>
+                 <Link color={white}  fontSize='1.6rem' fontFamily='Roboto' fontWeight='600'>
                       {nav.label}
                  </Link>
               </NextLink>
@@ -23,6 +23,8 @@ function Navigation() {
         }
         <ListItem ml='4.0rem'>
             <Button 
+            fontFamily='Roboto' 
+            fontWeight='600'
             label="Reach Out" 
             href="#" 
             bg={black} 

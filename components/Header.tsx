@@ -6,11 +6,11 @@ import AMHButton from "./Button"
 import Container from "./Container"
 
 
-function Header() {
+function Header(): JSX.Element {
   const theme = useTheme()
 
   return (
-    <Container py='1.5rem'>
+    <Container py='1.5rem' bg='url("/imgs/topbackground.jpg")' bgRepeat='no-repeat' >
         <Flex  alignItems='center' justifyContent='space-between' >
             <AMHButton href="/sign-up" label="Become a member" />
 

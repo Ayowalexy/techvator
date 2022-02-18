@@ -12,7 +12,7 @@ function Welcome(): JSX.Element {
   return (
     <Container>
         <Flex p='3.5rem'>
-             <Image src='/imgs/home/welcome-2x.png' pl='9rem' pr='10rem' transform='translateY(9rem)' />
+             <Image zIndex={1} src='/imgs/home/welcome-2x.png' pl='9rem' pr='10rem' transform='translateY(9rem)' />
 
              <Box maxW='44rem'>
                  <Text fontSize='1.8rem' lineHeight='2'>

@@ -1,6 +1,7 @@
 import { Heading, Stack, Text } from '@chakra-ui/react'
 import Head from 'next/head'
 import Hero from '../components/Home/Hero'
+import TheAmahlubist from '../components/Home/TheAmahlubist'
 import Welcome from '../components/Home/Welcome'
 import Layout from '../components/Layout'
 
@@ -17,6 +18,7 @@ export default function Home():JSX.Element {
           <>
           <Hero />
           <Welcome />
+          <TheAmahlubist />
           </>
       </Layout>
     </div>

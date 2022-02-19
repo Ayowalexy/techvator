@@ -36,7 +36,7 @@ function AmahlubistStyle() {
  }
 
   return (
-    <Container  pt='5rem' pb='5rem'   bg='url("/imgs/life-style-section-01.jpg")' bgSize='cover' bgRepeat='no-repeat'>
+    <Container  pt='5rem' pb='10rem'   bg='url("/imgs/life-style-section-01.jpg")' bgSize='100% 100%' bgRepeat='no-repeat'>
              <Box pos='relative' zIndex={2}>
              <HeaderTag 
                 pos='relative'
@@ -57,7 +57,7 @@ function AmahlubistStyle() {
                  Whoever thought a time would come when achievements is this celebrated and put on a pedestal it so finely desere
              </Text>
 
-             <Grid gap='2rem' mt='5rem' px='3rem' gridAutoRows='minmax(min-content, max-content)' templateColumns="repeat(auto-fit,minmax(18rem, 1fr))">
+             <Grid gap='2rem' my='10rem' px='3rem' gridAutoRows='minmax(min-content, max-content)' templateColumns="repeat(auto-fit,minmax(18rem, 1fr))">
                 {
                     amahlubistLifeStyle.map((ls, idx) => {
                        return (

@@ -1,5 +1,6 @@
 import { Heading, Stack, Text } from '@chakra-ui/react'
 import Head from 'next/head'
+import ContactSection from '../components/ContactSection'
 import AmahlubistStyle from '../components/Home/AmahlubistStyle'
 import Hero from '../components/Home/Hero'
 import TheAmahlubist from '../components/Home/TheAmahlubist'
@@ -21,6 +22,7 @@ export default function Home():JSX.Element {
           <Welcome />
           <TheAmahlubist />
           <AmahlubistStyle />
+          <ContactSection />
           </>
       </Layout>
     </div>

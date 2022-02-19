@@ -4,6 +4,7 @@ import {ImLinkedin2} from 'react-icons/im'
 import AMHButton from "./Button"
 
 import Container from "./Container"
+import { FacebookIcon, InstagramIcon } from "./Socials"
 
 
 function Header(): JSX.Element {
@@ -20,12 +21,10 @@ function Header(): JSX.Element {
           {/* Socials */}
           <Flex alignItems='flex-start' p='1rem'>
                 <Link href="#" mr='1.6rem'>
-                   <Icon as={BsFacebook} w='2.4rem' h='2.4rem'  />
+                   <FacebookIcon />
                 </Link>
                 <Link>
-                    <Flex alignItems='center' justifyContent='center' bg={theme.colors.brand.white} w='2.4rem' h='2.4rem' borderRadius='100vw' >
-                      <Icon as={ImLinkedin2} w='1.6rem' h='1.6rem'  color='black' />
-                    </Flex>
+                    <InstagramIcon />
                 </Link>
           </Flex>
 

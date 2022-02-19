@@ -16,7 +16,7 @@ function Header(): JSX.Element {
             <AMHButton href="/sign-up" label="Become a member" />
 
             {/* Logo */}
-            <Image src="/imgs/logo@2x.png" alt="amachulbi logo" w='14.7rem' h='5.2rem' transform='translateX(-50%)' />
+            <Image mt='-1rem' src="/imgs/logo@2x.png" alt="amachulbi logo" w='14.7rem' h='5.2rem' transform='translateX(-50%)' />
 
           {/* Socials */}
           <Flex alignItems='flex-start' p='1rem'>

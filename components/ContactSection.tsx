@@ -1,6 +1,7 @@
-import { Box, Flex, FlexProps, HeadingProps, Text, useTheme } from "@chakra-ui/react"
+import { Box, Flex, FlexProps, HeadingProps, Text, useTheme, Button as ChakraButton, background } from "@chakra-ui/react"
 import {BsTelephoneFill} from 'react-icons/bs'
 import { IoMdMail } from 'react-icons/io'
+import { SiMinutemailer } from 'react-icons/si'
 import Button from "./Button"
 import Container from "./Container"
 import FormInput from "./Forms/FormInput"
@@ -35,7 +36,7 @@ function ContactDetail({icon, info, headerProp, iconContainerProps }: ContactDet
 function ContactSection() {
 
 const theme =   useTheme()
-const {metallicSunburst, white, black} = theme.colors.brand
+const {metallicSunburst, roti, white, black} = theme.colors.brand
     
 
   return (
@@ -76,6 +77,30 @@ const {metallicSunburst, white, black} = theme.colors.brand
                             </Flex>
                             <Box>
                                 <FormTextArea label="Message" />
+                            </Box>
+                            <Box my='4rem'>
+                                <ChakraButton 
+                                _hover={{
+                                    background: 'transparent',
+                                    border: 'none',
+                                    color: white,
+                                }} 
+                                _focus={{
+                                    background: 'transparent',
+                                    outline: 'none',
+                                    boxShadow: 'none'
+                                }}
+                                _active={{
+                                    background: 'transparent'
+                                }}
+                                fontSize='xl' 
+                                border='none' 
+                                bg='transparent' 
+                                color={roti}  
+                                type="submit"
+                                >
+                                    SEND <SiMinutemailer size='2rem' style={{ marginLeft: '.5rem'}} />
+                                </ChakraButton>
                             </Box>
                         </Box>
 

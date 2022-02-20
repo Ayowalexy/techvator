@@ -15,7 +15,7 @@ function Header(): JSX.Element {
   const url = {
     '/create-account': '/create-account',
     '/login': '/login',
-    // ''
+    '/password/reset': '/password/reset',
   }
 
 

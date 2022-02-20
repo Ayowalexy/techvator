@@ -32,7 +32,7 @@ function createaccount() {
       <Layout>
           <Wrapper>
                 <Flex justifyContent='center' alignItems='center' flexDir='column' pos='relative' zIndex={1} >
-                    <HeaderTag mb='1.8rem' fontWeight='600'>
+                    <HeaderTag mb='1.8rem' fontWeight='600' letterSpacing='unset'>
                         Join the Community.
                     </HeaderTag>
                     <Box bg={black} padding='1.2rem 3.2rem' borderRadius='md' maxW='61.3rem' w='100%' >
@@ -57,7 +57,7 @@ function createaccount() {
                                     id:'first-name',
                                     borderRadius:'md',
                                     border: `2px solid ${metallicSunburst} !important`,
-                                    p: '1.5rem'
+                                    p: '2rem'
                                   }}
                                   />
                                   <FormInput 
@@ -75,7 +75,7 @@ function createaccount() {
                                     id:'last-name',
                                     borderRadius:'md',
                                     border: `2px solid ${metallicSunburst} !important`,
-                                    p: '1.5rem'
+                                    p: '2rem'
                                   }}
                                   />
                               </Flex>
@@ -97,7 +97,7 @@ function createaccount() {
                                     type:'email',
                                     borderRadius:'md',
                                     border: `2px solid ${metallicSunburst} !important`,
-                                    p: '1.5rem'
+                                    p: '2rem'
                                   }}
                                   />
                                   <FormInput 
@@ -115,7 +115,7 @@ function createaccount() {
                                     id:'mobile',
                                     borderRadius:'md',
                                     border: `2px solid ${metallicSunburst} !important`,
-                                    p: '1.5rem'
+                                    p: '2rem'
                                   }}
                                   inputLeftAddon= {
                                   <InputLeftAddon  
@@ -144,7 +144,11 @@ function createaccount() {
                                     id:'country',
                                     borderRadius:'md',
                                     border: `2px solid ${metallicSunburst} !important`,
-                                    size:'lg',
+                                    sx:{
+                                      '&.chakra-select': {
+                                        padding: '2rem 0',
+                                      }
+                                    }
                                   }}
                                   >
                                       <option value='1'> coutry 1</option>
@@ -167,7 +171,7 @@ function createaccount() {
                                     borderRadius:'md',
                                     border: `2px solid ${metallicSunburst} !important`,
                                     borderRight:'none !important',
-                                    p: '1.5rem'
+                                    p: '2rem'
                                   }}
                                   inputRightAddon= {
                                   <InputRightAddon  
@@ -177,7 +181,7 @@ function createaccount() {
                                   border={`2px solid ${metallicSunburst} !important`} 
                                   borderLeft='none !important'
                                   bg='transparent' 
-                                  children={passwordVisible ? <AiOutlineEyeInvisible size='1.4rem' /> : <AiOutlineEye size='1.4rem'/> }
+                                  children={passwordVisible ? <AiOutlineEyeInvisible size='2rem' /> : <AiOutlineEye size='2rem'/> }
                                   />
                                 }
                                   />
@@ -202,7 +206,7 @@ function createaccount() {
                                     borderRadius:'md',
                                     border: `2px solid ${metallicSunburst} !important`,
                                     borderRight:'none !important',
-                                    p: '1.5rem',
+                                    p: '2rem',
                                  
                                   }}
                                   inputRightAddon= {
@@ -213,11 +217,11 @@ function createaccount() {
                                   border={`2px solid ${metallicSunburst} !important`} 
                                   borderLeft='none !important'
                                   bg='transparent' 
-                                  children={passwordVisible ? <AiOutlineEyeInvisible size='1.4rem' /> : <AiOutlineEye size='1.4rem'/> }
+                                  children={passwordVisible ? <AiOutlineEyeInvisible size='2rem' /> : <AiOutlineEye size='2rem'/> }
                                   />
                                 }
                                   />
-                                  <Btn mt={['1.5rem', '1.5rem', '1.5rem', '0']} flex={0.9} alignSelf='flex-end' size='lg' type='submit'>Join Amahlubi</Btn>
+                                  <Btn mt={['1.5rem', '1.5rem', '1.5rem', '0']} p='1.2rem'  flex={0.9} alignSelf='flex-end'  type='submit'>Join Amahlubi</Btn>
                               </Flex>
                           </Stack>
                       </form>

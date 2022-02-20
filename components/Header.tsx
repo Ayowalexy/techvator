@@ -1,8 +1,6 @@
-import { Box, Flex, Icon, Image, Link, theme, useTheme } from "@chakra-ui/react"
+import { Box, Flex, Image, Link, useTheme } from "@chakra-ui/react"
 import NextLInk from "next/link"
 import { useRouter } from "next/router"
-import {BsFacebook} from 'react-icons/bs'
-import {ImLinkedin2} from 'react-icons/im'
 import ButtonLink from "./Button"
 
 import Container from "./Container"
@@ -13,12 +11,19 @@ function Header(): JSX.Element {
   const theme = useTheme()
   const router = useRouter()
 
+  // remove become a member with this url
+  const url = {
+    '/create-account': '/create-account',
+    '/login': '/login',
+    // ''
+  }
+
 
 
   return (
     <Container py='1.5rem' bg='url("/imgs/topbackground.jpg")' bgRepeat='no-repeat' bgSize='cover' pos='relative' zIndex='banner' >
         <Flex  alignItems='center' justifyContent='space-between' >
-           { router.pathname !== '/create-account' ? <ButtonLink href="/create-account" label="Become a member" /> : <Box w='17.9rem' /> } 
+           { !url[router.pathname] ? <ButtonLink href="/create-account" label="Become a member" /> : <Box w='17.9rem' /> } 
 
             {/* Logo */}
             <NextLInk href="/">

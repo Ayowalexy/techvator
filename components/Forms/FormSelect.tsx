@@ -19,7 +19,7 @@ function FormSelect({ labelProps, label, containerProps, selectProps = {}, input
   return (
       <FormControl display='flex' flex='1' alignItems='center' {...containerProps} borderBottom={containerProps?.flexDir === 'column'  ? 'unset' : `2px solid ${white}`}>
         <FormLabel fontSize='1.4rem' borderRight={`1px solid ${white}`} px='1rem' flex='0.3'  {...labelProps}>{label}</FormLabel>
-           <Select fontSize='1.4rem' border='none' outline='none'  _focus={{ border: 'none', boxShadow: 'none'}}  {...selectProps} >
+           <Select  fontSize='1.4rem' border='none' outline='none'  _focus={{ border: 'none', boxShadow: 'none'}}  {...selectProps} >
             {children}
            </Select>
       </FormControl>

@@ -2,7 +2,7 @@
 export const navigation = [
     {
         label: 'Home',
-        path: '/home'
+        path: '/'
     },
     {
         label: 'Meet the Amahlubist',

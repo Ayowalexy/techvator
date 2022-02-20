@@ -2,7 +2,7 @@ import { Box, Flex, FlexProps, HeadingProps, Text, useTheme, Button as ChakraBut
 import {BsTelephoneFill} from 'react-icons/bs'
 import { IoMdMail } from 'react-icons/io'
 import { SiMinutemailer } from 'react-icons/si'
-import Button from "./Button"
+import ButtonLink from "./Button"
 import Container from "./Container"
 import FormInput from "./Forms/FormInput"
 import FormTextArea from "./Forms/FormTextArea"
@@ -50,20 +50,20 @@ const {metallicSunburst, roti, white, black} = theme.colors.brand
                     <ContactDetail icon={<IoMdMail />} info="info@AmaHlubi.co.za" headerProp={{ fontSize: '1.1rem', fontWeight:'500' }}/>
 
                     <Flex alignItems='center' mt='2rem'>
-                        <Button _hover={{background: 'transparent', borderColor: white}} bg={metallicSunburst} borderColor={metallicSunburst} p='.6rem 2rem' label="Become a member" fontSize='1.2rem' href="#" />
+                        <ButtonLink _hover={{background: 'transparent', borderColor: white}} bg={metallicSunburst} borderColor={metallicSunburst} p='.6rem 2rem' label="Become a member" fontSize='1.2rem' href="#" />
                          <Flex alignItems='center' mx='1rem'>
                             <FacebookIcon />
-                            <Button ml='.5rem' p='.5rem 2rem' label="Follow" textTransform='capitalize' href="#" />
+                            <ButtonLink ml='.5rem' p='.5rem 2rem' label="Follow" textTransform='capitalize' href="#" />
                          </Flex>
                          <Flex alignItems='center' mx='1rem'>
                          <InstagramIcon />
-                        <Button ml='.5rem' p='.5rem 2rem' label="Follow" textTransform='capitalize' href="#" />
+                        <ButtonLink ml='.5rem' p='.5rem 2rem' label="Follow" textTransform='capitalize' href="#" />
                          </Flex>
                     </Flex>
             </Box>
 
             {/* Forms */}
-            <Box flex='0.6' py='12rem' px='6rem' borderLeft={`2px solid ${metallicSunburst}`}>
+            <Box  bgColor={black} flex='0.6' py='12rem' px='6rem' borderLeft={`2px solid ${metallicSunburst}`}>
                     <HeaderTag mb='1rem' verticalAlign='middle' fontSize='1.4rem' lineHeight={3.6} fontWeight='600' fontFamily='Montserrat' textAlign='left'>GET IN TOUCH</HeaderTag>
                     <form>
                         <Box borderTop={`2px solid ${white}`}  py='3rem'>

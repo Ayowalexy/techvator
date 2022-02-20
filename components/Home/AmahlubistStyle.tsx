@@ -1,6 +1,6 @@
 import { background, Box, Flex, Grid, Heading, Text, useTheme } from  '@chakra-ui/react'
 import { amahlubistLifeStyle } from '../../data/the-amahlubist'
-import Button from '../Button'
+import ButtonLink from '../Button'
 import Container from "../Container"
 import HeaderTag from '../HeaderTag'
 
@@ -29,7 +29,7 @@ function AmahlubistStyle() {
             <Text textAlign='justify' dangerouslySetInnerHTML={{ __html: subTitle}} />
             
             <Flex alignItems='flex-end' justifyContent='center' mt='2rem'  flex={1}>
-              <Button _hover={{background: isEven ? black : roti}}  label='Learn More' href={lt?.url} textTransform='capitalize' />
+              <ButtonLink _hover={{background: isEven ? black : roti}}  label='Learn More' href={lt?.url} textTransform='capitalize' />
             </Flex>
         </Flex>
     )

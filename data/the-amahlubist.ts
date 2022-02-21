@@ -27,7 +27,7 @@ export const theAmahlubist = [
 export const amahlubistLifeStyle = [
     {
         title: 'Success-Survey',
-        subTitle: 'This will house a list of questions for our visitors to answer to find their path to claiming the right path to claiming their rightful place at the top',
+        subTitle: 'This will house alot of questions for our website visitors to answer, to find their path, to claiming their rightful place at the top',
         url: '#'
     },
     {
@@ -36,14 +36,13 @@ export const amahlubistLifeStyle = [
         url: '#'
     },
     {
-        title: 'Owning-Financial-Freedom',
-        subTitle: 'This will house everything "Black-Excellent" ideas shared from a personal perspective from financial gurus like: Manzini Zungu, Zizipho Zungu, George Dube and the likes of Patrick Motsipe etc.' ,
+        title: 'Owning \n Financial-Freedom',
+        subTitle: 'This will house everything "Black-Excellent" ideas shared from a personal perspective from financial gurus like Manzini Zungu, Zizipho Zungu, George Dube, and the likes of Patrice Motsipe etc. ',
         url: '#'
     },
     {
         title: 'Amahlubi Swagness',
-        subTitle: 'This will house everything stylish-inspired mad dopeness "Black-Excellent" ideas shared from a personal perspective from on fashion, attire, hair, drip-dress - advice on owning & solidifying your personal, individual look sponsored by ZugaNation...' ,
+        subTitle: 'This will house everything "Black-Excellent" ideas shared from a personal perspective on fashion, hair, attire, drip-dress- advice on owning & solidifying your personal individual look...sponsored by ZunguNation...',
         url: '#'
     },
-
 ]

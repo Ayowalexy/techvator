@@ -1,6 +1,7 @@
 import { Box, Grid, Heading, Image, Text, useTheme } from "@chakra-ui/react"
 import { theAmahlubist } from "../../data/the-amahlubist"
 import Container from "../Container"
+import HeaderTag from "../HeaderTag"
 
 
 function TheAmahlubist(): JSX.Element {
@@ -18,9 +19,10 @@ function TheAmahlubist(): JSX.Element {
   return (
     <Container pos='relative' pt='10rem' pb='5rem'  bgColor={rotiLight} bg='url("/imgs/amhubist-background-01.jpg")' bgSize='contain' bgRepeat='no-repeat'>
         <Box pos='relative' zIndex={2}>
-            <Heading as='h3' my='3rem' color={black} fontSize='3.1rem' fontFamily='Century Gothic' fontWeight='600' textAlign='center'> 
+            <HeaderTag color={black}>
                 Meet 'THE' Amahlubists 
-            </Heading>
+            </HeaderTag>
+
             <Grid gap='2rem' mt='5rem' px='3rem' templateColumns="repeat(auto-fit,minmax(18rem, 1fr))">
                 {
                     theAmahlubist.map((user, idx) => {
@@ -33,7 +35,7 @@ function TheAmahlubist(): JSX.Element {
                 }
             </Grid>
         </Box>
-        <Box pos='absolute' w='100%'  height={['80%','30%']} bgColor='white' left='0' bottom='0' />
+        <Box pos='absolute' w='100%'  height={['80%','60%','60%','30%']} bgColor='white' left='0' bottom='0' />
     </Container>
   )
 }

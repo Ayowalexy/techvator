@@ -16,6 +16,7 @@ function Header(): JSX.Element {
     '/create-account': '/create-account',
     '/login': '/login',
     '/password/reset': '/password/reset',
+    '/password/create': '/password/create',
   }
 
 

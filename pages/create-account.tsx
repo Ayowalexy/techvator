@@ -144,9 +144,10 @@ function createaccount() {
                                     id:'country',
                                     borderRadius:'md',
                                     border: `2px solid ${metallicSunburst} !important`,
+                                    size: 'lg',
                                     sx:{
                                       '&.chakra-select': {
-                                        padding: '2rem 0',
+                                        height: '4.4rem'
                                       }
                                     }
                                   }}

@@ -57,7 +57,7 @@ function AmahlubistStyle() {
                  Whoever thought a time would come when achievements is this celebrated and put on a pedestal it so finely desere
              </Text>
 
-             <Grid gap='2rem' my='10rem' px='3rem' gridAutoRows='minmax(min-content, max-content)' templateColumns="repeat(auto-fit,minmax(18rem, 1fr))">
+             <Grid gap='2rem' my={{ base: '5rem', lg:'10rem'}} px='3rem' gridAutoRows='minmax(min-content, max-content)' templateColumns="repeat(auto-fit,minmax(18rem, 1fr))">
                 {
                     amahlubistLifeStyle.map((ls, idx) => {
                        return (

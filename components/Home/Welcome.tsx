@@ -11,30 +11,38 @@ function Welcome(): JSX.Element {
     
   return (
     <Container>
-        <Flex p='3.5rem'>
-             <Image zIndex={1} src='/imgs/home/welcome-2x.png' pl='9rem' pr='10rem' transform='translateY(9rem)' />
+        <Flex flexDir={{base: 'column', md: 'column', lg: 'row' }} p='3.5rem'>
+             <Image 
+             mb='1rem'
+             pl={{ base:'unset', md:'1rem', lg:'9rem'}} 
+             pr={{base:'unset', lg: '10rem'}} 
+            //  pb={{p:'5rem' }}
+             src='/imgs/home/welcome-2x.png' 
+             transform={{base: 'unset', lg: 'translateY(9rem)'}} 
+             zIndex={1} 
+             />
 
              <Box maxW='44rem'>
-                 <Text fontSize='1.8rem' lineHeight='2'>
+                 <Text fontSize={{base: '1.4rem', lg:'1.8rem'}} lineHeight='2'>
                      YOU possess, everything and more it takes to claim your rightful place in the upper-class and distinguished-master class of Achievement – no one can or will ever take away from you…
                  </Text>
                  <Box my='3rem'>
-                    <Text fontSize='1.8rem' fontStyle='italic' lineHeight='2' color={roti}>
+                    <Text fontSize={{base: '1.4rem', lg:'1.8rem'}} fontStyle='italic' lineHeight='2' color={roti}>
                         Keep ﬂying...
                     </Text>
-                    <Text fontSize='1.8rem' fontStyle='italic' lineHeight='2' color={roti}>
+                    <Text fontSize={{base: '1.4rem', lg:'1.8rem'}} fontStyle='italic' lineHeight='2' color={roti}>
                         Keep going...
                     </Text>
-                    <Text fontSize='1.8rem' fontStyle='italic' lineHeight='2' color={roti}>
+                    <Text fontSize={{base: '1.4rem', lg:'1.8rem'}} fontStyle='italic' lineHeight='2' color={roti}>
                         Dominating - higher than the sky…
                     </Text>
                  </Box>
                 
-                 <Text fontSize='1.8rem' lineHeight='2'>
+                 <Text fontSize={{base: '1.4rem', lg:'1.8rem'}} lineHeight='2'>
                     Take your throne and be thrown much higher than the sky can dare to throw you!
                  </Text>
 
-                 <ButtonLink display='inline-block' mt='3.5rem'  zIndex={2} p='1.5rem 3rem' label='Learn More'  href='' textTransform='capitalize' fontSize='1.8rem' />
+                 <ButtonLink display='inline-block' mt='3.5rem'  zIndex={2} p={{base: '1rem 2rem', lg: '1.5rem 3rem' }} label='Learn More'  href='' textTransform='capitalize' fontSize={{base: '1.4rem', lg:'1.8rem'}} />
              </Box>
         </Flex>
 

@@ -24,12 +24,18 @@ function Header(): JSX.Element {
   return (
     <Container py='1.5rem' bg='url("/imgs/topbackground.jpg")' bgRepeat='no-repeat' bgSize='cover' pos='relative' zIndex='banner' >
         <Flex  alignItems='center' justifyContent='space-between' >
-           { !url[router.pathname] ? <ButtonLink href="/create-account" label="Become a member" /> : <Box w='17.9rem' /> } 
+           { 
+           !url[router.pathname] 
+           ? 
+           <ButtonLink href="/create-account" label="Become a member" display={{base: 'none', lg: 'block'}} /> 
+           : 
+           <Box w='17.9rem' /> 
+           } 
 
             {/* Logo */}
             <NextLInk href="/">
               <Link>
-              <Image mt='-1rem' src="/imgs/logo@2x.png" alt="amachulbi logo" w='14.7rem' h='5.2rem' transform='translateX(-50%)' />
+              <Image mt='-1rem' src="/imgs/logo@2x.png" alt="amachulbi logo" w='14.7rem' h='5.2rem' transform={{ base: 'translateX(-34%)', lg: 'translateX(-50%)'}} />
               </Link>
             </NextLInk>
 

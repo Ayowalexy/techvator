@@ -43,36 +43,57 @@ const {metallicSunburst, roti, white, black} = theme.colors.brand
     <Container bg='url("/imgs/contact-sectionbg.png")' bgSize='120% 100%' bgRepeat='no-repeat' bgColor={black}>
         <Flex flexDir={['column', 'column', 'row', 'row']}>
             {/* Contact Details */}
-            <Box flex='0.4' px='6rem' py='12rem'>
+            <Box flex='0.4' px={{ base: 'unset', lg:'6rem'}} py={{base: '3rem', lg:'12rem'}}>
                     <HeaderTag textAlign='left' fontSize='3.8rem'>Let's talk</HeaderTag>
                     <Text mb='2rem' maxW='30rem'>Amahlubi online helps you connect and share with the nation of Amahlubi</Text>
                     <ContactDetail icon={<BsTelephoneFill />} info="(010) 109 8604"  />
                     <ContactDetail icon={<IoMdMail />} info="info@AmaHlubi.co.za" headerProp={{ fontSize: '1.1rem', fontWeight:'500' }}/>
 
-                    <Flex alignItems='center' mt='2rem'>
-                        <ButtonLink _hover={{background: 'transparent', borderColor: white}} bg={metallicSunburst} borderColor={metallicSunburst} p='.6rem 2rem' label="Become a member" fontSize='1.2rem' href="#" />
-                         <Flex alignItems='center' mx='1rem'>
-                            <FacebookIcon />
+                    <Flex flexDir={{base: 'column', md: 'row', lg:'row'}} alignItems='center' mt='2rem'>
+                        <ButtonLink 
+                        _hover={{background: 'transparent', borderColor: white}} 
+                        bg={metallicSunburst} 
+                        borderColor={metallicSunburst} 
+                        mb={{base: '1rem', md: 'unset', lg:'unset'}}
+                        p='.6rem 2rem' 
+                        label="Become a member" 
+                        fontSize='1.2rem' 
+                        href="#" 
+                        />
+                         <Flex>
+                            <Flex alignItems='center' mx='1rem'>
+                                <FacebookIcon />
+                                <ButtonLink ml='.5rem' p='.5rem 2rem' label="Follow" textTransform='capitalize' href="#" />
+                            </Flex>
+                            <Flex alignItems='center' mx='1rem'>
+                            <InstagramIcon />
                             <ButtonLink ml='.5rem' p='.5rem 2rem' label="Follow" textTransform='capitalize' href="#" />
-                         </Flex>
-                         <Flex alignItems='center' mx='1rem'>
-                         <InstagramIcon />
-                        <ButtonLink ml='.5rem' p='.5rem 2rem' label="Follow" textTransform='capitalize' href="#" />
+                            </Flex>
                          </Flex>
                     </Flex>
             </Box>
 
             {/* Forms */}
-            <Box  bgColor={black} flex='0.6' py='12rem' px='6rem' borderLeft={`2px solid ${metallicSunburst}`}>
+            <Box  
+            bgColor={black} 
+            flex='0.6' 
+            py={{base: 'unset', lg:'12rem'}} 
+            px={{base: '1rem', lg: '6rem' }}
+            borderLeft={{base: 'unset', md:`2px solid ${metallicSunburst}`,   lg: `2px solid ${metallicSunburst}`}}
+            >
                     <HeaderTag mb='1rem' verticalAlign='middle' fontSize='1.4rem' lineHeight={3.6} fontWeight='600' fontFamily='Montserrat' textAlign='left'>GET IN TOUCH</HeaderTag>
+                   
                     <form>
                         <Box borderTop={`2px solid ${white}`}  py='3rem'>
-                            <Flex my='0.5rem' w='100%'>
-                                <FormInput  label="First Name" containerProps={{mr: '2rem'}}  />
+                            <Flex flexDir={{base: 'column'}} my='0.5rem' w='100%'>
+                                <FormInput  label="First Name" containerProps={{mr: '2rem', mb: {base: '1rem', lg: 'unset'}}}  />
                                 <FormInput  label="Last Name" />
                             </Flex>
-                            <Flex my='2rem' w='100%'>
-                                <FormInput inputProps={{ onChange: () => console.log('hello'), value:'' }} label="Email" containerProps={{mr: '2rem'}}  />
+                            <Flex flexDir={{base: 'column'}} my='2rem' w='100%'>
+                                <FormInput 
+                                inputProps={{ onChange: () => console.log('hello'), value:'' }} 
+                                label="Email" containerProps={{mr: '2rem', mb: {base: '1rem', lg: 'unset'}}}  
+                                />
                                 <FormInput  label="Tel/Mobile" />
                             </Flex>
                             <Box>

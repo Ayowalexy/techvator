@@ -1,6 +1,7 @@
-import { Box, Flex, Image, Link, useTheme } from "@chakra-ui/react"
+import { Box, Button, Flex, Icon, Image, Link, useTheme } from "@chakra-ui/react"
 import NextLInk from "next/link"
 import { useRouter } from "next/router"
+import { CgMenu } from 'react-icons/cg'
 import ButtonLink from "./Button"
 
 import Container from "./Container"
@@ -47,7 +48,13 @@ function Header(): JSX.Element {
                 <Link>
                     <InstagramIcon />
                 </Link>
+                
           </Flex>
+          <Box boxSize='3.0rem' display={{ lg:'none'}}>
+              <Button w='inherit' h='inherit' bg='none !important' boxShadow='none' outline='none' _focus={{ boxShadow:'none' }}>
+                <Icon as={CgMenu} w='inherit' h='inherit' color={theme.colors.brand.white} />
+              </Button>
+          </Box>
 
         </Flex>
     </Container>

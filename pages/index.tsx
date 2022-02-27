@@ -1,4 +1,3 @@
-import { Heading, Stack, Text } from '@chakra-ui/react'
 import Head from 'next/head'
 import ContactSection from '../components/ContactSection'
 import Footer from '../components/Footer'

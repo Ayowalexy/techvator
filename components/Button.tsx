@@ -22,7 +22,7 @@ function ButtonLink({ label, href, _hover,  ...rest }: ButtonLinkProps): JSX.Ele
       {...rest}
       _hover={{
         backgroundColor: theme.colors.brand.roti,
-        border:`2px solid ${theme.colors.brand.roti}`,
+        border:`1px solid ${theme.colors.brand.roti}`,
         ..._hover
       }}
     >
@@ -43,9 +43,8 @@ function Btn({ children, type, _hover, ...rest  }: BtnProps ){
     <Button
       p='1rem 1.4rem'
       borderRadius='3.0rem'
-      border={`2px solid ${theme.colors.brand.white}`}
+      border={`2px solid ${theme.colors.brand.roti}`}
       background={theme.colors.brand.roti}
-      borderColor={theme.colors.brand.roti}
       h='100%'
       fontSize='1.4rem'
       textDecoration='none !important'
@@ -53,7 +52,7 @@ function Btn({ children, type, _hover, ...rest  }: BtnProps ){
       transition='all 250ms ease-in-out'
       _hover={{
         backgroundColor: theme.colors.brand.metallicSunburst,
-        border:`2px solid ${theme.colors.brand.metallicSunburst}`,
+        border:`1px solid ${theme.colors.brand.metallicSunburst}`,
         ..._hover
       }}
       {...rest}

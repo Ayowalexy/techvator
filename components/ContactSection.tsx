@@ -85,11 +85,11 @@ const {metallicSunburst, roti, white, black} = theme.colors.brand
                    
                     <form>
                         <Box borderTop={`2px solid ${white}`}  py='3rem'>
-                            <Flex flexDir={{base: 'column'}} my='0.5rem' w='100%'>
+                            <Flex flexDir={{base: 'column', lg: 'row'}} my='0.5rem' w='100%'>
                                 <FormInput  label="First Name" containerProps={{mr: '2rem', mb: {base: '1rem', lg: 'unset'}}}  />
                                 <FormInput  label="Last Name" />
                             </Flex>
-                            <Flex flexDir={{base: 'column'}} my='2rem' w='100%'>
+                            <Flex flexDir={{base: 'column', lg: 'row'}} my='2rem' w='100%'>
                                 <FormInput 
                                 inputProps={{ onChange: () => console.log('hello'), value:'' }} 
                                 label="Email" containerProps={{mr: '2rem', mb: {base: '1rem', lg: 'unset'}}}  

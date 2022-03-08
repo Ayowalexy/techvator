@@ -7,7 +7,7 @@ import Button from "./Button"
 
 function Navigation() {
   const theme = useTheme()
-  const { rotiLight, white, black} = theme.colors.brand
+  const { rotiLight, roti, white, black} = theme.colors.brand
   return (
     <List 
     display={'flex'} 
@@ -32,19 +32,32 @@ function Navigation() {
           )
           )
         }
-        <ListItem margin='0 auto'  mb={['2rem', '2rem', '2rem', '0']} display={['none', 'none', 'none', 'block']}  >
+        <ListItem   
+            bg={black} 
+            border={black} 
+            borderRadius='3.0rem'
+            color={white} 
+            margin='0 auto'  
+            mb={['2rem', '2rem', '2rem', '0']} 
+            display={['none', 'none', 'none', 'block']}  
+            px='1.8rem'
+            py='0.8rem'
+            transition='background-color 250ms ease'
+            _hover={{
+              backgroundColor: roti,
+              border:`1px solid ${roti}`,
+            }}
+        >
             <Button 
             fontFamily='Roboto' 
             fontWeight='600'
             label="Reach Out" 
             href="#" 
-            bg={black} 
-            color={white} 
-            border={black} 
-            px='1.8rem'
-            py='0.8rem'
+            border='unset'
+            p='unset'
             textTransform='capitalize'
-            _hover={{backgroundColor: 'black', opacity:'.7'}} />
+            _hover={{backgroundColor: 'unset', border:'unsett', opacity:'.7'}} 
+            />
         </ListItem>
       
       {/* Mobile List Options */}

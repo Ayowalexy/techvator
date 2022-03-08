@@ -1,11 +1,12 @@
 import Head from 'next/head'
-import ContactSection from '../components/ContactSection'
-import Footer from '../components/Footer'
-import AmahlubistStyle from '../components/Home/AmahlubistStyle'
-import Hero from '../components/Home/Hero'
-import TheAmahlubist from '../components/Home/TheAmahlubist'
-import Welcome from '../components/Home/Welcome'
-import Layout from '../components/Layout'
+import AmahlubistStyle from '@/components/Home/AmahlubistStyle'
+import ContactSection from '@/components/ContactSection'
+import CompleteProfile from '@/components/Dashboard/CompleteProfile'
+import Footer from '@/components/Footer'
+import Hero from '@/components/Home/Hero'
+import Layout from '@/components/Layout'
+import TheAmahlubist from '@/components/Home/TheAmahlubist'
+import Welcome from '@/components/Home/Welcome'
 
 export default function Home():JSX.Element {
   return (
@@ -16,6 +17,7 @@ export default function Home():JSX.Element {
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
+      <CompleteProfile />
       <Layout>
           <>
           <Hero />

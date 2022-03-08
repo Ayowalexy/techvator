@@ -222,7 +222,7 @@ function createaccount() {
                                   />
                                 }
                                   />
-                                  <Btn mt={['1.5rem', '1.5rem', '1.5rem', '0']} p='1.2rem'  flex={0.9} alignSelf='flex-end'  type='submit'>Join Amahlubi</Btn>
+                                  <Btn mt={['1.5rem', '1.5rem', '1.5rem', '0']} p='1.2rem'  flex={0.9} alignSelf='flex-end' textTransform='uppercase'  type='submit'>Join Amahlubi</Btn>
                               </Flex>
                           </Stack>
                       </form>

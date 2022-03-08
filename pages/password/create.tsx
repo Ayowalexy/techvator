@@ -109,7 +109,7 @@ function createnew() {
                               </Flex>
 
                               <Flex  flexDir='column'>
-                                  <Btn mt={['1.5rem', '1.5rem', '1.5rem', '0']}   size='lg' type='submit'>Create password</Btn>
+                                  <Btn mt={['1.5rem', '1.5rem', '1.5rem', '0']} textTransform='uppercase'   size='lg' type='submit'>Create password</Btn>
                               </Flex>
                           </Stack>
                       </form>

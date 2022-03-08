@@ -18,7 +18,7 @@ function ButtonLink({ label, href, _hover,  ...rest }: ButtonLinkProps): JSX.Ele
       fontSize='1.4rem'
       textDecoration='none !important'
       textTransform='uppercase'
-      transition='all 250ms ease-in-out'
+      transition='all 250ms ease'
       {...rest}
       _hover={{
         backgroundColor: theme.colors.brand.roti,
@@ -48,7 +48,6 @@ function Btn({ children, type, _hover, ...rest  }: BtnProps ){
       h='100%'
       fontSize='1.4rem'
       textDecoration='none !important'
-      textTransform='uppercase'
       transition='all 250ms ease-in-out'
       _hover={{
         backgroundColor: theme.colors.brand.metallicSunburst,

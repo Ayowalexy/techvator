@@ -10,10 +10,10 @@ let colors = {
         metallicSunburst: "#917A34",
         red: "#F21C1C",
         roti: "#B49A43",
-        rotiLight: 'rgba(180, 154, 67, 0.7)',
+        rotiLight: "rgba(180, 154, 67, 0.7)",
         sirocco: "#6F7070",
         white: "#ffffff",
-        gray: "#00000029"
+        gray: "rgba(242, 242, 242, 1)"
 
     }
 }

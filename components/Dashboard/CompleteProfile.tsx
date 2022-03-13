@@ -1,20 +1,33 @@
-import { Box, Flex, Link, Stack, Text, useTheme } from '@chakra-ui/react'
-import React from 'react'
-import Button, { Btn } from '../Button'
-import Container from '../Container'
-import FormInput from '../Forms/FormInput'
-import HeaderTag from '../HeaderTag'
+import { Box, Flex, Link, Stack, Text, useTheme, Modal, ModalBody, ModalContent, useDisclosure, ModalOverlay } from '@chakra-ui/react'
+import React, { useLayoutEffect, useState } from 'react'
+import { Btn } from '@/components/Button'
+import Container from '@/components/Container'
+import FormInput from '@/components/Forms/FormInput'
+import FormSelect from '@/components/Forms/FormSelect'
+import HeaderTag from '@/components/HeaderTag'
+import ProfileUpload from '@/components/Uploads/ProfileUpload'
+import FormTextArea from '../Forms/FormTextArea'
 
 type CompleteProfileProps = {
 
 }
 
 function CompleteProfile({}: CompleteProfileProps): JSX.Element {
+    const { isOpen , onOpen, onClose } = useDisclosure()
     const theme = useTheme()
     const {  black, metallicSunburst, white } = theme.colors.brand
+    const [imageFile, setImageFile] = useState()
+
+    useLayoutEffect(() => {
+        onOpen()
+    }, [])
+ 
+
   return (
-        <Container w='100vw' h='100%' bg={`rgba(0, 0, 0,.5)`} pos='fixed' zIndex='popover'>
-          <Flex  alignItems='stretch' justifyContent='center' py='calc(100% * 0.15)'>
+        <Modal  size={'6xl'} isOpen={isOpen} onClose={onClose}>
+          <ModalOverlay />
+          <ModalContent bg='transparent' p='0'>
+          <ModalBody  alignItems='stretch' justifyContent='center' py='calc(100% * 0.15)'>
             <Flex  w='100%' p='1.2rem 5.6rem' maxW='100rem' h='100%' borderRadius='lg' flexDir='column' bg={black} >
                     <Flex alignItems='center'>
                         <Box flex='1'>
@@ -29,6 +42,7 @@ function CompleteProfile({}: CompleteProfileProps): JSX.Element {
                         h='unset' 
                         alignSelf='center' 
                         fontWeight='semibold'
+                        onClick={() => onClose()}
                         >
                           Skip, i will do it later
                         </Btn>
@@ -39,13 +53,80 @@ function CompleteProfile({}: CompleteProfileProps): JSX.Element {
                           <Stack spacing='1.7rem'>
                               {/* File Upload Component*/}
                                <Flex alignItems='center'>
-                                    <Box pos='relative' w='6.0rem' h='6.0rem' bg='red'>
-
-                                    </Box>
+                                   <ProfileUpload imageFile={imageFile} setImageFile={setImageFile} />
                                </Flex>
 
                               <Flex alignItems='center' flexDir={['column', 'column', 'column', 'row']}>
-                                  <FormInput label="Email Address" 
+                                  <FormInput label="Occupation" 
+                                  containerProps={{
+                                    flexDir: 'column',
+                                    mr: {base: 0, lg: '3.9rem'}
+                                  }} 
+                                  labelProps={{
+                                    alignSelf: 'flex-start',
+                                    borderRight: 'unset',
+                                    fontSize: '1.1rem',
+                                    fontWeight: '800'
+                                  }}
+                                  inputProps={{
+                                    id:'email',
+                                    type:'email',
+                                    borderRadius:'md',
+                                    border: `2px solid ${metallicSunburst} !important`,
+                                    p: '2.5rem'
+                                  }}
+                                  />
+
+                                  <FormInput label="Living In" 
+                                  containerProps={{
+                                    flexDir: 'column',
+                                    ml: { base: '0', lg: '1rem' }
+                                  }} 
+                                  labelProps={{
+                                    alignSelf: 'flex-start',
+                                    borderRight: 'unset',
+                                    fontSize: '1.1rem',
+                                    fontWeight: '800'
+                                  }}
+                                  inputProps={{
+                                    id:'email',
+                                    type:'email',
+                                    borderRadius:'md',
+                                    border: `2px solid ${metallicSunburst} !important`,
+                                    p: '2.5rem'
+                                  }}
+                                  />
+                              </Flex>
+
+                              <Flex alignItems='center' flexDir={['column', 'column', 'column', 'row']}>
+                                <FormSelect label="Gender" 
+                                  containerProps={{
+                                    flexDir: 'column',
+                                    mr:{ base: 0, lg: '3.9rem' }
+                                  }} 
+                                  labelProps={{
+                                    alignSelf: 'flex-start',
+                                    borderRight: 'unset',
+                                    fontSize: '1.1rem',
+                                    fontWeight: '800'
+                                  }}
+                                  selectProps={{
+                                    id:'gender',
+                                    borderRadius:'md',
+                                    border: `2px solid ${metallicSunburst} !important`,
+                                    size: 'lg',
+                                    sx:{
+                                      '&.chakra-select': {
+                                        height: '5.4rem'
+                                      }
+                                    }
+                                  }}
+                                  >
+                                      <option value='Female'> Female</option>
+                                      <option value='Male'> Male</option>
+                                  </FormSelect>
+
+                                  <FormInput label="Date of Birth" 
                                   containerProps={{
                                     flexDir: 'column'
                                   }} 
@@ -65,54 +146,56 @@ function CompleteProfile({}: CompleteProfileProps): JSX.Element {
                                   />
                               </Flex>
 
-                              <Flex alignItems='center' flexDir={['column', 'column', 'column', 'row']}>
-                                  <FormInput 
-                                  label="Password" 
-                                  containerProps={{
-                                    flexDir: 'column'
-                                  }} 
+                            
+
+                              <Flex alignItems={{base: 'flex-start', lg: 'center'}}  flexDir={{base:'column', lg:'row'}}>
+                                  <FormTextArea 
+                                    containerProps={{
+                                      flexDir: 'column',
+                                      mr: { base: '0', lg: '3.9rem' },
+                                      border: 'none !important'
+                                      
+                                    }} 
+                                  label="About me" 
                                   labelProps={{
                                     alignSelf: 'flex-start',
                                     borderRight: 'unset',
                                     fontSize: '1.1rem',
                                     fontWeight: '800'
                                   }}
-                                
-                                  />
-                              </Flex>
+                                  textAreaProps={{
+                                    placeholder: 'Less than 500 words',
+                                    id:'aboutMe',
+                                    borderRadius:'md',
+                                    border: `2px solid ${metallicSunburst} !important`,
+                                    p: '2.5rem',
+                                    rows: 2
+                                  }}
 
-                              <Flex  flexDir='column'>
-                              <HeaderTag 
-                                textTransform='uppercase'
-                                letterSpacing='unset'
-                                as='h3' 
-                                fontSize='1.1rem'
-                                fontFamily='Montserrat'
-                                fontWeight='semibold'
-                                my='1.4rem'
-                                >
-                                    Forgot your password? <Link href='/password/reset'><a>Reset here</a></Link>
-                            </HeaderTag>
-                                  <Btn mt={['1.5rem', '1.5rem', '1.5rem', '0']}   size='lg' type='submit'>Log in</Btn>
+                                  />
+          
+                                 <Flex flex='1'  alignItems='center'>
+                                     <Btn 
+                                     display='block'
+                                     w='100%'
+                                     justifySelf='stretch'  
+                                     mt={['1.5rem', '1.5rem', '1.5rem', '1.5rem']}
+                                     py='1.5rem'   
+                                     size='lg' 
+                                     type='submit'
+                                     textTransform='uppercase'
+                                     >
+                                       Save profile
+                                    </Btn>
+                                 </Flex>
                               </Flex>
                           </Stack>
                       </form>
-
-                      <HeaderTag 
-                          textTransform='uppercase'
-                          letterSpacing='unset'
-                          as='h3' 
-                          fontSize='1.1rem'
-                          textAlign='left' 
-                          fontFamily='Montserrat'
-                          fontWeight='semibold'
-                          >
-                            Dont have an account? <Link href='/create-account'><a>Sign up</a></Link>
-                      </HeaderTag>
                     </Box>
                 </Flex>
-            </Flex>
-        </Container>
+            </ModalBody>
+            </ModalContent>
+        </Modal>
   )
 }
 

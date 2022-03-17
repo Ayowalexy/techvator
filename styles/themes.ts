@@ -6,6 +6,9 @@ import { extendTheme } from "@chakra-ui/react";
 let colors = {
     brand: {
         black: "#000000",
+        secondaryBlack: {
+            100: "#242526",
+        },
         brass: "#AA8E48",
         metallicSunburst: "#917A34",
         red: "#F21C1C",

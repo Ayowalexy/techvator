@@ -1,5 +1,5 @@
 import { Box, Flex, Link, Stack, Text, useTheme, Modal, ModalBody, ModalContent, useDisclosure, ModalOverlay } from '@chakra-ui/react'
-import React, { useLayoutEffect, useState } from 'react'
+import React, { useState } from 'react'
 import { Btn } from '@/components/Button'
 import Container from '@/components/Container'
 import FormInput from '@/components/Forms/FormInput'
@@ -7,6 +7,7 @@ import FormSelect from '@/components/Forms/FormSelect'
 import HeaderTag from '@/components/HeaderTag'
 import ProfileUpload from '@/components/Uploads/ProfileUpload'
 import FormTextArea from '../Forms/FormTextArea'
+import { useIsomorphicLayoutEffect } from 'framer-motion'
 
 type CompleteProfileProps = {
 
@@ -18,7 +19,9 @@ function CompleteProfile({}: CompleteProfileProps): JSX.Element {
     const {  black, metallicSunburst, white } = theme.colors.brand
     const [imageFile, setImageFile] = useState()
 
-    useLayoutEffect(() => {
+ 
+
+    useIsomorphicLayoutEffect(() => {
         onOpen()
     }, [])
  

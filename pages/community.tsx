@@ -1,7 +1,12 @@
 import Head from 'next/head'
-import { Flex, useTheme } from '@chakra-ui/react'
+import { Flex, IconButton, Img, useTheme } from '@chakra-ui/react'
 import Container from '@/components/Container'
 import Layout from '@/components/Layout'
+import CommunityContentLayout from '@/components/Dashboard/CommunityContentLayout'
+import CommunityLeftSidebar from '@/components/Dashboard/CommunityLeftSidebar'
+import CommunityRightSidebar from '@/components/Dashboard/CommunityRightSidebar'
+import CommunityMainContent from '@/components/Dashboard/CommunityMainContent'
+
 
 
 function community() {
@@ -17,13 +22,26 @@ function community() {
         <link rel="icon" href="/favicon.ico" />
     </Head>
     <Layout>
-        <Container bg={secondaryBlack['100']}>
+        <>
+        <Container bg={secondaryBlack['200']}>
         <Flex h='6rem' align='center' justify='flex-end' >
-                <Flex align='center' justify='center' w='4.0rem' h='4.0rem' bg='red' borderRadius='100vw' mr={{base: 'unset', md: '1.6rem'}}>
-
-                </Flex>
+                <IconButton 
+                aria-label='button'
+                w='4.0rem' h='4.0rem' 
+                bg={secondaryBlack['100']} 
+                borderRadius='100vw' 
+                mr={{base: 'unset', md: '1.6rem'}}
+                icon={<Img boxSize='40px' src="/imgs/community/notification.svg"  />} />            
         </Flex>
         </Container>
+        <Container bg={secondaryBlack['300']}>
+            <CommunityContentLayout>
+                <CommunityLeftSidebar />
+                <CommunityMainContent />
+                <CommunityRightSidebar />
+            </CommunityContentLayout>
+        </Container>
+        </>
     </Layout>
     </div>
   )

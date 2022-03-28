@@ -6,6 +6,7 @@ import Footer from '@/components/Footer'
 import Hero from '@/components/Home/Hero'
 import Layout from '@/components/Layout'
 import TheAmahlubist from '@/components/Home/TheAmahlubist'
+import BuildingAnILO from '@/components/Home/BuildingAnILO'
 import Welcome from '@/components/Home/Welcome'
 
 export default function Home():JSX.Element {
@@ -23,6 +24,7 @@ export default function Home():JSX.Element {
           <Hero />
           <Welcome />
           <TheAmahlubist />
+          <BuildingAnILO />
           <AmahlubistStyle />
           <ContactSection />
           <Footer />

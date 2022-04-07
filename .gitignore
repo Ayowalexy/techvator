@@ -5,6 +5,8 @@
 /.pnp
 .pnp.js
 
+/components/Uploads/testfile.tsx
+
 # testing
 /coverage
 

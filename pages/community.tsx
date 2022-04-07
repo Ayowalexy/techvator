@@ -1,4 +1,5 @@
 import Head from 'next/head'
+
 import { Flex, IconButton, Img, useTheme } from '@chakra-ui/react'
 import Container from '@/components/Container'
 import Layout from '@/components/Layout'

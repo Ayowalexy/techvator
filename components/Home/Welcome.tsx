@@ -1,6 +1,5 @@
 import { Box, Flex, Image, Text } from '@chakra-ui/react'
 import { useTheme } from '@emotion/react'
-// import Image from 'next/image'
 import React from 'react'
 import ButtonLink from '../Button'
 import Container from '../Container'

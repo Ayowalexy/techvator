@@ -71,6 +71,10 @@ function Navigation() {
         >
             
          <ButtonLink href="/create-account" label="Become a member" mr='1rem' />
+         <ButtonLink href="/black-excellence" label="Become a member" mr='1rem' />
+
+         
+
 
 
             <Button 

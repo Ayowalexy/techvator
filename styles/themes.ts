@@ -7,7 +7,9 @@ let colors = {
     brand: {
         black: "#000000",
         secondaryBlack: {
-            100: "#242526",
+            300: "#18191A",
+            200: "#242526",
+            100: "#4E4F50"
         },
         brass: "#AA8E48",
         metallicSunburst: "#917A34",

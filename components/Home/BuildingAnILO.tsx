@@ -1,11 +1,22 @@
-import { background, Box, Flex, Grid, Heading, Text, useTheme, Image, Stack } from '@chakra-ui/react'
-import React from 'react'
-import ButtonLink from '../Button'
-import Container from '../Container'
+import {
+  background,
+  Box,
+  Flex,
+  Grid,
+  Heading,
+  Text,
+  useTheme,
+} from "@chakra-ui/react";
+// import { buildingAnILO } from '../../data/the-amahlubist'
+import React from "react";
+import ButtonLink from "../Button";
+import Container from "../Container";
+
 
 function BuildingAnILO() {
-    const theme = useTheme()
-    const { black, roti } = theme.colors.brand
+  const theme = useTheme();
+  const { black, roti } = theme.colors.brand;
+
 
     return (
         <Container bgColor={black} py='3.0rem' mt='-3.5rem' position='relative' bgSize='50rem' bgRepeat='no-repeat' bgPos='100% 40%'>
@@ -51,6 +62,7 @@ function BuildingAnILO() {
                 
         </Container>
     )
+     
 }
 
-export default BuildingAnILO
+export default BuildingAnILO;

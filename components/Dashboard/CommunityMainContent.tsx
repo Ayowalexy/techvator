@@ -1,13 +1,16 @@
-import { Box } from '@chakra-ui/react'
-import React from 'react'
-import UsersList from './UsersList'
+import { Box, Heading } from "@chakra-ui/react";
+import React from "react";
+import UsersList from "./UsersList";
 
 function CommunityMainContent() {
   return (
-    <Box  bg='tomato' h='1000px' px='2rem'>
-        <UsersList />
+    <Box h="1000px" px="2rem">
+      <UsersList />
+      <Heading fontSize="3xl" mt="2rem">
+        New Members
+      </Heading>
     </Box>
-  )
+  );
 }
 
-export default CommunityMainContent
+export default CommunityMainContent;

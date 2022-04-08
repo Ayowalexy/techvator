@@ -1,20 +1,23 @@
-import { Box, Flex, Image, Text, useTheme } from "@chakra-ui/react";
+import { Box, Flex, Image, Text, useTheme, Container } from "@chakra-ui/react";
 // import Image from 'next/image'
 import React from "react";
 import ButtonLink from "../Button";
-import Container from "../Container";
-
+// import Container from "../Container";
 
 function Welcome(): JSX.Element {
   const theme = useTheme();
   const { roti } = theme.colors.brand;
 
   return (
-    <Container>
-      <Flex flexDir={{ base: "column", md: "column", lg: "row" }} p="3.5rem">
+    <Container maxW="120em">
+      <Flex
+        flexDir={{ base: "column", md: "column", lg: "row" }}
+        p="3.5rem"
+        px={{ base: "1rem" }}
+      >
         <Image
           mb="1rem"
-          pl={{ base: "unset", md: "1rem", lg: "9rem" }}
+          pl={{ base: "unset", md: "1rem", lg: "4rem" }}
           pr={{ base: "unset", lg: "10rem" }}
           //  pb={{p:'5rem' }}
           src="/imgs/home/welcome-2x.png"
@@ -22,7 +25,7 @@ function Welcome(): JSX.Element {
           zIndex={1}
         />
 
-        <Box maxW="44rem">
+        <Box maxW="120rem">
           <Text fontSize={{ base: "1.4rem", lg: "1.8rem" }} lineHeight="2">
             YOU possess, everything and more it takes to claim your rightful
             place in the upper-class and distinguished-master class of

@@ -6,6 +6,7 @@ import {
   Image,
   Link,
   useTheme,
+  Container,
 } from "@chakra-ui/react";
 import NextLInk from "next/link";
 import { useRouter } from "next/router";
@@ -14,7 +15,7 @@ import { useRecoilState } from "recoil";
 import { collapseMenuAtom } from "recoilStore/CollapseMenuAtom";
 import ButtonLink from "./Button";
 
-import Container from "./Container";
+// import Container from "./Container";
 import { FacebookIcon, InstagramIcon } from "./Socials";
 
 function Header(): JSX.Element {
@@ -31,70 +32,73 @@ function Header(): JSX.Element {
   };
 
   return (
-    <Container
+    <Box
       py="1.5rem"
       bg='url("/imgs/topbackground.jpg")'
       bgRepeat="no-repeat"
       bgSize="cover"
       pos="relative"
       zIndex="banner"
+      px={{ base: "1rem", lg: "4rem" }}
     >
-      <Flex alignItems="center" justifyContent="space-between">
-        {!url[router.pathname] ? (
-          <ButtonLink
-            href="/create-account"
-            label="Become a member"
-            display={{ base: "none", lg: "block" }}
-          />
-        ) : (
-          <Box w="17.9rem" />
-        )}
-
-        {/* Logo */}
-        <NextLInk href="/">
-          <Link>
-            <Image
-              mt="-1rem"
-              src="/imgs/logo@2x.png"
-              alt="amachulbi logo"
-              w="14.7rem"
-              h="5.2rem"
-              transform={{ base: "translateX(-34%)", lg: "translateX(-50%)" }}
+      <Container maxW="120em">
+        <Flex alignItems="center" justifyContent="space-between">
+          {!url[router.pathname] ? (
+            <ButtonLink
+              href="/create-account"
+              label="Become a member"
+              display={{ base: "none", lg: "block" }}
             />
-          </Link>
-        </NextLInk>
+          ) : (
+            <Box w="17.9rem" />
+          )}
 
-        {/* Socials */}
-        <Flex alignItems="flex-start" p="1rem">
-          <Link href="#" mr="1.6rem">
-            <FacebookIcon />
-          </Link>
-          <Link>
-            <InstagramIcon />
-          </Link>
-        </Flex>
-        <Box boxSize="3.0rem" display={{ lg: "none" }}>
-          <Button
-            onClick={() => {
-              setCollapse(!collapse);
-            }}
-            w="inherit"
-            h="inherit"
-            bg="none !important"
-            boxShadow="none"
-            outline="none"
-            _focus={{ boxShadow: "none" }}
-          >
-            <Icon
-              as={CgMenu}
+          {/* Logo */}
+          <NextLInk href="/">
+            <Link>
+              <Image
+                mt="-1rem"
+                src="/imgs/logo@2x.png"
+                alt="amachulbi logo"
+                w="14.7rem"
+                h="5.2rem"
+                transform={{ base: "translateX(-34%)", lg: "translateX(-50%)" }}
+              />
+            </Link>
+          </NextLInk>
+
+          {/* Socials */}
+          <Flex alignItems="flex-start" p="1rem">
+            <Link href="#" mr="1.6rem">
+              <FacebookIcon />
+            </Link>
+            <Link>
+              <InstagramIcon />
+            </Link>
+          </Flex>
+          <Box boxSize="3.0rem" display={{ lg: "none" }}>
+            <Button
+              onClick={() => {
+                setCollapse(!collapse);
+              }}
               w="inherit"
               h="inherit"
-              color={theme.colors.brand.white}
-            />
-          </Button>
-        </Box>
-      </Flex>
-    </Container>
+              bg="none !important"
+              boxShadow="none"
+              outline="none"
+              _focus={{ boxShadow: "none" }}
+            >
+              <Icon
+                as={CgMenu}
+                w="inherit"
+                h="inherit"
+                color={theme.colors.brand.white}
+              />
+            </Button>
+          </Box>
+        </Flex>
+      </Container>
+    </Box>
   );
 }
 

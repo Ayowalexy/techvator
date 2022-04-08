@@ -1,15 +1,15 @@
-import Head from 'next/head'
-import AmahlubistStyle from '@/components/Home/AmahlubistStyle'
-import ContactSection from '@/components/ContactSection'
-import CompleteProfile from '@/components/Dashboard/CompleteProfile'
-import Footer from '@/components/Footer'
-import Hero from '@/components/Home/Hero'
-import Layout from '@/components/Layout'
-import TheAmahlubist from '@/components/Home/TheAmahlubist'
-import BuildingAnILO from '@/components/Home/BuildingAnILO'
-import Welcome from '@/components/Home/Welcome'
+import Head from "next/head";
+import AmahlubistStyle from "@/components/Home/AmahlubistStyle";
+import ContactSection from "@/components/ContactSection";
+import CompleteProfile from "@/components/Dashboard/CompleteProfile";
+import Footer from "@/components/Footer";
+import Hero from "@/components/Home/Hero";
+import Layout from "@/components/Layout";
+import TheAmahlubist from "@/components/Home/TheAmahlubist";
+import BuildingAnILO from "@/components/Home/BuildingAnILO";
+import Welcome from "@/components/Home/Welcome";
 
-export default function Home():JSX.Element {
+export default function Home(): JSX.Element {
   return (
     <div>
       <Head>
@@ -18,9 +18,9 @@ export default function Home():JSX.Element {
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
-      <CompleteProfile />
+      {/* <CompleteProfile /> */}
       <Layout>
-          <>
+        <>
           <Hero />
           <Welcome />
           <TheAmahlubist />
@@ -28,8 +28,8 @@ export default function Home():JSX.Element {
           <AmahlubistStyle />
           <ContactSection />
           <Footer />
-          </>
+        </>
       </Layout>
     </div>
-  )
+  );
 }

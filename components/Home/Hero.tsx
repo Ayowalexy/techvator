@@ -1,5 +1,13 @@
-import { Box, Heading, Text, useTheme, Container } from "@chakra-ui/react";
+import {
+  Box,
+  Heading,
+  Text,
+  useTheme,
+  Container,
+  Icon,
+} from "@chakra-ui/react";
 import React from "react";
+import { IoIosArrowForward } from "react-icons/io";
 import ButtonLink from "../Button";
 // import Container from "../Container";
 
@@ -43,6 +51,9 @@ function Hero() {
               href=""
               textTransform="capitalize"
               fontSize="1.8rem"
+              icon={
+                <Icon as={IoIosArrowForward} boxSize="2.5rem" ml="1.6rem" />
+              }
             />
           </Box>
 
@@ -50,7 +61,7 @@ function Hero() {
             pos="absolute"
             bgGradient={`linear(to-t,${roti} , transparent)`}
             w="100%"
-            h="12.0rem"
+            h="5.0rem"
             bottom="0"
             left="0"
           />

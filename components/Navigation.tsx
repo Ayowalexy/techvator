@@ -1,4 +1,10 @@
-import { Link, List, ListItem, useTheme } from "@chakra-ui/react";
+import {
+  Link,
+  List,
+  ListItem,
+  useTheme,
+  useMediaQuery,
+} from "@chakra-ui/react";
 import { MotionList } from "motion";
 import NextLink from "next/link";
 import { useRecoilValue } from "recoil";
@@ -9,8 +15,10 @@ import Button from "./Button";
 
 function Navigation() {
   const theme = useTheme();
+  const [isMobileResponsive] = useMediaQuery("(max-width: 62em)");
   const { rotiLight, roti, white, black } = theme.colors.brand;
   const collapse = useRecoilValue(collapseMenuAtom);
+
   return (
     <MotionList
       display={"flex"}
@@ -24,10 +32,10 @@ function Navigation() {
       alignItems={["stretch", "stretch", "stretch", "center"]}
       overflow="hidden"
       initial={{
-        height: 0,
+        height: isMobileResponsive ? 0 : "100%",
       }}
       animate={{
-        height: collapse ? "100%" : "0",
+        height: isMobileResponsive && collapse ? "0" : "100%",
       }}
     >
       {navigation.map((nav, idx) => (

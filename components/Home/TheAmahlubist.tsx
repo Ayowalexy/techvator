@@ -18,16 +18,19 @@ function TheAmahlubist(): JSX.Element {
   const renderTheAmahlubist = (user) => {
     return (
       <Box>
-        <Image
-          src={user?.img}
-          alt={user?.name}
-          w={{ base: "100%", lg: "27.1rem" }}
-        />
+        <Box borderRadius="3xl" overflow="hidden">
+          <Image
+            src={user?.img}
+            alt={user?.name}
+            w={{ base: "100%", lg: "27.1rem" }}
+          />
+        </Box>
         <Text
-          my="1.5rem"
+          my="2.5rem"
           textAlign="center"
           fontWeight={600}
           color={metallicSunburst}
+          fontSize="1.6rem"
         >
           {user?.name}
         </Text>
@@ -46,8 +49,13 @@ function TheAmahlubist(): JSX.Element {
     >
       <Container maxW="120em">
         <Box pos="relative" zIndex={2}>
-          <HeaderTag mt={{ base: "-6rem", lg: "3rem" }} color={black}>
-            Meet 'THE' Amahlubists
+          <HeaderTag
+            mt={{ base: "-6rem", lg: "3rem" }}
+            color={black}
+            fontSize={{ base: "3.1rem", lg: "5.1rem" }}
+            fontWeight="400"
+          >
+            Meet 'THE' AmaHlubists
           </HeaderTag>
 
           <Grid

@@ -64,23 +64,26 @@ function AmahlubistStyle() {
       <Container maxW="120em" pt="5rem" pb="10rem">
         <Box pos="relative" zIndex={2} px={{ base: "1rem", lg: "4rem" }}>
           <HeaderTag
-            pos="relative"
-            _after={{
-              content: '""',
-              height: ".3rem",
-              width: "20rem",
-              background: white,
-              display: "block",
-              margin: "0 auto",
-              marginTop: "2rem",
-            }}
+            mt={{ base: "-6rem", lg: "3rem" }}
+            fontSize={{ base: "3.1rem", lg: "5.1rem" }}
+            fontWeight="400"
           >
             Amahlubi Lifestyle
           </HeaderTag>
 
-          <Text textAlign="center" fontSize="1.4rem">
+          <Text
+            textAlign="center"
+            fontSize={{ base: "1.4rem", lg: "2.4rem" }}
+            fontWeight="bold"
+          >
             Whoever thought a time would come when achievements is this
-            celebrated and put on a pedestal it so finely desere
+          </Text>
+          <Text
+            textAlign="center"
+            fontSize={{ base: "1.4rem", lg: "2.4rem" }}
+            fontWeight="bold"
+          >
+            celebrated and put on a pedestal it so finely desere?
           </Text>
 
           <Grid

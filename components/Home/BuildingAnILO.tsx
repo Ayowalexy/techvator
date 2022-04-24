@@ -8,9 +8,11 @@ import {
   useTheme,
   Image,
   Container,
+  Icon,
 } from "@chakra-ui/react";
 // import { buildingAnILO } from '../../data/the-amahlubist'
 import React from "react";
+import { IoIosArrowForward } from "react-icons/io";
 import ButtonLink from "../Button";
 // import Container from "../Container";
 
@@ -34,17 +36,33 @@ function BuildingAnILO() {
           p="3.5rem"
           px={{ base: "1rem" }}
         >
-          <Box flex={1} order={{ base: 2, md: "unset" }}>
+          <Flex alignItems="center" justifyContent="center" flex={0.4}>
+            <Box
+              w="100%"
+              bg="gray.200"
+              borderRadius="3xl"
+              p="2rem"
+              maxW="32rem"
+              maxH="40rem"
+              mt={{ base: "1rem", lg: "4rem" }}
+            >
+              <Image src="/imgs/home/Mdwaba-Homeimage@2x.png" maxH="40rem" />
+            </Box>
+          </Flex>
+
+          {/* Content Here */}
+          <Box flex={0.6}>
             <Box
               // maxW="70.7rem"
-              my="3.0rem"
-              py="3.0rem"
+              my="2.0rem"
+              py="2.0rem"
               pl={{ base: "unset", lg: "4rem" }}
             >
               <Heading
                 fontSize={{ base: "1.56rem", lg: "5.56rem" }}
-                mt={{ base: "-2.6rem", lg: "7.2rem" }}
+                // mt={{ base: "-2.6rem", lg: "1rem" }}
                 color={roti}
+                textAlign="left"
               >
                 Building An ILO
               </Heading>
@@ -71,7 +89,7 @@ function BuildingAnILO() {
                 </Text>
               </Box>
 
-              <Box my="3rem">
+              <Box mt="3rem">
                 <Text
                   fontSize={{ base: "1.4rem", lg: "1.8rem" }}
                   lineHeight="2"
@@ -81,23 +99,18 @@ function BuildingAnILO() {
                 </Text>
               </Box>
 
-              <Box my="3rem">
+              <Box mb="1rem">
                 <Text
                   fontSize={{ base: "1.4rem", lg: "1.8rem" }}
                   lineHeight="2"
+                  fontWeight="extrabold"
                 >
                   Candidate for ILO DG
                 </Text>
               </Box>
-              <Flex
-                gap="2rem"
-                alignItems="flex-end"
-                justifyContent="center"
-                mt="2rem"
-                flex={1}
-              >
+
+              <Flex gap="3rem" mt="2rem" flex={1}>
                 <ButtonLink
-                  display="inline-block"
                   mt="3.5rem"
                   zIndex={2}
                   p={{ base: "1rem 2rem", lg: "1.5rem 3rem" }}
@@ -105,9 +118,11 @@ function BuildingAnILO() {
                   href=""
                   textTransform="capitalize"
                   fontSize={{ base: "1.4rem", lg: "1.8rem" }}
+                  icon={
+                    <Icon as={IoIosArrowForward} boxSize="2.5rem" ml="1.6rem" />
+                  }
                 />
                 <ButtonLink
-                  display="inline-block"
                   mt="3.5rem"
                   zIndex={2}
                   p={{ base: "1rem 2rem", lg: "1.5rem 3rem" }}
@@ -115,11 +130,13 @@ function BuildingAnILO() {
                   href=""
                   textTransform="capitalize"
                   fontSize={{ base: "1.4rem", lg: "1.8rem" }}
+                  icon={
+                    <Icon as={IoIosArrowForward} boxSize="2.5rem" ml="1.6rem" />
+                  }
                 />
               </Flex>
             </Box>
           </Box>
-          <Image src="/imgs/home/Mdwaba-Homeimage@2x.png" />
         </Flex>
       </Container>
     </Box>

@@ -1,4 +1,5 @@
 import {
+  background,
   Box,
   Button,
   Flex,
@@ -6,7 +7,6 @@ import {
   Image,
   Link,
   useTheme,
-  Container,
 } from "@chakra-ui/react";
 import NextLInk from "next/link";
 import { useRouter } from "next/router";
@@ -15,7 +15,7 @@ import { useRecoilState } from "recoil";
 import { collapseMenuAtom } from "recoilStore/CollapseMenuAtom";
 import ButtonLink from "./Button";
 
-// import Container from "./Container";
+import Container from "./Container";
 import { FacebookIcon, InstagramIcon } from "./Socials";
 
 function Header(): JSX.Element {
@@ -32,16 +32,28 @@ function Header(): JSX.Element {
   };
 
   return (
-    <Box
-      py="1.5rem"
-      bg='url("/imgs/topbackground.jpg")'
-      bgRepeat="no-repeat"
-      bgSize="cover"
-      pos="relative"
-      zIndex="banner"
-      px={{ base: "1rem", lg: "4rem" }}
-    >
-      <Container maxW="120em">
+    <Box>
+      <Container
+        py="1.5rem"
+        // bg='url("/imgs/topbackground.jpg")'
+        bgColor="black"
+        bgRepeat="no-repeat"
+        bgSize="cover"
+        pos="relative"
+        zIndex="banner"
+        px={{ base: "1rem", lg: "4rem" }}
+        _before={{
+          content: `""`,
+          display: "block",
+          pos: "absolute",
+          right: 0,
+          top: 0,
+          width: "20%",
+          height: "100%",
+          bgGradient: "linear(to-r, transparent, white)",
+          zIndex: "-1",
+        }}
+      >
         <Flex alignItems="center" justifyContent="space-between">
           {!url[router.pathname] ? (
             <ButtonLink

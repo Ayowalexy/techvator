@@ -1,6 +1,15 @@
-import { Box, Flex, Image, Text, useTheme, Container } from "@chakra-ui/react";
+import {
+  Box,
+  Flex,
+  Image,
+  Text,
+  useTheme,
+  Container,
+  Icon,
+} from "@chakra-ui/react";
 // import Image from 'next/image'
 import React from "react";
+import { IoIosArrowForward } from "react-icons/io";
 import ButtonLink from "../Button";
 // import Container from "../Container";
 
@@ -14,6 +23,7 @@ function Welcome(): JSX.Element {
         flexDir={{ base: "column", md: "column", lg: "row" }}
         p="3.5rem"
         px={{ base: "1rem" }}
+        alignItems={{ base: "center", md: "unset" }}
       >
         <Image
           mb="1rem"
@@ -23,6 +33,7 @@ function Welcome(): JSX.Element {
           src="/imgs/home/welcome-2x.png"
           transform={{ base: "unset", lg: "translateY(9rem)" }}
           zIndex={1}
+          maxW={{ base: "24rem", md: "100%" }}
         />
 
         <Box maxW="120rem">
@@ -64,7 +75,6 @@ function Welcome(): JSX.Element {
           </Text>
 
           <ButtonLink
-            display="inline-block"
             mt="3.5rem"
             zIndex={2}
             p={{ base: "1rem 2rem", lg: "1.5rem 3rem" }}
@@ -72,6 +82,7 @@ function Welcome(): JSX.Element {
             href=""
             textTransform="capitalize"
             fontSize={{ base: "1.4rem", lg: "1.8rem" }}
+            icon={<Icon as={IoIosArrowForward} boxSize="2.5rem" ml="1.6rem" />}
           />
         </Box>
       </Flex>

@@ -27,7 +27,7 @@ function ButtonLink({
         p="1rem 1.4rem"
         display="inline-flex"
         alignItems="center"
-        borderRadius="1.0rem"
+        // borderRadius="1.0rem"
         border={`2px solid ${theme.colors.brand.white}`}
         fontSize="1.4rem"
         textDecoration="none !important"
@@ -49,13 +49,13 @@ function ButtonLink({
 
 type BtnProps = ButtonProps;
 
-function Btn({ children, type, _hover, ...rest }: BtnProps) {
+function Btn({ children, _hover, ...rest }: BtnProps) {
   const theme = useTheme();
 
   return (
     <Button
       p="1rem 1.4rem"
-      borderRadius="3.0rem"
+      // borderRadius="3.0rem"
       border={`2px solid ${theme.colors.brand.roti}`}
       background={theme.colors.brand.roti}
       h="100%"
@@ -64,7 +64,7 @@ function Btn({ children, type, _hover, ...rest }: BtnProps) {
       transition="all 250ms ease-in-out"
       _hover={{
         backgroundColor: theme.colors.brand.metallicSunburst,
-        border: `1px solid ${theme.colors.brand.metallicSunburst}`,
+        // border: `1px solid ${theme.colors.brand.metallicSunburst}`,
         ..._hover,
       }}
       {...rest}

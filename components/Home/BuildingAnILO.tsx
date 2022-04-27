@@ -37,17 +37,23 @@ function BuildingAnILO() {
           px={{ base: "1rem" }}
         >
           <Flex alignItems="center" justifyContent="center" flex={0.4}>
-            <Box
+            <Flex
+              alignItems="flex-end"
+              // justifyContent="flex-end"
               w="100%"
-              bg="gray.200"
+              bg="#DCDADF"
               borderRadius="3xl"
-              p="2rem"
+              // p="2rem"
               maxW="32rem"
               maxH="40rem"
               mt={{ base: "1rem", lg: "4rem" }}
+              overflow="hidden"
             >
-              <Image src="/imgs/home/Mdwaba-Homeimage@2x.png" maxH="40rem" />
-            </Box>
+              <Image
+                src="/imgs/home/Mdwaba-Homeimage-Fill.png"
+                // transform="translate(5rem, 10rem)"
+              />
+            </Flex>
           </Flex>
 
           {/* Content Here */}
@@ -59,7 +65,7 @@ function BuildingAnILO() {
               pl={{ base: "unset", lg: "4rem" }}
             >
               <Heading
-                fontSize={{ base: "1.56rem", lg: "5.56rem" }}
+                fontSize={{ base: "2.5rem", lg: "5.56rem" }}
                 // mt={{ base: "-2.6rem", lg: "1rem" }}
                 color={roti}
                 textAlign="left"

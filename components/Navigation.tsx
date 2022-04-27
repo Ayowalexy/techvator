@@ -55,7 +55,7 @@ function Navigation() {
       <ListItem
         bg={black}
         border={black}
-        borderRadius="3.0rem"
+        // borderRadius="3.0rem"
         color={white}
         margin="0 auto"
         mb={["2rem", "2rem", "2rem", "0"]}
@@ -70,6 +70,7 @@ function Navigation() {
         overflow="hidden"
       >
         <Button
+          borderRadius="unset"
           fontFamily="Roboto"
           fontWeight="600"
           label="Reach Out"
@@ -101,6 +102,7 @@ function Navigation() {
           fontFamily="Roboto"
           fontWeight="600"
           label="Reach Out"
+          borderRadius="unset"
           href="#"
           bg={black}
           color={white}

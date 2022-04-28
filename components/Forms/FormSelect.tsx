@@ -39,9 +39,10 @@ function FormSelect({
 }: FormSelectProps) {
   const theme = useTheme();
   const { white } = theme.colors.brand;
-  //   const {children} = selectProps
+  const { isInvalid } = selectProps;
   return (
     <FormControl
+      isInvalid
       display="flex"
       flex="1"
       alignItems="center"
@@ -68,7 +69,9 @@ function FormSelect({
       >
         {children}
       </Select>
-      <FormErrorMessage>{formErrorMessage}</FormErrorMessage>
+      <FormErrorMessage alignSelf="flex-start" fontSize="1.2rem">
+        {formErrorMessage}
+      </FormErrorMessage>
     </FormControl>
   );
 }

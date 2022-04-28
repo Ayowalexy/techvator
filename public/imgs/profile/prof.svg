@@ -1,0 +1,5 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="19" height="18" viewBox="0 0 19 18">
+  <g id="Icon_Outline_person-add" data-name="Icon/Outline/person-add" transform="translate(35 46)">
+    <path id="Mask" d="M10,5A2,2,0,1,1,8,7,2,2,0,0,1,10,5Zm0,6A4,4,0,1,0,6,7,4,4,0,0,0,10,11Zm0,2a7.008,7.008,0,0,0-7,7,1,1,0,0,0,2,0,5,5,0,0,1,10,0,1,1,0,0,0,2,0A7.008,7.008,0,0,0,10,13ZM20,6h1a1,1,0,0,1,0,2H20V9a1,1,0,0,1-2,0V8H17a1,1,0,0,1,0-2h1V5a1,1,0,0,1,2,0Z" transform="translate(-38 -49)" fill="#231f20" fill-rule="evenodd"/>
+  </g>
+</svg>

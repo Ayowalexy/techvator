@@ -78,7 +78,11 @@ function ContactSection() {
             px={{ base: "1rem", lg: "6rem" }}
             py={{ base: "3rem", lg: "12rem" }}
           >
-            <HeaderTag textAlign="left" fontSize="3.8rem">
+            <HeaderTag
+              textAlign="left"
+              fontSize={{ base: "3.8rem", lg: "6rem" }}
+              fontWeight="400"
+            >
               Let's talk
             </HeaderTag>
             <Text mb="2rem" maxW="30rem">
@@ -98,6 +102,7 @@ function ContactSection() {
               mt="2rem"
             >
               <ButtonLink
+                borderRadius="full"
                 _hover={{ background: "transparent", borderColor: white }}
                 bg={metallicSunburst}
                 borderColor={metallicSunburst}
@@ -111,6 +116,7 @@ function ContactSection() {
                 <Flex alignItems="center" mx="1rem">
                   <FacebookIcon />
                   <ButtonLink
+                    borderRadius="full"
                     ml=".5rem"
                     p=".5rem 2rem"
                     label="Follow"
@@ -121,6 +127,7 @@ function ContactSection() {
                 <Flex alignItems="center" mx="1rem">
                   <InstagramIcon />
                   <ButtonLink
+                    borderRadius="full"
                     ml=".5rem"
                     p=".5rem 2rem"
                     label="Follow"

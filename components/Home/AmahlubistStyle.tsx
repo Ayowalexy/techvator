@@ -71,8 +71,8 @@ function AmahlubistStyle() {
 
   return (
     <Box
-      bg='url("/imgs/life-style-section-01.jpg")'
-      bgSize="100% 100%"
+      bg='url("/imgs/home/bac1.jpg")'
+      bgSize="100% 120%"
       bgRepeat="no-repeat"
     >
       <Container maxW="120em" pt="5rem" pb="10rem">

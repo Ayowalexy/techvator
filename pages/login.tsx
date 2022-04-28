@@ -84,7 +84,7 @@ function login() {
             <Box
               bg="whiteAlpha.900"
               padding="5rem 3.2rem"
-              borderRadius="lg"
+              borderRadius="2xl"
               maxW="60.3rem"
               w="100%"
               mt="3rem"

@@ -18,7 +18,7 @@ export default function Home(): JSX.Element {
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
-      {/* <CompleteProfile /> */}
+      <CompleteProfile />
       <Layout>
         <>
           <Hero />

@@ -36,26 +36,6 @@ function BuildingAnILO() {
           p="3.5rem"
           px={{ base: "1rem" }}
         >
-          <Flex alignItems="center" justifyContent="center" flex={0.4}>
-            <Flex
-              alignItems="flex-end"
-              // justifyContent="flex-end"
-              w="100%"
-              bg="#DCDADF"
-              borderRadius="3xl"
-              // p="2rem"
-              maxW="32rem"
-              maxH="40rem"
-              mt={{ base: "1rem", lg: "4rem" }}
-              overflow="hidden"
-            >
-              <Image
-                src="/imgs/home/Mdwaba-Homeimage-Fill.png"
-                // transform="translate(5rem, 10rem)"
-              />
-            </Flex>
-          </Flex>
-
           {/* Content Here */}
           <Box flex={0.6}>
             <Box
@@ -143,6 +123,26 @@ function BuildingAnILO() {
               </Flex>
             </Box>
           </Box>
+
+          <Flex alignItems="center" justifyContent="center" flex={0.4}>
+            <Flex
+              alignItems="flex-end"
+              // justifyContent="flex-end"
+              w="100%"
+              bg="#DCDADF"
+              borderRadius="3xl"
+              // p="2rem"
+              maxW="32rem"
+              maxH="40rem"
+              mt={{ base: "1rem", lg: "4rem" }}
+              overflow="hidden"
+            >
+              <Image
+                src="/imgs/home/Mdwaba-Homeimage-Fill.png"
+                // transform="translate(5rem, 10rem)"
+              />
+            </Flex>
+          </Flex>
         </Flex>
       </Container>
     </Box>

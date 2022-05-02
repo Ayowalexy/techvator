@@ -37,7 +37,7 @@ export default function Home(): JSX.Element {
 }
 
 export const getServerSideProps = withAuth(async (context: NextPageContext) => {
-  console.log("user", context.res?.user);
+  console.log("user", context.res["user"]);
   return {
     props: {},
   };

@@ -425,6 +425,6 @@ function createaccount() {
 
 export default createaccount;
 
-export const getServerSideProps = withAuth(async (context: NextPageContext) => {
-  console.log(context.res);
-});
+// export const getServerSideProps = withAuth(
+//   async (context: NextPageContext) => {}
+// );

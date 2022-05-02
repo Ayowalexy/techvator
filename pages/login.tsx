@@ -18,6 +18,7 @@ import {
   AiOutlineReload,
 } from "react-icons/ai";
 import { SyntheticEvent, useState } from "react";
+import { NextPageContext } from "next";
 import Head from "next/head";
 import NextLink from "next/link";
 import { useFormik } from "formik";
@@ -33,6 +34,7 @@ import { FaChevronRight } from "react-icons/fa";
 import { endpoint } from "../api_routes";
 import { AMAHLUBI_ACCESS_TOKEN } from "../constants";
 import { setTheCookie } from "helpers/cookieHandler";
+import withAuth from "../middleware/withAuth";
 
 function login() {
   const theme = useTheme();
@@ -309,3 +311,9 @@ function login() {
 }
 
 export default login;
+
+export const getServerSideProps = withAuth(async (context: NextPageContext) => {
+  return {
+    props: {},
+  };
+});

@@ -8,6 +8,8 @@ import Layout from "@/components/Layout";
 import TheAmahlubist from "@/components/Home/TheAmahlubist";
 import BuildingAnILO from "@/components/Home/BuildingAnILO";
 import Welcome from "@/components/Home/Welcome";
+import withAuth from "middleware/withAuth";
+import { NextPageContext } from "next";
 
 export default function Home(): JSX.Element {
   return (
@@ -33,3 +35,10 @@ export default function Home(): JSX.Element {
     </div>
   );
 }
+
+export const getServerSideProps = withAuth(async (context: NextPageContext) => {
+  console.log("user", context.res?.user);
+  return {
+    props: {},
+  };
+});

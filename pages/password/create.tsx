@@ -226,7 +226,7 @@ function createnew() {
                       // _hover={{ backgroundColor: "black", opacity: ".7" }}
                       rightIcon={<Icon as={FaChevronRight} />}
                     >
-                      Log me in
+                      Set new password
                     </Btn>
                   </Flex>
                 </Stack>

@@ -2,12 +2,12 @@ import {
   Box,
   Flex,
   Icon,
-  InputRightAddon,
   InputRightElement,
   Link,
   Stack,
   Text,
   useTheme,
+  useToast,
 } from "@chakra-ui/react";
 import { AiOutlineEyeInvisible, AiOutlineEye } from "react-icons/ai";
 import { SyntheticEvent, useState } from "react";
@@ -16,15 +16,22 @@ import { Btn } from "../components/Button";
 import NextLink from "next/link";
 import { FaChevronRight } from "react-icons/fa";
 import * as yup from "yup";
+import axios from "axios";
 import { useFormik } from "formik";
+import { NextPageContext } from "next";
 
 import FormInput from "../components/Forms/FormInput";
 import HeaderTag from "../components/HeaderTag";
 import Layout from "../components/Layout";
 import Wrapper from "../components/Wrapper";
+import { endpoint } from "../api_routes";
+import { setTheCookie } from "helpers/cookieHandler";
+import { AMAHLUBI_ACCESS_TOKEN } from "../constants";
+import withAuth from "middleware/withAuth";
 
 function createaccount() {
   const theme = useTheme();
+  const toast = useToast();
   const { black, metallicSunburst, white } = theme.colors.brand;
   const [passwordVisible, setPasswordVisible] = useState(false);
 
@@ -34,10 +41,10 @@ function createaccount() {
   };
 
   const validationSchema = yup.object().shape({
-    firstName: yup.string().trim().required("FirstName is required"),
-    lastName: yup.string().trim().required("LastName is required"),
+    first_name: yup.string().trim().required("firstName is required"),
+    last_name: yup.string().trim().required("lastName is required"),
     email: yup.string().trim().email().required("Email Address is required"),
-    password: yup.string().trim().required("Password is required"),
+    password: yup.string().trim().required("Password is required").min(6),
     password_confirmation: yup
       .string()
       .oneOf([yup.ref("password"), null], "Password does not match")
@@ -53,15 +60,57 @@ function createaccount() {
     touched,
   } = useFormik({
     initialValues: {
-      firstName: "",
-      lastName: "",
+      first_name: "",
+      last_name: "",
       email: "",
       password: "",
       password_confirmation: "",
     },
     validationSchema,
     onSubmit: async (values, formikHelpers) => {
-      console.log(values);
+      try {
+        const response = await axios.post(endpoint.REGISTER, {
+          ...values,
+          role: "member",
+        });
+
+        if (response.status === 200) {
+          // store access token in cookie
+          setTheCookie(
+            AMAHLUBI_ACCESS_TOKEN,
+            response.data?.message?.accessToken
+          );
+
+          toast({
+            title: "Register",
+            description: "User registration successful",
+            status: "success",
+            duration: 4000,
+            isClosable: true,
+            position: "top-right",
+          });
+
+          // Could redirect the user
+
+          formikHelpers.resetForm();
+        }
+      } catch (error) {
+        // show server side errors
+        let statusCodeErr = [400, 422, 429, 500];
+
+        if (statusCodeErr.find((code) => code === error.response.status)) {
+          // alert the error message
+          const { message } = error.response.data;
+          toast({
+            title: "An error occurred.",
+            description: message,
+            status: "error",
+            duration: 4000,
+            isClosable: true,
+            position: "top-right",
+          });
+        }
+      }
     },
   });
 
@@ -122,11 +171,11 @@ function createaccount() {
                         fontWeight: "800",
                       }}
                       inputProps={{
-                        id: "firstName",
-                        name: "firstName",
+                        id: "first_name",
+                        name: "first_name",
                         onChange: handleChange,
                         onBlur: handleBlur,
-                        isInvalid: !!errors.firstName && touched.firstName,
+                        isInvalid: !!errors.first_name && touched.first_name,
                         borderRadius: "md",
                         border: `1px solid ${black} !important`,
                         p: "2.3rem",
@@ -137,7 +186,7 @@ function createaccount() {
                           fontWeight: "bold",
                         },
                       }}
-                      formErrorMessage={errors.firstName}
+                      formErrorMessage={errors.first_name}
                     />
                   </Flex>
 
@@ -159,11 +208,11 @@ function createaccount() {
                         fontWeight: "800",
                       }}
                       inputProps={{
-                        id: "lastName",
-                        name: "lastName",
+                        id: "last_name",
+                        name: "last_name",
                         onChange: handleChange,
                         onBlur: handleBlur,
-                        isInvalid: !!errors.lastName && touched.lastName,
+                        isInvalid: !!errors.last_name && touched.last_name,
                         borderRadius: "md",
                         border: `1px solid ${black} !important`,
                         p: "2.3rem",
@@ -174,7 +223,7 @@ function createaccount() {
                           fontWeight: "bold",
                         },
                       }}
-                      formErrorMessage={errors.lastName}
+                      formErrorMessage={errors.last_name}
                     />
                   </Flex>
 
@@ -375,3 +424,7 @@ function createaccount() {
 }
 
 export default createaccount;
+
+export const getServerSideProps = withAuth(async (context: NextPageContext) => {
+  console.log(context.res);
+});

@@ -9,6 +9,7 @@ import {
   Link,
   Stack,
   Text,
+  useToast,
   useTheme,
 } from "@chakra-ui/react";
 import {
@@ -21,15 +22,22 @@ import Head from "next/head";
 import NextLink from "next/link";
 import { useFormik } from "formik";
 import * as yup from "yup";
+import axios from "axios";
+import { useRouter } from "next/router";
 import FormInput from "../components/Forms/FormInput";
 import HeaderTag from "../components/HeaderTag";
 import Layout from "../components/Layout";
 import Wrapper from "../components/Wrapper";
 import { Btn } from "../components/Button";
 import { FaChevronRight } from "react-icons/fa";
+import { endpoint } from "../api_routes";
+import { AMAHLUBI_ACCESS_TOKEN } from "../constants";
+import { setTheCookie } from "helpers/cookieHandler";
 
 function login() {
   const theme = useTheme();
+  const toast = useToast();
+  const router = useRouter();
   const { black, white } = theme.colors.brand;
   const [passwordVisible, setPasswordVisible] = useState(false);
 
@@ -52,7 +60,47 @@ function login() {
     },
     validationSchema,
     onSubmit: async (values, formikHelpers) => {
-      console.log(values);
+      try {
+        const response = await axios.post(endpoint.LOGIN, values);
+
+        if (response.status === 200) {
+          // store access token in cookie
+          setTheCookie(
+            AMAHLUBI_ACCESS_TOKEN,
+            response.data?.message?.accessToken
+          );
+
+          toast({
+            title: "Login",
+            description: "Login successful",
+            status: "success",
+            duration: 4000,
+            isClosable: true,
+            position: "top-right",
+          });
+
+          // Could redirect the user
+          router.push("/community");
+
+          formikHelpers.resetForm();
+        }
+      } catch (error) {
+        // show server side errors
+        let statusCodeErr = [400, 422, 429, 500];
+
+        if (statusCodeErr.find((code) => code === error.response.status)) {
+          // alert the error message
+          const { message } = error.response.data;
+          toast({
+            title: "An error occurred.",
+            description: message,
+            status: "error",
+            duration: 4000,
+            isClosable: true,
+            position: "top-right",
+          });
+        }
+      }
     },
   });
 
@@ -198,7 +246,7 @@ function login() {
                       color="black"
                     >
                       <NextLink href="/password/reset">
-                        <Link href="/password/reset">
+                        <Link>
                           <Icon mb="-0.2rem" mr=".2rem" as={AiOutlineReload} />
                           Reset forgotten password
                         </Link>
@@ -232,7 +280,7 @@ function login() {
               </form>
 
               <NextLink href="/login">
-                <Link href="/login">
+                <Link role="group" textDecoration="none">
                   <HeaderTag
                     color={black}
                     letterSpacing="unset"
@@ -241,8 +289,13 @@ function login() {
                     fontFamily="Montserrat"
                   >
                     I don't have an account?
-                    <Text ml=".3rem" fontWeight="bold" as="span">
-                      <a>Sign me up</a>
+                    <Text
+                      _groupHover={{ textDecor: "underline" }}
+                      ml=".3rem"
+                      fontWeight="bold"
+                      as="span"
+                    >
+                      Sign me up
                     </Text>
                   </HeaderTag>
                 </Link>

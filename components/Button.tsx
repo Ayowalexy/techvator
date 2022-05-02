@@ -27,7 +27,7 @@ function ButtonLink({
         p="1rem 1.4rem"
         display="inline-flex"
         alignItems="center"
-        // borderRadius="1.0rem"
+        borderRadius="md"
         border={`2px solid ${theme.colors.brand.white}`}
         fontSize="1.4rem"
         textDecoration="none !important"

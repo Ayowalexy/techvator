@@ -1,14 +1,15 @@
 import { Box, Heading } from "@chakra-ui/react";
 import React from "react";
+import Activities from "./Activities";
+import NewMember from "./NewMember";
 import UsersList from "./UsersList";
 
 function CommunityMainContent() {
   return (
     <Box h="1000px" px="2rem">
       <UsersList />
-      <Heading fontSize="3xl" mt="2rem">
-        New Members
-      </Heading>
+      <NewMember />
+      <Activities />
     </Box>
   );
 }

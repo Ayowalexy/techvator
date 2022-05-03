@@ -101,15 +101,16 @@ function AmahlubistStyle() {
           </Text>
 
           <Flex
-            gap="2rem"
-            my={{ base: "5rem", lg: "10rem" }}
+            gap="10rem"
+            mt={{ base: "5rem", lg: "10rem" }}
             px="3rem"
             flexWrap="wrap"
           >
             {amahlubistLifeStyle.slice(0, 2).map((ls, idx) => {
               return (
                 <Box
-                  mx="auto"
+                  ml={idx % 2 === 0 ? "auto" : "unset"}
+                  mr={idx % 2 !== 0 ? "auto" : "unset"}
                   maxW={{
                     base: "35rem",
                     sm: "30rem",
@@ -126,8 +127,8 @@ function AmahlubistStyle() {
           </Flex>
 
           <Flex
-            gap="2rem"
-            my={{ base: "5rem", lg: "10rem" }}
+            gap="10rem"
+            mt={{ base: "5rem", lg: "9rem" }}
             px="3rem"
             flexWrap="wrap"
           >
@@ -136,7 +137,8 @@ function AmahlubistStyle() {
               .map((ls, idx) => {
                 return (
                   <Box
-                    mx="auto"
+                    ml={idx % 2 === 0 ? "auto" : "unset"}
+                    mr={idx % 2 !== 0 ? "auto" : "unset"}
                     maxW={{
                       base: "35rem",
                       sm: "30rem",

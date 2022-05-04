@@ -86,8 +86,8 @@ function ContactSection() {
               Let's talk
             </HeaderTag>
             <Text mb="2rem" maxW="30rem">
-              Amahlubi online helps you connect and share with the nation of
-              Amahlubi
+              AmaHlubi online helps you connect and share with the nation of
+              AmaHlubi
             </Text>
             <ContactDetail icon={<BsTelephoneFill />} info="(010) 109 8604" />
             <ContactDetail

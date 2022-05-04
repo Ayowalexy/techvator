@@ -24,7 +24,9 @@ function Activity() {
             src="https://bit.ly/prosper-baba"
           />
           <Box>
-            <Heading as="h3">Thesolo Rfuti</Heading>
+            <Heading as="h3" fontWeight="600" fontSize="1.8rem">
+              Thesolo Rfuti
+            </Heading>
             <Text fontSize="1.2rem">April 28th at 6:17pm</Text>
           </Box>
         </Flex>

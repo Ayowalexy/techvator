@@ -4,7 +4,7 @@ import React from "react";
 type UserListItemProp = {
   user?: {
     name: string;
-    avatar: string;
+    avatar?: string;
   };
 };
 
@@ -14,7 +14,8 @@ function UserListItem({ user }: UserListItemProp) {
       flexShrink={0}
       alignItems="flex-end"
       borderRadius="3xl"
-      w="15.1rem"
+      maxW="15.1rem"
+      w="100%"
       h="100%"
       bgImg="url('https://images.pexels.com/photos/697509/pexels-photo-697509.jpeg?auto=compress&cs=tinysrgb&dpr=3&h=750&w=1260')"
       bgSize="cover"
@@ -28,7 +29,7 @@ function UserListItem({ user }: UserListItemProp) {
         w="100%"
       >
         <Text zIndex="2" lineHeight={1.2} color="white">
-          Paul <br /> Mackenzie
+          {user?.name}
         </Text>
       </Box>
     </Flex>

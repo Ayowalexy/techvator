@@ -28,21 +28,6 @@ function community() {
       </Head>
       <Layout>
         <Box bg={secondaryBlack["200"]}>
-          <Container maxW="120em" px={{ base: "1rem", lg: "4rem" }}>
-            <Flex h="6rem" align="center" justify="flex-end">
-              <IconButton
-                aria-label="button"
-                w="4.0rem"
-                h="4.0rem"
-                bg={secondaryBlack["100"]}
-                borderRadius="100vw"
-                mr={{ base: "unset", md: "1.6rem" }}
-                icon={
-                  <Img boxSize="40px" src="/imgs/community/notification.svg" />
-                }
-              />
-            </Flex>
-          </Container>
           <Container
             maxW="120em"
             px={{ base: "1rem", lg: "4rem" }}

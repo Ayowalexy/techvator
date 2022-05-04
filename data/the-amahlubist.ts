@@ -41,7 +41,7 @@ export const amahlubistLifeStyle = [
     url: "#",
   },
   {
-    title: "Amahlubi Swagness",
+    title: "AmaHlubi Swagness",
     subTitle:
       'This will house everything "Black-Excellent" ideas shared from a personal perspective on fashion, hair, attire, drip-dress- advice on owning & solidifying your personal individual look...sponsored by ZunguNation...',
     url: "#",

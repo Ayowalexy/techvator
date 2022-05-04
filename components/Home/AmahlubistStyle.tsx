@@ -82,7 +82,7 @@ function AmahlubistStyle() {
             fontSize={{ base: "3.1rem", lg: "5.1rem" }}
             fontWeight="400"
           >
-            Amahlubi Lifestyle
+            AmaHlubi Lifestyle
           </HeaderTag>
 
           <Text

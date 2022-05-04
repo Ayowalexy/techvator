@@ -55,7 +55,7 @@ function TheAmahlubist(): JSX.Element {
             fontSize={{ base: "3.1rem", lg: "5.1rem" }}
             fontWeight="400"
           >
-            Meet 'THE' AmaHlubists
+            Meet 'THE' AmaHlubi
           </HeaderTag>
 
           <Grid

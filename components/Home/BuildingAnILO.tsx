@@ -138,8 +138,9 @@ function BuildingAnILO() {
               overflow="hidden"
             >
               <Image
-                src="/imgs/home/Mdwaba-Homeimage-Fill.png"
+                src="/imgs/home/mdwaba-image-fill.png"
                 // transform="translate(5rem, 10rem)"
+                alt="Mdwaba"
               />
             </Flex>
           </Flex>

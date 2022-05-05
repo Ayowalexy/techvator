@@ -9,12 +9,14 @@ function UsersList() {
   const [activeIndex, setActiveIndex] = useState(0);
 
   const nextBtn = () => {
+    console.log("Next");
     if (activeIndex === USER_LIST_DATE.length) return;
 
     setActiveIndex((prevIdx) => prevIdx + 1);
   };
 
   const prevBtn = () => {
+    console.log("Right");
     if (activeIndex === 0) return;
     setActiveIndex((prevIdx) => prevIdx - 1);
   };
@@ -59,6 +61,9 @@ function UsersList() {
       />
       <MotionFlex
         drag="x"
+        dragConstraints={{
+          right: 0,
+        }}
         gap="2.0rem"
         flexWrap="nowrap"
         pos="absolute"
@@ -70,7 +75,7 @@ function UsersList() {
         maxH="20rem"
         transform={`translateX(-${
           activeIndex * (100 / USER_LIST_DATE.length)
-        }%)`}
+        }%) !important`}
         // transition="all .5s ease"
       >
         {USER_LIST_DATE.map((user, idx) => (

@@ -17,7 +17,7 @@ function Footer() {
         >
           <Text>
             {new Date().getFullYear().toString() +
-              " AmaHulbi | All rights reserved."}
+              " AmaHlubi | All rights reserved."}
           </Text>
           <Flex>
             <Link href="#" mr="1.6rem">

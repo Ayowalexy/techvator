@@ -4,7 +4,7 @@ export const navigation = [
     path: "/",
   },
   {
-    label: "Meet the AmaHlubist",
+    label: "Meet the AmaHlubi",
     path: "/home",
   },
   {

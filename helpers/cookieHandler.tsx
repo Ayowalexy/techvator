@@ -15,7 +15,6 @@ export function parseTheCookie(context) {
 
   if (!token) {
     // redirectUser(context, "/login");
-
     return "";
   }
 

@@ -41,8 +41,8 @@ function createaccount() {
   };
 
   const validationSchema = yup.object().shape({
-    first_name: yup.string().trim().required("firstName is required"),
-    last_name: yup.string().trim().required("lastName is required"),
+    first_name: yup.string().trim().required("FirstName is required"),
+    last_name: yup.string().trim().required("LastName is required"),
     email: yup.string().trim().email().required("Email Address is required"),
     password: yup.string().trim().required("Password is required").min(6),
     password_confirmation: yup

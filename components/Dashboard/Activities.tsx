@@ -8,10 +8,15 @@ function Activities() {
 
   return (
     <Box mt="5rem">
-      <Heading fontSize="3xl" mt="2rem">
+      <Heading fontSize="4xl" mt="2rem">
         Activities
       </Heading>
       {/* List of Activities */}
+      <Activity />
+      <Activity />
+      <Activity />
+      <Activity />
+      <Activity />
       <Activity />
     </Box>
   );

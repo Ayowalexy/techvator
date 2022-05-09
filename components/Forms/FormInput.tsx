@@ -55,7 +55,10 @@ function FormInput({
       >
         {label}
       </FormLabel>
-      <InputGroup flex={containerProps?.flexDir === "column" ? "1" : "0.7"}>
+      <InputGroup
+        alignItems={containerProps?.alignItems}
+        flex={containerProps?.flexDir === "column" ? "1" : "0.7"}
+      >
         {inputLeftAddon}
         <Input
           pb="0.3rem"

@@ -6,7 +6,7 @@ import UsersList from "./UsersList";
 
 function CommunityMainContent() {
   return (
-    <Box h="1000px" px="2rem">
+    <Box minH="1000px" pb="5rem" px="2rem">
       <UsersList />
       <NewMember />
       <Activities />

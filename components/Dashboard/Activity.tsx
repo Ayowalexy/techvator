@@ -11,13 +11,237 @@ import {
   useTheme,
 } from "@chakra-ui/react";
 import React from "react";
-import { MdFavoriteBorder } from "react-icons/md";
+import { MdFavoriteBorder, MdFavorite } from "react-icons/md";
 import { Btn } from "../Button";
 import FormInput from "../Forms/FormInput";
 
 function Activity() {
   const theme = useTheme();
-  const { white, metallicSunburst, secondaryBlack, gray } = theme.colors.brand;
+  const { white, metallicSunburst, secondaryBlack, roti, gray } =
+    theme.colors.brand;
+
+  function renderComment(comment?: any) {
+    return (
+      <Flex gap="1rem" mb="1rem" alignItems="flex-start">
+        <Avatar
+          size="xl"
+          name="Christian Nwamba"
+          src="https://bit.ly/code-beast"
+          mt="1rem"
+        />
+
+        <Box>
+          <Box
+            p="1rem"
+            maxW="30rem"
+            borderRadius="3xl"
+            bgColor={secondaryBlack["100"]}
+            pos="relative"
+          >
+            <Text>Thanks so much it’s just some graduation memories 👍🏾</Text>
+            <Text mt="0.5rem" fontSize="1rem">
+              9 mins ago
+            </Text>
+
+            {/* Likes */}
+            <IconButton
+              right="-5%"
+              top="50%"
+              transform="translateY(-50%)"
+              pos="absolute"
+              size="lg"
+              borderRadius="full"
+              bgColor={secondaryBlack["100"]}
+              aria-label="Favorite"
+              icon={<Icon as={MdFavorite} fill="red" boxSize="1.6rem" />}
+            />
+          </Box>
+          {/* Action Buttons */}
+          <Flex
+            mt="1rem"
+            alignItems="center"
+            gap="1rem"
+            justifyContent="flex-end"
+          >
+            <Btn
+              fontSize="1.2rem"
+              p="unset"
+              borderColor="transparent"
+              bgColor="transparent"
+              _hover={{
+                bg: "transparent",
+                color: roti,
+              }}
+            >
+              Like
+            </Btn>
+            <Btn
+              fontSize="1.2rem"
+              p="unset"
+              borderColor="transparent"
+              bgColor="transparent"
+              _hover={{
+                bg: "transparent",
+                color: roti,
+              }}
+            >
+              Delete
+            </Btn>
+            <Btn
+              fontSize="1.2rem"
+              p="unset"
+              borderColor="transparent"
+              bgColor="transparent"
+              _hover={{
+                bg: "transparent",
+                color: roti,
+              }}
+            >
+              Edit
+            </Btn>
+
+            <Flex cursor="pointer" role="group" alignItems="center" gap="1rem">
+              <Text
+                _groupHover={{
+                  color: roti,
+                }}
+                fontSize="1.2rem"
+                fontWeight="semibold"
+              >
+                Reply
+              </Text>
+              <IconButton
+                size="lg"
+                borderRadius="full"
+                bgColor={secondaryBlack["100"]}
+                aria-label="Reply"
+                icon={
+                  <Img boxSize="25px" src="/imgs/community/u-turn-left.svg" />
+                }
+              />
+            </Flex>
+          </Flex>
+        </Box>
+      </Flex>
+    );
+  }
+
+  function renderReply(comment?: any) {
+    return (
+      <Flex ml="2.5rem" mt="2rem" gap="1rem" mb="1rem" alignItems="flex-start">
+        <Avatar
+          size="md"
+          name="Christian Nwamba"
+          src="https://bit.ly/code-beast"
+          mt="1rem"
+        />
+
+        <Box>
+          <Box
+            p="1rem"
+            maxW="35rem"
+            borderRadius="3xl"
+            bgColor={secondaryBlack["100"]}
+            pos="relative"
+            _before={{
+              content: `""`,
+              pos: "absolute",
+              w: "3rem",
+              h: "3rem",
+              bgColor: "red",
+              right: "0",
+              top: "-50%",
+              borderRadius: "full",
+            }}
+          >
+            <Text>Thanks so much it’s just some graduation memories 👍🏾</Text>
+            <Text mt="0.5rem" fontSize="1rem">
+              9 mins ago
+            </Text>
+
+            {/* Likes */}
+            <IconButton
+              right="-5%"
+              top="50%"
+              transform="translateY(-50%)"
+              pos="absolute"
+              size="lg"
+              borderRadius="full"
+              bgColor={secondaryBlack["100"]}
+              aria-label="Favorite"
+              icon={<Icon as={MdFavorite} fill="red" boxSize="1.6rem" />}
+            />
+          </Box>
+          {/* Action Buttons */}
+          <Flex
+            mt="1rem"
+            alignItems="center"
+            gap="1rem"
+            justifyContent="flex-end"
+          >
+            <Btn
+              fontSize="1.2rem"
+              p="unset"
+              borderColor="transparent"
+              bgColor="transparent"
+              _hover={{
+                bg: "transparent",
+                color: roti,
+              }}
+            >
+              Like
+            </Btn>
+            <Btn
+              fontSize="1.2rem"
+              p="unset"
+              borderColor="transparent"
+              bgColor="transparent"
+              _hover={{
+                bg: "transparent",
+                color: roti,
+              }}
+            >
+              Delete
+            </Btn>
+            <Btn
+              fontSize="1.2rem"
+              p="unset"
+              borderColor="transparent"
+              bgColor="transparent"
+              _hover={{
+                bg: "transparent",
+                color: roti,
+              }}
+            >
+              Edit
+            </Btn>
+
+            <Flex cursor="pointer" role="group" alignItems="center" gap="1rem">
+              <Text
+                _groupHover={{
+                  color: roti,
+                }}
+                fontSize="1.2rem"
+                fontWeight="semibold"
+              >
+                Reply
+              </Text>
+              <IconButton
+                size="lg"
+                borderRadius="full"
+                bgColor={secondaryBlack["100"]}
+                aria-label="Reply"
+                icon={
+                  <Img boxSize="25px" src="/imgs/community/u-turn-left.svg" />
+                }
+              />
+            </Flex>
+          </Flex>
+        </Box>
+      </Flex>
+    );
+  }
+
   return (
     <Box
       maxW="68.6rem"
@@ -124,27 +348,26 @@ function Activity() {
         />
       </Flex>
 
-      {/*Render Comments */}
+      {/*Render Comments List */}
       <Box p="2rem">
-        <Flex gap="1rem" alignItems="center">
-          <Avatar
-            size="xl"
-            name="Christian Nwamba"
-            src="https://bit.ly/code-beast"
-          />
-          <Box
-            p="1rem"
-            maxW="30rem"
-            borderRadius="3xl"
-            bgColor={secondaryBlack["100"]}
-            pos="relative"
-          >
-            <Text>Thanks so much it’s just some graduation memories 👍🏾</Text>
-            <Text mt="0.5rem" fontSize="1rem">
-              9 mins ago
-            </Text>
-          </Box>
-        </Flex>
+        <Box mb="1rem">
+          {renderComment()}
+
+          {/* Replies */}
+          {renderReply()}
+        </Box>
+        <Box mb="1rem">
+          {renderComment()}
+
+          {/* Replies */}
+          {renderReply()}
+        </Box>
+        <Box mb="1rem">
+          {renderComment()}
+
+          {/* Replies */}
+          {renderReply()}
+        </Box>
       </Box>
 
       {/* Render Comment Section */}

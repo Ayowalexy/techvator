@@ -19,9 +19,6 @@ function NewMember() {
   const { secondaryBlack, metallicSunburst, white } = theme.colors.brand;
   return (
     <Fragment>
-      <Heading fontSize="3xl" mt="2rem">
-        New Members
-      </Heading>
       <Box
         mt="3rem"
         p="2rem"

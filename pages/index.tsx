@@ -1,14 +1,17 @@
-import Head from 'next/head'
-import AmahlubistStyle from '@/components/Home/AmahlubistStyle'
-import ContactSection from '@/components/ContactSection'
-import CompleteProfile from '@/components/Dashboard/CompleteProfile'
-import Footer from '@/components/Footer'
-import Hero from '@/components/Home/Hero'
-import Layout from '@/components/Layout'
-import TheAmahlubist from '@/components/Home/TheAmahlubist'
-import Welcome from '@/components/Home/Welcome'
+import Head from "next/head";
+import AmahlubistStyle from "@/components/Home/AmahlubistStyle";
+import ContactSection from "@/components/ContactSection";
+import CompleteProfile from "@/components/Dashboard/CompleteProfile";
+import Footer from "@/components/Footer";
+import Hero from "@/components/Home/Hero";
+import Layout from "@/components/Layout";
+import TheAmahlubist from "@/components/Home/TheAmahlubist";
+import BuildingAnILO from "@/components/Home/BuildingAnILO";
+import Welcome from "@/components/Home/Welcome";
+import withAuth from "middleware/withAuth";
+import { NextPageContext } from "next";
 
-export default function Home():JSX.Element {
+export default function Home(): JSX.Element {
   return (
     <div>
       <Head>
@@ -19,15 +22,23 @@ export default function Home():JSX.Element {
 
       <CompleteProfile />
       <Layout>
-          <>
+        <>
           <Hero />
           <Welcome />
           <TheAmahlubist />
+          <BuildingAnILO />
           <AmahlubistStyle />
           <ContactSection />
           <Footer />
-          </>
+        </>
       </Layout>
     </div>
-  )
+  );
 }
+
+export const getServerSideProps = withAuth(async (context: NextPageContext) => {
+  console.log("user", context.res["user"]);
+  return {
+    props: {},
+  };
+});

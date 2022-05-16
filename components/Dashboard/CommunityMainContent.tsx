@@ -4,7 +4,7 @@ import UsersList from './UsersList'
 
 function CommunityMainContent() {
   return (
-    <Box  bg='tomato' h='1000px' px='2rem'>
+    <Box px='2rem'>
         <UsersList />
     </Box>
   )

@@ -7,7 +7,7 @@ function UsersList() {
     const {secondaryBlack} = theme.colors.brand
 
   return (
-    <Box maxW='68.6rem' overflow='auto' h='20rem' bg='blue' pos='relative'>
+    <Box maxW='68.6rem' overflow='auto' h='20rem' borderRadius='3xl' pos='relative'>
           <IconButton 
             zIndex='modal'
             pos='absolute'
@@ -19,7 +19,7 @@ function UsersList() {
             borderRadius='100vw' 
             mr={{base: 'unset', md: '1.6rem'}}
             icon={<Img transform='rotate(180deg)' boxSize='40px' src="/imgs/community/arrow-right.svg"  />} /> 
-            
+
           <IconButton 
             zIndex='modal'
             pos='absolute'

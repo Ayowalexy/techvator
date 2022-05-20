@@ -18,22 +18,28 @@ import { FaUserAlt } from "react-icons/fa";
 import { RiBankFill } from "react-icons/ri";
 import { HiUserAdd } from "react-icons/hi";
 import { MdOutlineExitToApp } from "react-icons/md";
+import { useRecoilValue } from "recoil";
+import { AuthAtom, getFullNameSelector } from "recoilStore/AuthAtom";
 
 type CommunityLeftSidebarProps = {};
 
 function CommunityLeftSidebar() {
+  const userFullName = useRecoilValue(getFullNameSelector);
+  const user = useRecoilValue(AuthAtom);
   const theme = useTheme();
   const { secondaryBlack } = theme.colors.brand;
+
   return (
     <Box pos="relative">
       <Box top="2rem" left="0" pos="sticky" pb="1rem">
         <Flex align="center" gap="1rem">
           <Avatar
             size="xl"
-            name="Christian Nwamba"
-            src="https://bit.ly/code-beast"
+            name={userFullName}
+            src={"https://" + user.avatar}
+            bg="white"
           />
-          <Text fontSize="2xl">Nandia Okengo</Text>
+          <Text fontSize="2xl">{userFullName}</Text>
         </Flex>
         <List px="1rem" my="2rem" spacing="1rem">
           {LEFT_SIDEBAR_MENU_ITEM.map((mi, idx) => (

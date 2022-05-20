@@ -14,10 +14,33 @@ import CommunityContentLayout from "@/components/Dashboard/CommunityContentLayou
 import CommunityLeftSidebar from "@/components/Dashboard/CommunityLeftSidebar";
 import CommunityRightSidebar from "@/components/Dashboard/CommunityRightSidebar";
 import CommunityMainContent from "@/components/Dashboard/CommunityMainContent";
+import withAuth from "middleware/withAuth";
+import { NextPageContext } from "next";
+import { initialRecoilState } from "recoilStore/initialEffect";
+import { useEffect, useMemo } from "react";
+import { useSetRecoilState } from "recoil";
+import { AuthAtom } from "recoilStore/AuthAtom";
 
-function community() {
+function community(props: any) {
   const theme = useTheme();
+  const setUser = useSetRecoilState(AuthAtom);
   const { secondaryBlack } = theme.colors.brand;
+
+  useEffect(() => {
+    if (props.initialRecoilState?.user) {
+      setUser({
+        token: props?.initialRecoilState?.user?.token,
+        ...props?.initialRecoilState?.user,
+      });
+    }
+  }, [props.initialRecoilState?.user]);
+
+  // useMemo(() => {
+  //   const context = typeof window !== "undefined" ? "client" : "server";
+  //   console.log(`<${context}> [initialRecoilState]`, props.initialRecoilState);
+
+  //   initialRecoilState = props.initialRecoilState; // Overwrite the global mutable variable
+  // }, []);
 
   return (
     <div>
@@ -46,3 +69,14 @@ function community() {
 }
 
 export default community;
+
+export const getServerSideProps = withAuth(async (context: NextPageContext) => {
+  let user = null;
+  if (context.res["user"]) user = context.res["user"];
+
+  return {
+    props: {
+      initialRecoilState: { user },
+    },
+  };
+});

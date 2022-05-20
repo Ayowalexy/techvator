@@ -6,6 +6,6 @@ export default function (ctx: NextPageContext, location: string) {
     ctx.res.writeHead(302, { Location: location });
     ctx.res.end();
   } else {
-    Router.push(location);
+    Router.replace(location);
   }
 }

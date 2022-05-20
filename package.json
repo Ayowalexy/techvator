@@ -24,6 +24,7 @@
     "react-horizontal-scrolling-menu": "^2.7.2",
     "react-icons": "^4.3.1",
     "recoil": "^0.7.0",
+    "recoilize": "^3.1.6",
     "swr": "^1.2.1",
     "yup": "^0.32.11"
   },

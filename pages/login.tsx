@@ -25,6 +25,7 @@ import { useFormik } from "formik";
 import * as yup from "yup";
 import axios from "axios";
 import { useRouter } from "next/router";
+import { useSetRecoilState } from "recoil";
 import FormInput from "../components/Forms/FormInput";
 import HeaderTag from "../components/HeaderTag";
 import Layout from "../components/Layout";
@@ -35,6 +36,7 @@ import { endpoint } from "../api_routes";
 import { AMAHLUBI_ACCESS_TOKEN } from "../constants";
 import { setTheCookie } from "helpers/cookieHandler";
 import withAuth from "../middleware/withAuth";
+import { AuthAtom } from "recoilStore/AuthAtom";
 
 function login() {
   const theme = useTheme();
@@ -42,6 +44,7 @@ function login() {
   const router = useRouter();
   const { black, white } = theme.colors.brand;
   const [passwordVisible, setPasswordVisible] = useState(false);
+  const setUser = useSetRecoilState(AuthAtom);
 
   const validationSchema = yup.object().shape({
     email: yup.string().trim().email().required("Email Address is required"),
@@ -72,6 +75,10 @@ function login() {
             response.data?.message?.accessToken
           );
 
+          setUser({
+            ...response.data?.message?.user,
+            token: response.data?.message?.accessToken,
+          });
           toast({
             title: "Login",
             description: "Login successful",
@@ -281,7 +288,7 @@ function login() {
                 </Stack>
               </form>
 
-              <NextLink href="/login">
+              <NextLink href="/create-account">
                 <Link role="group" textDecoration="none">
                   <HeaderTag
                     color={black}

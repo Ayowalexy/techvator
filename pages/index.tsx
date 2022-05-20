@@ -10,8 +10,22 @@ import BuildingAnILO from "@/components/Home/BuildingAnILO";
 import Welcome from "@/components/Home/Welcome";
 import withAuth from "middleware/withAuth";
 import { NextPageContext } from "next";
+import { useEffect } from "react";
+import { useSetRecoilState } from "recoil";
+import { AuthAtom } from "recoilStore/AuthAtom";
 
-export default function Home(): JSX.Element {
+export default function Home(props: any): JSX.Element {
+  const setUser = useSetRecoilState(AuthAtom);
+
+  useEffect(() => {
+    if (props.initialRecoilState?.user) {
+      setUser({
+        token: props?.initialRecoilState?.user?.token,
+        ...props?.initialRecoilState?.user,
+      });
+    }
+  }, [props.initialRecoilState?.user]);
+
   return (
     <div>
       <Head>
@@ -37,8 +51,12 @@ export default function Home(): JSX.Element {
 }
 
 export const getServerSideProps = withAuth(async (context: NextPageContext) => {
-  console.log("user", context.res["user"]);
+  let user = null;
+  if (context.res["user"]) user = context.res["user"];
+
   return {
-    props: {},
+    props: {
+      initialRecoilState: { user },
+    },
   };
 });

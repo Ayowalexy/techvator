@@ -4,11 +4,18 @@ import { NextPageContext } from "next";
 import redirect from "../helpers/redirect";
 import { destroyTheCookie, parseTheCookie } from "../helpers/cookieHandler";
 import { AMAHLUBI_ACCESS_TOKEN } from "../constants";
+import axios from "axios";
+import { endpoint } from "api_routes";
 
 export default function withAuth(gssp) {
   return async (context: NextPageContext) => {
     // parse the cookie and obtain the token
     const token = parseTheCookie(context);
+
+    // if we don't have a token
+    // if (!token && context.req.url !== "/login") {
+    //   redirect(context, "/login");
+    // }
 
     if (token) {
       // decode the token
@@ -33,8 +40,19 @@ export default function withAuth(gssp) {
         redirect(context, "/community");
       }
 
-      //   check for user object and add it to the response object as context.res.user
-      context.res["user"] = decoded;
+      // if on the response we don't have user query for user
+      if (!context.res["user"]) {
+        const res = await axios.get(endpoint.ME + decoded.id, {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        });
+
+        if (res.status === 200) {
+          //   check for user object and add it to the response object as context.res.user
+          context.res["user"] = { ...res.data?.message?.user, token };
+        }
+      }
       //   let user: any = parseCookies(context).user;
       //   if (user) {
       //     // reach out to nookies and grab the user

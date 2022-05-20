@@ -9,6 +9,7 @@ import { MotionList } from "motion";
 import NextLink from "next/link";
 import { useRecoilValue } from "recoil";
 import { collapseMenuAtom } from "recoilStore/CollapseMenuAtom";
+import { isAuthenticatedSelector } from "recoilStore/AuthAtom";
 import { navigation } from "../data/navigation";
 import ButtonLink from "./Button";
 import Button from "./Button";
@@ -18,6 +19,7 @@ function Navigation() {
   const [isMobileResponsive] = useMediaQuery("(max-width: 62em)");
   const { rotiLight, roti, white, black } = theme.colors.brand;
   const collapse = useRecoilValue(collapseMenuAtom);
+  const isAuthenticated = useRecoilValue(isAuthenticatedSelector);
 
   return (
     <MotionList
@@ -91,7 +93,14 @@ function Navigation() {
         mb={["2rem", "2rem", "2rem", "0"]}
         pt="2rem"
       >
-        <ButtonLink href="/create-account" label="Become a member" mr="1rem" />
+        {!isAuthenticated && (
+          <ButtonLink
+            href="/create-account"
+            label="Become a member"
+            mr="1rem"
+          />
+        )}
+        {console.log(isAuthenticated, "IS AUTHENTICATED....")}
         {/* <ButtonLink
           href="/black-excellence"
           label="Become a member"

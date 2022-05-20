@@ -11,8 +11,9 @@ import {
 import NextLInk from "next/link";
 import { useRouter } from "next/router";
 import { CgMenu } from "react-icons/cg";
-import { useRecoilState } from "recoil";
+import { useRecoilState, useRecoilValue } from "recoil";
 import { collapseMenuAtom } from "recoilStore/CollapseMenuAtom";
+import { isAuthenticatedSelector } from "recoilStore/AuthAtom";
 import ButtonLink from "./Button";
 
 import Container from "./Container";
@@ -22,6 +23,7 @@ function Header(): JSX.Element {
   const theme = useTheme();
   const router = useRouter();
   const [collapse, setCollapse] = useRecoilState(collapseMenuAtom);
+  const isAuthenticated = useRecoilValue(isAuthenticatedSelector);
 
   // remove become a member with this url
   const url = {
@@ -55,7 +57,7 @@ function Header(): JSX.Element {
         }}
       >
         <Flex alignItems="center" justifyContent="space-between">
-          {!url[router.pathname] ? (
+          {!url[router.pathname] && !isAuthenticated ? (
             <ButtonLink
               href="/create-account"
               label="Become a member"

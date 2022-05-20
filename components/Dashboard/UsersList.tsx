@@ -48,19 +48,19 @@ function UsersList() {
   };
 
   useEffect(() => {
-    console.log(
-      carouselRef.current.scrollWidth,
-      carouselRef.current.offsetWidth,
-      carouselRef.current.getBoundingClientRect(),
-      carouselRef.current?.lastElementChild.getBoundingClientRect(),
-      carouselRef.current?.lastElementChild.offsetWidth
-    );
+    // console.log(
+    //   carouselRef.current.scrollWidth,
+    //   carouselRef.current.offsetWidth,
+    //   carouselRef.current.getBoundingClientRect(),
+    //   carouselRef.current?.lastElementChild.getBoundingClientRect(),
+    //   carouselRef.current?.lastElementChild.offsetWidth
+    // );
     setMaxScroll(
       carouselRef.current.scrollWidth - carouselRef.current.offsetWidth
     );
   }, []);
 
-  console.log("max", currentScrollPosition, (maxScroll / 100) * 25 - 20);
+  // console.log("max", currentScrollPosition, (maxScroll / 100) * 25 - 20);
   return (
     <>
       <Heading fontSize="3xl" ml="1rem" mb="2rem">

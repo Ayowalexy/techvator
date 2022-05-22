@@ -324,7 +324,7 @@ function login() {
 
 export default login;
 
-export const getStaticProps = withAuth(async (context: NextPageContext) => {
+export const getServerSideProps = withAuth(async (context: NextPageContext) => {
   return {
     props: {},
   };

@@ -72,6 +72,9 @@ function Navigation() {
           display={["none", "none", "none", "block"]}
           px="3rem"
           py="0.8rem"
+          _hover={{
+            bgColor: rotiLight,
+          }}
         >
           {!isAuthenticated ? (
             <Button
@@ -85,8 +88,9 @@ function Navigation() {
               textTransform="capitalize"
               _hover={{
                 backgroundColor: "unset",
-                border: "unsett",
-                opacity: ".7",
+                border: "unset",
+                color: white,
+                // opacity: ".7",
               }}
             />
           ) : (
@@ -97,7 +101,7 @@ function Navigation() {
               // borderRadius="3.0rem"
               color={white}
               margin="0 auto"
-              mb={["2rem", "2rem", "2rem", "0"]}
+              // mb={["2rem", "2rem", "2rem", "0"]}
               display={["none", "none", "none", "block"]}
               px="3rem"
               py="0.8rem"

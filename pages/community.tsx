@@ -30,6 +30,7 @@ function community(props: any) {
     if (props.initialRecoilState?.user) {
       setUser({
         token: props?.initialRecoilState?.user?.token,
+        refreshToken: props?.initialRecoilState?.user?.refreshToken,
         ...props?.initialRecoilState?.user,
       });
     }

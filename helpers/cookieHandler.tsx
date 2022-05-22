@@ -1,4 +1,3 @@
-import { AMAHLUBI_ACCESS_TOKEN } from "../constants";
 import Router from "next/router";
 import { setCookie, parseCookies, destroyCookie } from "nookies";
 import redirectUser from "./redirect";
@@ -10,8 +9,8 @@ export function setTheCookie(key: string, value: any) {
   });
 }
 
-export function parseTheCookie(context) {
-  const token = parseCookies(context)[AMAHLUBI_ACCESS_TOKEN];
+export function parseTheCookie(context, cookieName: string) {
+  const token = parseCookies(context)[cookieName];
 
   if (!token) {
     // redirectUser(context, "/login");

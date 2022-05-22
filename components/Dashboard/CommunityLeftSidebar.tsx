@@ -36,8 +36,8 @@ function CommunityLeftSidebar() {
           <Avatar
             size="xl"
             name={userFullName}
-            src={"https://" + user.avatar}
-            bg="white"
+            // src={"https://" + user.avatar}
+            // bg="white"
           />
           <Text fontSize="2xl">{userFullName}</Text>
         </Flex>

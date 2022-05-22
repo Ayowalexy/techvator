@@ -393,7 +393,6 @@ function Activity() {
                 alignItems: "center !important",
               }}
               inputProps={{
-                autoFocus: true,
                 py: "2.5rem",
                 px: "2rem",
                 placeholder: "Write a Comment.......",

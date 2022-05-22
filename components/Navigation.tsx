@@ -4,12 +4,19 @@ import {
   ListItem,
   useTheme,
   useMediaQuery,
+  Popover,
+  PopoverTrigger,
+  PopoverContent,
+  PopoverArrow,
+  PopoverBody,
+  UnorderedList,
+  Box,
 } from "@chakra-ui/react";
 import { MotionList } from "motion";
 import NextLink from "next/link";
 import { useRecoilValue } from "recoil";
 import { collapseMenuAtom } from "recoilStore/CollapseMenuAtom";
-import { isAuthenticatedSelector } from "recoilStore/AuthAtom";
+import { AuthAtom, isAuthenticatedSelector } from "recoilStore/AuthAtom";
 import { navigation } from "../data/navigation";
 import ButtonLink from "./Button";
 import Button from "./Button";
@@ -20,109 +27,171 @@ function Navigation() {
   const { rotiLight, roti, white, black } = theme.colors.brand;
   const collapse = useRecoilValue(collapseMenuAtom);
   const isAuthenticated = useRecoilValue(isAuthenticatedSelector);
+  const user = useRecoilValue(AuthAtom);
 
   return (
-    <MotionList
-      display={"flex"}
-      flexDir={["column", "column", "column", "row"]}
-      pos="relative"
-      zIndex={3}
-      bgColor={rotiLight}
-      w="100%"
-      px="2.4rem"
-      justifyContent="space-between"
-      alignItems={["stretch", "stretch", "stretch", "center"]}
-      overflow="hidden"
-      initial={{
-        height: isMobileResponsive ? 0 : "100%",
-      }}
-      animate={{
-        height: isMobileResponsive && collapse ? "0" : "100%",
-      }}
-    >
-      {navigation.map((nav, idx) => (
-        <ListItem key={idx} p="2.0rem" pl={idx === 0 && "0"} margin="0 auto">
-          <NextLink href={nav.path}>
-            <Link
-              color={white}
-              fontSize="1.6rem"
+    <Box pos="relative">
+      <MotionList
+        display={{ base: "none", md: "flex" }}
+        flexDir="row"
+        pos="relative"
+        zIndex={3}
+        bgColor={rotiLight}
+        w="100%"
+        px="2.4rem"
+        justifyContent="space-between"
+        alignItems={["stretch", "stretch", "stretch", "center"]}
+        // initial={{
+        //   height: isMobileResponsive ? 0 : "100%",
+        // }}
+        // animate={{
+        //   height: isMobileResponsive && collapse ? "0" : "100%",
+        // }}
+      >
+        {navigation.map((nav, idx) => (
+          <ListItem key={idx} p="2.0rem" pl={idx === 0 && "0"} margin="0 auto">
+            <NextLink href={nav.path}>
+              <Link
+                color={white}
+                fontSize="1.6rem"
+                fontFamily="Roboto"
+                fontWeight="600"
+              >
+                {nav.label}
+              </Link>
+            </NextLink>
+          </ListItem>
+        ))}
+        <ListItem
+          bg={black}
+          border={black}
+          // borderRadius="3.0rem"
+          color={white}
+          margin="0 auto"
+          mb={["2rem", "2rem", "2rem", "0"]}
+          display={["none", "none", "none", "block"]}
+          px="3rem"
+          py="0.8rem"
+        >
+          {!isAuthenticated ? (
+            <Button
+              borderRadius="unset"
               fontFamily="Roboto"
               fontWeight="600"
+              label="Reach Out"
+              href="#"
+              border="unset"
+              p="unset"
+              textTransform="capitalize"
+              _hover={{
+                backgroundColor: "unset",
+                border: "unsett",
+                opacity: ".7",
+              }}
+            />
+          ) : (
+            <Box
+              pos="relative"
+              bg={black}
+              border={black}
+              // borderRadius="3.0rem"
+              color={white}
+              margin="0 auto"
+              mb={["2rem", "2rem", "2rem", "0"]}
+              display={["none", "none", "none", "block"]}
+              px="3rem"
+              py="0.8rem"
+              transition="background-color 250ms ease"
+              _hover={{
+                backgroundColor: roti,
+                border: `1px solid ${roti}`,
+              }}
+              role="group"
             >
-              {nav.label}
-            </Link>
-          </NextLink>
-        </ListItem>
-      ))}
-      <ListItem
-        bg={black}
-        border={black}
-        // borderRadius="3.0rem"
-        color={white}
-        margin="0 auto"
-        mb={["2rem", "2rem", "2rem", "0"]}
-        display={["none", "none", "none", "block"]}
-        px="1.8rem"
-        py="0.8rem"
-        transition="background-color 250ms ease"
-        _hover={{
-          backgroundColor: roti,
-          border: `1px solid ${roti}`,
-        }}
-        overflow="hidden"
-      >
-        <Button
-          borderRadius="unset"
-          fontFamily="Roboto"
-          fontWeight="600"
-          label="Reach Out"
-          href="#"
-          border="unset"
-          p="unset"
-          textTransform="capitalize"
-          _hover={{ backgroundColor: "unset", border: "unsett", opacity: ".7" }}
-        />
-      </ListItem>
+              <Button
+                borderRadius="unset"
+                fontFamily="Roboto"
+                fontWeight="600"
+                label="My Account"
+                href="#"
+                border="unset"
+                p="unset"
+                textTransform="capitalize"
+                _hover={{
+                  backgroundColor: "unset",
+                  border: "unsett",
+                  opacity: ".7",
+                }}
+                // pos="relative"
+              />
 
-      {/* Mobile List Options */}
-      <ListItem
-        borderTop={`.5px solid ${white}`}
-        d={["flex", "flex", "flex", "none"]}
-        justifyContent="space-between"
-        margin="0 auto"
-        mb={["2rem", "2rem", "2rem", "0"]}
-        pt="2rem"
-      >
-        {!isAuthenticated && (
-          <ButtonLink
-            href="/create-account"
-            label="Become a member"
-            mr="1rem"
-          />
-        )}
-        {console.log(isAuthenticated, "IS AUTHENTICATED....")}
-        {/* <ButtonLink
+              <UnorderedList
+                opacity={0}
+                _groupHover={{
+                  opacity: 1,
+                }}
+                pos="absolute"
+                zIndex="popover"
+                bg={"black"}
+                color="white"
+                top="100%"
+                left="50%"
+                // mt="1rem"
+                transform="translateX(-50%)"
+                // w="100%"
+                styleType="none"
+                ml="0"
+                p="2rem"
+                spacing="3"
+              >
+                <ListItem>My Profile</ListItem>
+                <ListItem>Community</ListItem>
+                <ListItem>Logout</ListItem>
+              </UnorderedList>
+            </Box>
+          )}
+        </ListItem>
+
+        {/* Mobile List Options */}
+        <ListItem
+          borderTop={`.5px solid ${white}`}
+          d={["flex", "flex", "flex", "none"]}
+          justifyContent="space-between"
+          margin="0 auto"
+          mb={["2rem", "2rem", "2rem", "0"]}
+          pt="2rem"
+        >
+          {!isAuthenticated && (
+            <ButtonLink
+              href="/create-account"
+              label="Become a member"
+              mr="1rem"
+            />
+          )}
+          {console.log(isAuthenticated, "IS AUTHENTICATED....")}
+          {/* <ButtonLink
           href="/black-excellence"
           label="Become a member"
           mr="1rem"
         /> */}
 
-        <Button
-          fontFamily="Roboto"
-          fontWeight="600"
-          label="Reach Out"
-          borderRadius="unset"
-          href="#"
-          bg={black}
-          color={white}
-          border={black}
-          px="1.8rem"
-          pb="0.8rem"
-          textTransform="capitalize"
-          _hover={{ backgroundColor: "black", opacity: ".7" }}
-        />
-      </ListItem>
-    </MotionList>
+          <Button
+            fontFamily="Roboto"
+            fontWeight="600"
+            label="Reach Out"
+            borderRadius="unset"
+            href="#"
+            bg={black}
+            color={white}
+            border={black}
+            px="1.8rem"
+            pb="0.8rem"
+            textTransform="capitalize"
+            _hover={{ backgroundColor: "black", opacity: ".7" }}
+          />
+        </ListItem>
+      </MotionList>
+    </Box>
   );
 }
 

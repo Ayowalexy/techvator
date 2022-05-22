@@ -6,8 +6,13 @@ import {
   Img,
   useTheme,
 } from "@chakra-ui/react";
+import { endpoint } from "api_routes";
+import axios from "axios";
 import { MotionFlex } from "motion";
 import React, { useEffect, useRef, useState } from "react";
+import { useRecoilState, useRecoilValue } from "recoil";
+import { AuthAtom } from "recoilStore/AuthAtom";
+import { MembersAtom } from "recoilStore/MembersAtom";
 import UserListItem from "./UserListItem";
 
 function UsersList() {
@@ -15,6 +20,8 @@ function UsersList() {
   const { secondaryBlack } = theme.colors.brand;
   const [currentScrollPosition, setCurrentScrollPosition] = useState(0);
   const [maxScroll, setMaxScroll] = useState(0);
+  const [members, setMembers] = useRecoilState(MembersAtom);
+  const auth = useRecoilValue(AuthAtom);
   const carouselRef = useRef(null);
   const scrollAmount = 162;
 
@@ -58,6 +65,25 @@ function UsersList() {
     setMaxScroll(
       carouselRef.current.scrollWidth - carouselRef.current.offsetWidth
     );
+  }, []);
+
+  // fetch new members
+  const fetchNewMembers = async () => {
+    console.log(auth.token, auth.refreshToken);
+    try {
+      const response = await axios.get(endpoint.MEMBERS, {
+        headers: {
+          Authorization: `Bearer ${auth.token}`,
+          "x-refresh-token": `${auth.refreshToken}`,
+        },
+      });
+
+      console.log(response.data);
+    } catch (error) {}
+  };
+
+  useEffect(() => {
+    fetchNewMembers();
   }, []);
 
   // console.log("max", currentScrollPosition, (maxScroll / 100) * 25 - 20);

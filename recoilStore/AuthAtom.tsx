@@ -1,5 +1,5 @@
 import { atom, selector } from "recoil";
-import { initialEffect } from "./initialEffect";
+// import { initialEffect } from "./initialEffect";
 
 export type User = {
   _id?: string;
@@ -10,6 +10,7 @@ export type User = {
   role?: string;
   active?: string;
   token?: string;
+  refreshToken?: string;
 };
 
 export const AuthAtom = atom<User>({
@@ -24,7 +25,7 @@ export const AuthAtom = atom<User>({
     active: null,
     token: null,
   },
-  effects_UNSTABLE: [initialEffect("userState")],
+  // effects_UNSTABLE: [initialEffect("userState")],
 });
 
 // Selectors

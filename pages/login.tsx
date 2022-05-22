@@ -33,7 +33,7 @@ import Wrapper from "../components/Wrapper";
 import { Btn } from "../components/Button";
 import { FaChevronRight } from "react-icons/fa";
 import { endpoint } from "../api_routes";
-import { AMAHLUBI_ACCESS_TOKEN } from "../constants";
+import { AMAHLUBI_ACCESS_TOKEN, AMAHLUBI_REFRESH_TOKEN } from "../constants";
 import { setTheCookie } from "helpers/cookieHandler";
 import withAuth from "../middleware/withAuth";
 import { AuthAtom } from "recoilStore/AuthAtom";
@@ -74,10 +74,15 @@ function login() {
             AMAHLUBI_ACCESS_TOKEN,
             response.data?.message?.accessToken
           );
+          setTheCookie(
+            AMAHLUBI_REFRESH_TOKEN,
+            response.data?.message?.refreshToken
+          );
 
           setUser({
             ...response.data?.message?.user,
             token: response.data?.message?.accessToken,
+            refreshToken: response.data?.message?.refreshToken,
           });
           toast({
             title: "Login",
@@ -319,7 +324,7 @@ function login() {
 
 export default login;
 
-export const getServerSideProps = withAuth(async (context: NextPageContext) => {
+export const getStaticProps = withAuth(async (context: NextPageContext) => {
   return {
     props: {},
   };

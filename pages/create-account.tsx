@@ -26,7 +26,7 @@ import Layout from "../components/Layout";
 import Wrapper from "../components/Wrapper";
 import { endpoint } from "../api_routes";
 import { setTheCookie } from "helpers/cookieHandler";
-import { AMAHLUBI_ACCESS_TOKEN } from "../constants";
+import { AMAHLUBI_ACCESS_TOKEN, AMAHLUBI_REFRESH_TOKEN } from "../constants";
 import withAuth from "middleware/withAuth";
 
 function createaccount() {
@@ -76,10 +76,14 @@ function createaccount() {
 
         if (response.status === 200) {
           // store access token in cookie
-          setTheCookie(
-            AMAHLUBI_ACCESS_TOKEN,
-            response.data?.message?.accessToken
-          );
+          // setTheCookie(
+          //   AMAHLUBI_ACCESS_TOKEN,
+          //   response.data?.message?.accessToken
+          // );
+          // setTheCookie(
+          //   AMAHLUBI_REFRESH_TOKEN,
+          //   response.data?.message?.refreshToken
+          // );
 
           toast({
             title: "Register",
@@ -425,7 +429,7 @@ function createaccount() {
 
 export default createaccount;
 
-export const getServerSideProps = withAuth(async (context: NextPageContext) => {
+export const getStaticProps = withAuth(async (context: NextPageContext) => {
   return {
     props: {},
   };

@@ -11,11 +11,12 @@ import Welcome from "@/components/Home/Welcome";
 import withAuth from "middleware/withAuth";
 import { NextPageContext } from "next";
 import { useEffect } from "react";
-import { useSetRecoilState } from "recoil";
-import { AuthAtom } from "recoilStore/AuthAtom";
+import { useRecoilValue, useSetRecoilState } from "recoil";
+import { AuthAtom, isAuthenticatedSelector } from "recoilStore/AuthAtom";
 
 export default function Home(props: any): JSX.Element {
   const setUser = useSetRecoilState(AuthAtom);
+  const isAuthenticated = useRecoilValue(isAuthenticatedSelector);
 
   useEffect(() => {
     if (props.initialRecoilState?.user) {
@@ -34,7 +35,7 @@ export default function Home(props: any): JSX.Element {
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
-      <CompleteProfile />
+      {isAuthenticated && <CompleteProfile />}
       <Layout>
         <>
           <Hero />

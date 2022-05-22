@@ -11,6 +11,7 @@ import {
   PopoverBody,
   UnorderedList,
   Box,
+  Icon,
 } from "@chakra-ui/react";
 import { MotionList } from "motion";
 import NextLink from "next/link";
@@ -20,6 +21,7 @@ import { AuthAtom, isAuthenticatedSelector } from "recoilStore/AuthAtom";
 import { navigation } from "../data/navigation";
 import ButtonLink from "./Button";
 import Button from "./Button";
+import { IoIosArrowDown } from "react-icons/io";
 
 function Navigation() {
   const theme = useTheme();
@@ -72,9 +74,11 @@ function Navigation() {
           display={["none", "none", "none", "block"]}
           px="3rem"
           py="0.8rem"
-          _hover={{
-            bgColor: rotiLight,
-          }}
+          pos="relative"
+          role="group"
+          // _hover={{
+          //   bgColor: rotiLight,
+          // }}
         >
           {!isAuthenticated ? (
             <Button
@@ -94,24 +98,7 @@ function Navigation() {
               }}
             />
           ) : (
-            <Box
-              pos="relative"
-              bg={black}
-              border={black}
-              // borderRadius="3.0rem"
-              color={white}
-              margin="0 auto"
-              // mb={["2rem", "2rem", "2rem", "0"]}
-              display={["none", "none", "none", "block"]}
-              px="3rem"
-              py="0.8rem"
-              transition="background-color 250ms ease"
-              _hover={{
-                backgroundColor: roti,
-                border: `1px solid ${roti}`,
-              }}
-              role="group"
-            >
+            <>
               <Button
                 borderRadius="unset"
                 fontFamily="Roboto"
@@ -123,9 +110,10 @@ function Navigation() {
                 textTransform="capitalize"
                 _hover={{
                   backgroundColor: "unset",
-                  border: "unsett",
+                  border: "unset",
                   opacity: ".7",
                 }}
+                icon={<Icon as={IoIosArrowDown} ml="1rem" />}
                 // pos="relative"
               />
 
@@ -138,11 +126,11 @@ function Navigation() {
                 zIndex="popover"
                 bg={"black"}
                 color="white"
-                top="100%"
+                top="calc(100%)"
                 left="50%"
                 // mt="1rem"
                 transform="translateX(-50%)"
-                // w="100%"
+                w="100%"
                 styleType="none"
                 ml="0"
                 p="2rem"
@@ -152,7 +140,7 @@ function Navigation() {
                 <ListItem>Community</ListItem>
                 <ListItem>Logout</ListItem>
               </UnorderedList>
-            </Box>
+            </>
           )}
         </ListItem>
 

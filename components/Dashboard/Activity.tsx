@@ -143,17 +143,26 @@ function Activity() {
             borderRadius="3xl"
             bgColor={secondaryBlack["100"]}
             pos="relative"
-            _before={{
-              content: `""`,
-              pos: "absolute",
-              w: "3rem",
-              h: "3rem",
-              bgColor: "red",
-              right: "0",
-              top: "-50%",
-              borderRadius: "full",
-            }}
+            // _before={{
+            //   content: `url("/imgs/community/turn-left.svg")`,
+            //   pos: "absolute",
+            //   w: "3rem",
+            //   h: "3rem",
+            //   // bgColor: "blue",
+            //   right: "0",
+            //   top: "-50%",
+            //   borderRadius: "full",
+            // }}
           >
+            <Img
+              src="/imgs/community/turn-left.svg"
+              pointerEvents="none"
+              pos="absolute"
+              w="2.5rem"
+              h="2.5rem"
+              right="2%"
+              top="-40%"
+            />
             <Text>Thanks so much it’s just some graduation memories 👍🏾</Text>
             <Text mt="0.5rem" fontSize="1rem">
               9 mins ago

@@ -20,7 +20,7 @@ import { navigation } from "../data/navigation";
 import ButtonLink from "./Button";
 import Button from "./Button";
 
-function Navigation() {
+function MobileNavigation() {
   const theme = useTheme();
   const [isMobileResponsive] = useMediaQuery("(max-width: 62em)");
   const { rotiLight, roti, white, black } = theme.colors.brand;
@@ -28,78 +28,62 @@ function Navigation() {
   const isAuthenticated = useRecoilValue(isAuthenticatedSelector);
 
   return (
-    <MotionList
-      display={"flex"}
-      flexDir={["column", "column", "column", "row"]}
-      pos="relative"
-      zIndex={3}
-      bgColor={rotiLight}
-      w="100%"
-      px="2.4rem"
-      justifyContent="space-between"
-      alignItems={["stretch", "stretch", "stretch", "center"]}
-      overflow={isMobileResponsive ? "hidden" : "auto"}
-      initial={{
-        height: isMobileResponsive ? 0 : "100%",
-      }}
-      animate={{
-        height: isMobileResponsive && collapse ? "0" : "100%",
-      }}
-    >
-      {navigation.map((nav, idx) => (
-        <ListItem key={idx} p="2.0rem" pl={idx === 0 && "0"} margin="0 auto">
-          <NextLink href={nav.path}>
-            <Link
-              color={white}
-              fontSize="1.6rem"
-              fontFamily="Roboto"
-              fontWeight="600"
-            >
-              {nav.label}
-            </Link>
-          </NextLink>
-        </ListItem>
-      ))}
-      <ListItem
-        bg={black}
-        border={black}
-        // borderRadius="3.0rem"
-        color={white}
-        margin="0 auto"
-        mb={["2rem", "2rem", "2rem", "0"]}
-        display={["none", "none", "none", "block"]}
-        px="1.8rem"
-        py="0.8rem"
-        transition="background-color 250ms ease"
-        _hover={{
-          backgroundColor: roti,
-          border: `1px solid ${roti}`,
-        }}
+    isMobileResponsive && (
+      <MotionList
+        // display={{ base: "flex", md: "none", lg: "none", xl: "none" }}
+        flexDir={{ base: "column" }}
+        pos="relative"
+        zIndex={3}
+        bgColor={rotiLight}
+        w="100%"
+        px="2.4rem"
+        justifyContent="space-between"
+        alignItems="stretch"
         overflow="hidden"
+        initial={{
+          height: 0,
+        }}
+        animate={{
+          height: collapse ? "0" : "100%",
+        }}
       >
-        {!isAuthenticated ? (
-          <Button
-            borderRadius="unset"
-            fontFamily="Roboto"
-            fontWeight="600"
-            label="Reach Out"
-            href="#"
-            border="unset"
-            p="unset"
-            textTransform="capitalize"
-            _hover={{
-              backgroundColor: "unset",
-              border: "unsett",
-              opacity: ".7",
-            }}
-          />
-        ) : (
-          <>
+        {navigation.map((nav, idx) => (
+          <ListItem key={idx} p="2.0rem" margin="0 auto">
+            <NextLink href={nav.path}>
+              <Link
+                color={white}
+                fontSize="1.6rem"
+                fontFamily="Roboto"
+                fontWeight="600"
+              >
+                {nav.label}
+              </Link>
+            </NextLink>
+          </ListItem>
+        ))}
+        <ListItem
+          bg={black}
+          border={black}
+          // borderRadius="3.0rem"
+          color={white}
+          margin="0 auto"
+          mb={["2rem", "2rem", "2rem", "0"]}
+          display={["none", "none", "none", "block"]}
+          px="1.8rem"
+          py="0.8rem"
+          transition="background-color 250ms ease"
+          _hover={{
+            backgroundColor: roti,
+            border: `1px solid ${roti}`,
+          }}
+          overflow="hidden"
+        >
+          {!isAuthenticated ? (
             <Button
               borderRadius="unset"
               fontFamily="Roboto"
               fontWeight="600"
-              label="My Account"
+              label="Reach Out"
               href="#"
               border="unset"
               p="unset"
@@ -109,24 +93,41 @@ function Navigation() {
                 border: "unsett",
                 opacity: ".7",
               }}
-              pos="relative"
             />
+          ) : (
+            <>
+              <Button
+                borderRadius="unset"
+                fontFamily="Roboto"
+                fontWeight="600"
+                label="My Account"
+                href="#"
+                border="unset"
+                p="unset"
+                textTransform="capitalize"
+                _hover={{
+                  backgroundColor: "unset",
+                  border: "unset",
+                  opacity: ".7",
+                }}
+                pos="relative"
+              />
 
-            <UnorderedList
-              pos="absolute"
-              zIndex="popover"
-              bg={"black"}
-              color="white"
-            >
-              <ListItem>My Profile</ListItem>
-              <ListItem>Community</ListItem>
-              <ListItem>Logout</ListItem>
-            </UnorderedList>
-          </>
-        )}
-      </ListItem>
+              <UnorderedList
+                pos="absolute"
+                zIndex="popover"
+                bg={"black"}
+                color="white"
+              >
+                <ListItem>My Profile</ListItem>
+                <ListItem>Community</ListItem>
+                <ListItem>Logout</ListItem>
+              </UnorderedList>
+            </>
+          )}
+        </ListItem>
 
-      {/* Mobile List Options */}
+        {/* Mobile List Options
       <ListItem
         borderTop={`.5px solid ${white}`}
         d={["flex", "flex", "flex", "none"]}
@@ -147,7 +148,7 @@ function Navigation() {
             href="/black-excellence"
             label="Become a member"
             mr="1rem"
-          /> */}
+          /> 
 
         <Button
           fontFamily="Roboto"
@@ -163,9 +164,10 @@ function Navigation() {
           textTransform="capitalize"
           _hover={{ backgroundColor: "black", opacity: ".7" }}
         />
-      </ListItem>
-    </MotionList>
+      </ListItem> */}
+      </MotionList>
+    )
   );
 }
 
-export default Navigation;
+export default MobileNavigation;

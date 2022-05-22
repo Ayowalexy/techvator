@@ -77,12 +77,18 @@ function Welcome(): JSX.Element {
           <ButtonLink
             mt="3.5rem"
             zIndex={2}
-            p={{ base: "1rem 2rem", lg: "1.5rem 3rem" }}
+            p={{ base: ".5rem 1rem", lg: "1.5rem 3rem" }}
             label="Learn More"
             href=""
             textTransform="capitalize"
             fontSize={{ base: "1.4rem", lg: "1.8rem" }}
-            icon={<Icon as={IoIosArrowForward} boxSize="2.5rem" ml="1.6rem" />}
+            icon={
+              <Icon
+                as={IoIosArrowForward}
+                boxSize={{ base: "1.5rem", md: "2.5rem" }}
+                ml="1.6rem"
+              />
+            }
           />
         </Box>
       </Flex>

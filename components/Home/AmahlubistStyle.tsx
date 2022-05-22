@@ -58,11 +58,18 @@ function AmahlubistStyle() {
           <ButtonLink
             display="inline-flex"
             border={`2px solid ${black}`}
+            // p={{ base: ".5rem 1rem", lg: "1.5rem 3rem" }}
             _hover={{ background: roti, color: white }}
             label="Learn More"
             href={lt?.url}
             textTransform="capitalize"
-            icon={<Icon as={IoIosArrowForward} boxSize="2.5rem" ml="1.6rem" />}
+            icon={
+              <Icon
+                as={IoIosArrowForward}
+                boxSize={{ base: "1.5rem", md: "2.5rem" }}
+                ml="1.6rem"
+              />
+            }
           />
         </Flex>
       </Flex>

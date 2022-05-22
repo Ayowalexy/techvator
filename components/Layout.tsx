@@ -1,5 +1,6 @@
 import { Box } from "@chakra-ui/react";
 import Header from "./Header";
+import MobileNavigation from "./MobileNavigation";
 import Navigation from "./Navigation";
 
 type LayoutProps = {
@@ -11,6 +12,7 @@ function Layout({ children }: LayoutProps): JSX.Element {
     <Box>
       <Header />
       <Navigation />
+      <MobileNavigation />
       {children}
     </Box>
   );

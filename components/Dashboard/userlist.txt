@@ -10,76 +10,10 @@ import { endpoint } from "api_routes";
 import axios from "axios";
 import { MotionFlex } from "motion";
 import React, { useEffect, useRef, useState } from "react";
-import { ScrollMenu, VisibilityContext } from "react-horizontal-scrolling-menu";
 import { useRecoilState, useRecoilValue } from "recoil";
 import { AuthAtom } from "recoilStore/AuthAtom";
 import { MembersAtom } from "recoilStore/MembersAtom";
 import UserListItem from "./UserListItem";
-
-function LeftArrowBtn() {
-  const { isFirstItemVisible, scrollPrev } =
-    React.useContext(VisibilityContext);
-
-  const theme = useTheme();
-  const { secondaryBlack } = theme.colors.brand;
-
-  return (
-    <IconButton
-      opacity={isFirstItemVisible ? 0 : 1}
-      transform={`translateY(-50%) ${
-        isFirstItemVisible ? "scale(0)" : "scale(1)"
-      }`}
-      transition="opacity .5s ease"
-      onClick={() => scrollPrev()}
-      zIndex="modal"
-      pos="absolute"
-      left="2%"
-      top="50%"
-      aria-label="button"
-      w="4.0rem"
-      h="4.0rem"
-      bg={secondaryBlack["100"]}
-      borderRadius="100vw"
-      mr={{ base: "unset", md: "1.6rem" }}
-      icon={
-        <Img
-          transform="rotate(180deg)"
-          boxSize="40px"
-          src="/imgs/community/arrow-right.svg"
-        />
-      }
-    />
-  );
-}
-
-function RightArrowBtn() {
-  const { isLastItemVisible, scrollNext } = React.useContext(VisibilityContext);
-
-  const theme = useTheme();
-  const { secondaryBlack } = theme.colors.brand;
-
-  return (
-    <IconButton
-      onClick={() => scrollNext()}
-      opacity={isLastItemVisible ? 0 : 1}
-      transition="opacity .5s ease"
-      zIndex="modal"
-      pos="absolute"
-      right="0%"
-      top="50%"
-      transform={`translateY(-50%) ${
-        isLastItemVisible ? "scale(0)" : "scale(1)"
-      }`}
-      aria-label="button"
-      w="4.0rem"
-      h="4.0rem"
-      bg={secondaryBlack["100"]}
-      borderRadius="100vw"
-      mr={{ base: "unset", md: "1.6rem" }}
-      icon={<Img boxSize="40px" src="/imgs/community/arrow-right.svg" />}
-    />
-  );
-}
 
 function UsersList() {
   const theme = useTheme();
@@ -166,7 +100,53 @@ function UsersList() {
         minH="20rem"
         pos="relative"
       >
-        {/* <Flex
+        <IconButton
+          opacity={currentScrollPosition === 0 ? 0 : 1}
+          transform={`translateY(-50%) ${
+            currentScrollPosition === 0 ? "scale(0)" : "scale(1)"
+          }`}
+          transition="opacity .5s ease"
+          onClick={() => scrollHorizontally(1)}
+          zIndex="modal"
+          pos="absolute"
+          left="2%"
+          top="50%"
+          aria-label="button"
+          w="4.0rem"
+          h="4.0rem"
+          bg={secondaryBlack["100"]}
+          borderRadius="100vw"
+          mr={{ base: "unset", md: "1.6rem" }}
+          icon={
+            <Img
+              transform="rotate(180deg)"
+              boxSize="40px"
+              src="/imgs/community/arrow-right.svg"
+            />
+          }
+        />
+        <IconButton
+          onClick={() => scrollHorizontally(-1)}
+          opacity={currentScrollPosition > Math.floor(maxScroll / 100) ? 0 : 1}
+          transition="opacity .5s ease"
+          zIndex="modal"
+          pos="absolute"
+          right="0%"
+          top="50%"
+          transform={`translateY(-50%) ${
+            currentScrollPosition > Math.floor(maxScroll / 100)
+              ? "scale(0)"
+              : "scale(1)"
+          }`}
+          aria-label="button"
+          w="4.0rem"
+          h="4.0rem"
+          bg={secondaryBlack["100"]}
+          borderRadius="100vw"
+          mr={{ base: "unset", md: "1.6rem" }}
+          icon={<Img boxSize="40px" src="/imgs/community/arrow-right.svg" />}
+        />
+        <Flex
           flexWrap="nowrap"
           pos="absolute"
           w="95%"
@@ -181,12 +161,14 @@ function UsersList() {
           {members.map((user, idx) => (
             <UserListItem key={idx} user={user} />
           ))}
-        </Flex> */}
-        <ScrollMenu LeftArrow={LeftArrowBtn} RightArrow={RightArrowBtn}>
-          {members.map((user, idx) => (
-            <UserListItem key={idx} itemId={user._id.toString()} user={user} />
-          ))}
-        </ScrollMenu>
+          {/* <UserListIxtem /> */}
+          {/*
+        <UserListItem />
+        <UserListItem />
+        <UserListItem />
+        <UserListItem />
+        <UserListItem /> */}
+        </Flex>
       </Box>
     </>
   );
@@ -215,16 +197,16 @@ const USER_LIST_DATE = [
     id: 5,
     name: "Trapali",
   },
-  {
-    id: 6,
-    name: "Crapali",
-  },
-  {
-    id: 7,
-    name: "Dracali",
-  },
-  {
-    id: 8,
-    name: "Zali",
-  },
+  // {
+  //   id: 6,
+  //   name: "Crapali",
+  // },
+  // {
+  //   id: 7,
+  //   name: "Dracali",
+  // },
+  // {
+  //   id: 8,
+  //   name: "Zali",
+  // },
 ];

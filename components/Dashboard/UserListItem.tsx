@@ -5,7 +5,7 @@ import { getFullNameSelector, User } from "recoilStore/AuthAtom";
 
 type UserListItemProp = {
   itemId?: string;
-  user?: User;
+  user?: any;
 };
 
 function UserListItem({ user }: UserListItemProp) {
@@ -16,10 +16,11 @@ function UserListItem({ user }: UserListItemProp) {
         alignItems="flex-end"
         borderRadius="3xl"
         // maxW="15.1rem"
-        w="100%"
+        w="135px"
         mx="1rem"
-        h="100%"
+        h="200px"
         bgImg={`url(${user?.avatar})`}
+        // bgImg={`https://avatars.githubusercontent.com/u/8108337?v=3&s=400`}
         bgSize="contain"
         bgPos="center"
         bgRepeat="no-repeat"
@@ -33,6 +34,7 @@ function UserListItem({ user }: UserListItemProp) {
         >
           <Text zIndex="2" lineHeight={1.2} color="white">
             {getFullName}
+            {/* {user.name} */}
           </Text>
         </Box>
       </Flex>

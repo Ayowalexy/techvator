@@ -1,15 +1,15 @@
 import { Box, Flex, Text } from "@chakra-ui/react";
 import React from "react";
+import { useRecoilValue } from "recoil";
+import { getFullNameSelector, User } from "recoilStore/AuthAtom";
 
 type UserListItemProp = {
   itemId?: string;
-  user?: {
-    name: string;
-    avatar?: string;
-  };
+  user?: User;
 };
 
 function UserListItem({ user }: UserListItemProp) {
+  const getFullName = useRecoilValue(getFullNameSelector(user));
   return (
     <Flex flex="0 0 25%" minW="25%">
       <Flex
@@ -19,8 +19,9 @@ function UserListItem({ user }: UserListItemProp) {
         w="100%"
         mx="1rem"
         h="100%"
-        bgImg="url('https://images.pexels.com/photos/697509/pexels-photo-697509.jpeg?auto=compress&cs=tinysrgb&dpr=3&h=750&w=1260')"
-        bgSize="cover"
+        bgImg={`url(${user?.avatar})`}
+        bgSize="contain"
+        bgPos="center"
         bgRepeat="no-repeat"
         overflow="hidden"
       >
@@ -31,7 +32,7 @@ function UserListItem({ user }: UserListItemProp) {
           w="100%"
         >
           <Text zIndex="2" lineHeight={1.2} color="white">
-            {user?.name}
+            {getFullName}
           </Text>
         </Box>
       </Flex>

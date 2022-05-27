@@ -19,16 +19,16 @@ import { NextPageContext } from "next";
 import { initialRecoilState } from "recoilStore/initialEffect";
 import { useEffect, useMemo } from "react";
 import { useSetRecoilState } from "recoil";
-import { AuthAtom } from "recoilStore/AuthAtom";
+import { AuthAtom, User } from "recoilStore/AuthAtom";
 
 function community(props: any) {
   const theme = useTheme();
-  const setUser = useSetRecoilState(AuthAtom);
+  const setAuth = useSetRecoilState(AuthAtom);
   const { secondaryBlack } = theme.colors.brand;
 
   useEffect(() => {
     if (props.initialRecoilState?.user) {
-      setUser({
+      setAuth({
         token: props?.initialRecoilState?.user?.token,
         refreshToken: props?.initialRecoilState?.user?.refreshToken,
         ...props?.initialRecoilState?.user,
@@ -71,13 +71,16 @@ function community(props: any) {
 
 export default community;
 
-export const getServerSideProps = withAuth(async (context: NextPageContext) => {
-  let user = null;
-  if (context.res["user"]) user = context.res["user"];
+export const getServerSideProps = withAuth(
+  async (context: NextPageContext & { user: User }) => {
+    let user = null;
 
-  return {
-    props: {
-      initialRecoilState: { user },
-    },
-  };
-});
+    if (context?.user) user = context.user;
+
+    return {
+      props: {
+        initialRecoilState: { user },
+      },
+    };
+  }
+);

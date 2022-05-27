@@ -6,9 +6,10 @@ import { destroyTheCookie, parseTheCookie } from "../helpers/cookieHandler";
 import { AMAHLUBI_ACCESS_TOKEN, AMAHLUBI_REFRESH_TOKEN } from "../constants";
 import axios from "axios";
 import { endpoint } from "api_routes";
+import { User } from "recoilStore/AuthAtom";
 
 export default function withAuth(gssp) {
-  return async (context: NextPageContext) => {
+  return async (context: NextPageContext & { user: User }) => {
     // parse the cookie and obtain the token
     const token = parseTheCookie(context, AMAHLUBI_ACCESS_TOKEN);
     let refreshToken = parseTheCookie(context, AMAHLUBI_REFRESH_TOKEN);
@@ -53,7 +54,7 @@ export default function withAuth(gssp) {
 
         if (res.status === 200) {
           //   check for user object and add it to the response object as context.res.user
-          context.res["user"] = {
+          context.user = {
             ...res.data?.message?.user,
             token,
             refreshToken,

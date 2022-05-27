@@ -1,4 +1,4 @@
-import { atom, selector } from "recoil";
+import { atom, selector, selectorFamily } from "recoil";
 // import { initialEffect } from "./initialEffect";
 
 export type User = {
@@ -37,10 +37,10 @@ export const isAuthenticatedSelector = selector({
   },
 });
 
-export const getFullNameSelector = selector({
+export const getFullNameSelector = selectorFamily({
   key: "getFullNameSelector",
-  get: ({ get }) => {
-    const user = get(AuthAtom);
+  get: (user: User) => () => {
+    // const user = get(AuthAtom);
 
     if (user.first_name && user.last_name) {
       const firstName =

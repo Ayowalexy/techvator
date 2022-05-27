@@ -55,21 +55,20 @@ function UsersList() {
   };
 
   useEffect(() => {
-    // console.log(
-    //   carouselRef.current.scrollWidth,
-    //   carouselRef.current.offsetWidth,
-    //   carouselRef.current.getBoundingClientRect(),
-    //   carouselRef.current?.lastElementChild.getBoundingClientRect(),
-    //   carouselRef.current?.lastElementChild.offsetWidth
-    // );
+    console.log(
+      carouselRef.current.scrollWidth,
+      carouselRef.current.offsetWidth,
+      // carouselRef.current.getBoundingClientRect(),
+      // carouselRef.current?.lastElementChild.getBoundingClientRect(),
+      carouselRef.current?.lastElementChild.offsetWidth
+    );
     setMaxScroll(
       carouselRef.current.scrollWidth - carouselRef.current.offsetWidth
     );
-  }, []);
+  }, [carouselRef.current?.scrollWidth, carouselRef.current?.offsetWidth]);
 
   // fetch new members
   const fetchNewMembers = async () => {
-    console.log(auth.token, auth.refreshToken);
     try {
       const response = await axios.get(endpoint.MEMBERS, {
         headers: {
@@ -77,14 +76,16 @@ function UsersList() {
           "x-refresh-token": `${auth.refreshToken}`,
         },
       });
-
+      setMembers(response.data?.message?.users);
       console.log(response.data);
     } catch (error) {}
   };
 
   useEffect(() => {
-    fetchNewMembers();
-  }, []);
+    if (auth?.token || auth?.refreshToken) {
+      fetchNewMembers();
+    }
+  }, [auth]);
 
   // console.log("max", currentScrollPosition, (maxScroll / 100) * 25 - 20);
   return (
@@ -157,7 +158,7 @@ function UsersList() {
           transform={`translateX(-${currentScrollPosition}px) !important`}
           transition="all .5s ease"
         >
-          {USER_LIST_DATE.map((user, idx) => (
+          {members.map((user, idx) => (
             <UserListItem key={idx} user={user} />
           ))}
           {/* <UserListIxtem /> */}

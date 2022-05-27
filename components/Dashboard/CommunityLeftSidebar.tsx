@@ -24,8 +24,8 @@ import { AuthAtom, getFullNameSelector } from "recoilStore/AuthAtom";
 type CommunityLeftSidebarProps = {};
 
 function CommunityLeftSidebar() {
-  const userFullName = useRecoilValue(getFullNameSelector);
   const user = useRecoilValue(AuthAtom);
+  const userFullName = useRecoilValue(getFullNameSelector(user));
   const theme = useTheme();
   const { secondaryBlack } = theme.colors.brand;
 

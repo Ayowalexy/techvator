@@ -194,37 +194,37 @@ function UsersList() {
 
 export default UsersList;
 
-const USER_LIST_DATE = [
-  {
-    id: 1,
-    name: "Fali",
-  },
-  {
-    id: 2,
-    name: "Sali",
-  },
-  {
-    id: 3,
-    name: "Cali",
-  },
-  {
-    id: 4,
-    name: "Bali",
-  },
-  {
-    id: 5,
-    name: "Trapali",
-  },
-  {
-    id: 6,
-    name: "Crapali",
-  },
-  {
-    id: 7,
-    name: "Dracali",
-  },
-  {
-    id: 8,
-    name: "Zali",
-  },
-];
+// const USER_LIST_DATE = [
+//   {
+//     id: 1,
+//     name: "Fali",
+//   },
+//   {
+//     id: 2,
+//     name: "Sali",
+//   },
+//   {
+//     id: 3,
+//     name: "Cali",
+//   },
+//   {
+//     id: 4,
+//     name: "Bali",
+//   },
+//   {
+//     id: 5,
+//     name: "Trapali",
+//   },
+//   {
+//     id: 6,
+//     name: "Crapali",
+//   },
+//   {
+//     id: 7,
+//     name: "Dracali",
+//   },
+//   {
+//     id: 8,
+//     name: "Zali",
+//   },
+// ];

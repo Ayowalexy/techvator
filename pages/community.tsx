@@ -1,5 +1,4 @@
 import Head from "next/head";
-
 import {
   Flex,
   IconButton,
@@ -8,6 +7,12 @@ import {
   Container,
   Box,
 } from "@chakra-ui/react";
+import { NextPageContext } from "next";
+
+import { useEffect, useMemo } from "react";
+import { useSetRecoilState } from "recoil";
+import { AuthAtom, User } from "recoilStore/AuthAtom";
+import axios from "axios";
 // import Container from '@/components/Container'
 import Layout from "@/components/Layout";
 import CommunityContentLayout from "@/components/Dashboard/CommunityContentLayout";
@@ -15,15 +20,13 @@ import CommunityLeftSidebar from "@/components/Dashboard/CommunityLeftSidebar";
 import CommunityRightSidebar from "@/components/Dashboard/CommunityRightSidebar";
 import CommunityMainContent from "@/components/Dashboard/CommunityMainContent";
 import withAuth from "middleware/withAuth";
-import { NextPageContext } from "next";
-import { initialRecoilState } from "recoilStore/initialEffect";
-import { useEffect, useMemo } from "react";
-import { useSetRecoilState } from "recoil";
-import { AuthAtom, User } from "recoilStore/AuthAtom";
+import { endpoint } from "api_routes";
+import { Post, PostAtom } from "recoilStore/PostsAtom";
 
 function community(props: any) {
   const theme = useTheme();
   const setAuth = useSetRecoilState(AuthAtom);
+  const setPost = useSetRecoilState(PostAtom);
   const { secondaryBlack } = theme.colors.brand;
 
   useEffect(() => {
@@ -35,6 +38,13 @@ function community(props: any) {
       });
     }
   }, [props.initialRecoilState?.user]);
+
+  // Posts
+  useEffect(() => {
+    if (props.initialRecoilState?.posts) {
+      setPost(props.initialRecoilState?.posts);
+    }
+  }, [props.initialRecoilState?.posts]);
 
   // useMemo(() => {
   //   const context = typeof window !== "undefined" ? "client" : "server";
@@ -73,13 +83,29 @@ export default community;
 
 export const getServerSideProps = withAuth(
   async (context: NextPageContext & { user: User }) => {
-    let user = null;
+    let user: User | null = null;
+    let posts: Array<Post> | null = null;
 
-    if (context?.user) user = context.user;
+    if (context?.user) {
+      user = context.user;
+
+      try {
+        const response = await axios.get(endpoint.POSTS, {
+          headers: {
+            Authorization: `Bearer ${user.token}`,
+            "x-refresh-token": user.refreshToken,
+          },
+        });
+
+        if (response.status === 200) {
+          posts = response.data?.message?.posts;
+        }
+      } catch (error) {}
+    }
 
     return {
       props: {
-        initialRecoilState: { user },
+        initialRecoilState: { user, posts },
       },
     };
   }

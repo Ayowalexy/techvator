@@ -21,7 +21,7 @@ function UserListItem({ user }: UserListItemProp) {
         h="200px"
         bgImg={`url(${user?.avatar})`}
         // bgImg={`https://avatars.githubusercontent.com/u/8108337?v=3&s=400`}
-        bgSize="contain"
+        bgSize="cover"
         bgPos="center"
         bgRepeat="no-repeat"
         overflow="hidden"

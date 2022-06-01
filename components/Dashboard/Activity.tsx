@@ -12,13 +12,22 @@ import {
 } from "@chakra-ui/react";
 import React from "react";
 import { MdFavoriteBorder, MdFavorite } from "react-icons/md";
+import { useRecoilValue } from "recoil";
+import { getFullNameSelector } from "recoilStore/AuthAtom";
+import { Post } from "recoilStore/PostsAtom";
 import { Btn } from "../Button";
 import FormInput from "../Forms/FormInput";
 
-function Activity() {
+type PostProp = {
+  post?: Post;
+};
+
+function Activity({ post }: PostProp) {
   const theme = useTheme();
   const { white, metallicSunburst, secondaryBlack, roti, gray } =
     theme.colors.brand;
+
+  const getFullName = useRecoilValue(getFullNameSelector(post.user_id));
 
   function renderComment(comment?: any) {
     return (
@@ -261,14 +270,10 @@ function Activity() {
     >
       <Flex p="2rem" alignItems="center" justifyContent="space-between">
         <Flex alignItems="center" gap="1rem">
-          <Avatar
-            size="lg"
-            name="Christian Nwamba"
-            src="https://bit.ly/prosper-baba"
-          />
+          <Avatar size="lg" name={getFullName} src={post.user_id.avatar} />
           <Box>
             <Heading as="h3" fontWeight="600" fontSize="1.8rem">
-              Thesolo Rfuti
+              {getFullName}
             </Heading>
             <Text fontSize="1.2rem">April 28th at 6:17pm</Text>
           </Box>
@@ -288,12 +293,7 @@ function Activity() {
 
       {/* Text Content */}
       <Box p="2rem">
-        <Text>
-          If you don’t believe in God. Where can you see life and buy? If you
-          can’t buy life then you will know there is God. God makes things
-          happen — or stops them from happening — as He pleases. God is in
-          charge!
-        </Text>
+        <Text>{post.content}</Text>
       </Box>
 
       {/* Image Section check if image is one...use a flexible div to display image otherwise maxw:338 */}

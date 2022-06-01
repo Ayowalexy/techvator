@@ -36,7 +36,7 @@ function CommunityLeftSidebar() {
           <Avatar
             size="xl"
             name={userFullName}
-            // src={"https://" + user.avatar}
+            src={user.avatar}
             // bg="white"
           />
           <Text fontSize="2xl">{userFullName}</Text>

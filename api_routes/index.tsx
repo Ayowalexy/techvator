@@ -5,4 +5,5 @@ export const endpoint = {
   LOGIN: api_url + "user/login",
   ME: api_url + "user/",
   MEMBERS: api_url + "user",
+  POSTS: api_url + "post",
 };

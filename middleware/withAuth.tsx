@@ -44,7 +44,7 @@ export default function withAuth(gssp) {
       }
 
       // if on the response we don't have user query for user
-      if (!context.res["user"]) {
+      if (!context.user) {
         const res = await axios.get(endpoint.ME + decoded.id, {
           headers: {
             Authorization: `Bearer ${token}`,

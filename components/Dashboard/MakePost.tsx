@@ -45,7 +45,7 @@ function MakePost() {
                 borderRadius: "lg",
                 py: "2.5rem",
                 px: "2rem",
-                placeholder: "Activities",
+                placeholder: "Share something with us",
                 _placeholder: {
                   color: white,
                 },
@@ -89,7 +89,7 @@ function MakePost() {
               bgColor="transparent"
               py=".8rem"
             >
-              Publish Photo
+              Publish
             </Btn>
           </Flex>
         </form>

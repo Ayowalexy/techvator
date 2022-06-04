@@ -42,7 +42,7 @@ export const getFullNameSelector = selectorFamily({
   get: (user: User) => () => {
     // const user = get(AuthAtom);
 
-    if (user.first_name && user.last_name) {
+    if (user && user.first_name && user.last_name) {
       const firstName =
         user.first_name.charAt(0).toUpperCase() +
         user.first_name.slice(1, user.first_name.length);

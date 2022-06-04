@@ -11,12 +11,18 @@ import {
   useTheme,
 } from "@chakra-ui/react";
 import React, { Fragment } from "react";
+import { useRecoilValue } from "recoil";
+import { AuthAtom, getFullNameSelector } from "recoilStore/AuthAtom";
 import { Btn } from "../Button";
 import FormInput from "../Forms/FormInput";
 
-function NewMember() {
+function MakePost() {
   const theme = useTheme();
   const { secondaryBlack, metallicSunburst, white } = theme.colors.brand;
+  const user = useRecoilValue(AuthAtom);
+  const userFullName = useRecoilValue(getFullNameSelector(user));
+  const sendMessage = (e) => {};
+
   return (
     <Fragment>
       <Box
@@ -28,11 +34,7 @@ function NewMember() {
       >
         <form>
           <Flex py="1rem" px="1rem" gap="2rem" alignItems="center">
-            <Avatar
-              size="xl"
-              name="Christian Nwamba"
-              src="https://bit.ly/code-beast"
-            />
+            <Avatar size="xl" name={userFullName} src={user?.avatar} />
             <FormInput
               containerProps={{
                 flexDir: "column",
@@ -96,4 +98,4 @@ function NewMember() {
   );
 }
 
-export default NewMember;
+export default MakePost;

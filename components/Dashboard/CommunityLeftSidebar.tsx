@@ -32,15 +32,17 @@ function CommunityLeftSidebar() {
   return (
     <Box pos="relative">
       <Box top="2rem" left="0" pos="sticky" pb="1rem">
-        <Flex align="center" gap="1rem">
-          <Avatar
-            size="xl"
-            name={userFullName}
-            src={user.avatar}
-            // bg="white"
-          />
-          <Text fontSize="2xl">{userFullName}</Text>
-        </Flex>
+        <Link href="/user">
+          <Flex align="center" cursor="pointer" gap="1rem">
+            <Avatar
+              size="xl"
+              name={userFullName}
+              src={user?.avatar}
+              // bg="white"
+            />
+            <Text fontSize="2xl">{userFullName}</Text>
+          </Flex>
+        </Link>
         <List px="1rem" my="2rem" spacing="1rem">
           {LEFT_SIDEBAR_MENU_ITEM.map((mi, idx) => (
             <Link href={mi.url} key={idx}>

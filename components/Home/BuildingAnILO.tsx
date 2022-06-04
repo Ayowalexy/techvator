@@ -48,7 +48,7 @@ function BuildingAnILO() {
                 fontSize={{ base: "2.5rem", lg: "5.56rem" }}
                 // mt={{ base: "-2.6rem", lg: "1rem" }}
                 color={roti}
-                textAlign="left"
+                textAlign={{ base: "center", md: "left" }}
               >
                 Building An ILO
               </Heading>
@@ -56,6 +56,7 @@ function BuildingAnILO() {
                 <Text
                   fontSize={{ base: "1.4rem", lg: "1.8rem" }}
                   lineHeight="2"
+                  textAlign={{ base: "center", md: "left" }}
                 >
                   "It is my expressed desire to contribute to building an ILO
                   that systimatically demonstrates its cares for all staff and
@@ -69,15 +70,39 @@ function BuildingAnILO() {
                 <Text
                   fontSize={{ base: "1.4rem", lg: "1.8rem" }}
                   lineHeight="2"
+                  textAlign={{ base: "center", md: "left" }}
                 >
                   "I am the only candidate that does not have government
                   support"
                 </Text>
               </Box>
 
+              {/* Mobile Image */}
+              <Flex
+                alignItems="flex-end"
+                mx="auto"
+                // justifyContent="flex-end"
+                w="100%"
+                bg="#DCDADF"
+                borderRadius="3xl"
+                // p="2rem"
+                maxW="25rem"
+                maxH="35rem"
+                mt={{ base: "1rem", lg: "4rem" }}
+                overflow="hidden"
+                display={{ md: "none" }}
+              >
+                <Image
+                  src="/imgs/home/mdwaba-image-fill.png"
+                  // transform="translate(5rem, 10rem)"
+                  alt="Mdwaba"
+                />
+              </Flex>
+
               <Box mt="3rem">
                 <Text
                   fontSize={{ base: "1.4rem", lg: "1.8rem" }}
+                  textAlign={{ base: "center", md: "left" }}
                   lineHeight="2"
                   color={roti}
                 >
@@ -88,6 +113,7 @@ function BuildingAnILO() {
               <Box mb="1rem">
                 <Text
                   fontSize={{ base: "1.4rem", lg: "1.8rem" }}
+                  textAlign={{ base: "center", md: "left" }}
                   lineHeight="2"
                   fontWeight="extrabold"
                 >
@@ -95,7 +121,12 @@ function BuildingAnILO() {
                 </Text>
               </Box>
 
-              <Flex gap="3rem" mt="2rem" flex={1}>
+              <Flex
+                justifyContent={{ base: "center", md: "unset" }}
+                gap="3rem"
+                mt="2rem"
+                flex={1}
+              >
                 <ButtonLink
                   mt="3.5rem"
                   zIndex={2}
@@ -132,7 +163,13 @@ function BuildingAnILO() {
             </Box>
           </Box>
 
-          <Flex alignItems="center" justifyContent="center" flex={0.4}>
+          {/* Desktop */}
+          <Flex
+            alignItems="center"
+            display={{ base: "none", md: "flex" }}
+            justifyContent="center"
+            flex={0.4}
+          >
             <Flex
               alignItems="flex-end"
               // justifyContent="flex-end"

@@ -62,7 +62,10 @@ function TheAmahlubist(): JSX.Element {
             gap="2rem"
             mt="5rem"
             px={{ base: "1rem", lg: "3rem" }}
-            templateColumns="repeat(auto-fit,minmax(18rem, 1fr))"
+            templateColumns={{
+              base: "1fr 1fr",
+              md: "repeat(auto-fit,minmax(18rem, 1fr))",
+            }}
           >
             {theAmahlubist.map((user, idx) => {
               return (

@@ -2,19 +2,17 @@ import { Box, Heading } from "@chakra-ui/react";
 import React from "react";
 import { useRecoilValue } from "recoil";
 import { PostAtom } from "recoilStore/PostsAtom";
-import Activities from "./Activities";
-import MakePost from "./MakePost";
-import UsersList from "./UsersList";
+import Activities from "../Dashboard/Activities";
+import MakePost from "../Dashboard/MakePost";
 
-function CommunityMainContent() {
+function UserMainContent() {
   const posts = useRecoilValue(PostAtom);
   return (
     <Box minH="1000px" pb="5rem" px="2rem">
-      <UsersList />
       <MakePost />
       <Activities posts={posts} />
     </Box>
   );
 }
 
-export default CommunityMainContent;
+export default UserMainContent;

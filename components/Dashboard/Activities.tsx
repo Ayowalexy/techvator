@@ -1,13 +1,15 @@
 import { Box, Flex, Heading, Text, useTheme } from "@chakra-ui/react";
 import React, { Fragment } from "react";
 import { useRecoilValue } from "recoil";
-import { PostAtom } from "recoilStore/PostsAtom";
+import { Post, PostAtom } from "recoilStore/PostsAtom";
 import Activity from "./Activity";
 
-function Activities() {
+type ActivitiesProp = {
+  posts: Post[];
+};
+function Activities({ posts }: ActivitiesProp) {
   const theme = useTheme();
   const { secondaryBlack } = theme.colors.brand;
-  const posts = useRecoilValue(PostAtom);
 
   console.log("posts", posts);
   return (

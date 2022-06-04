@@ -27,7 +27,7 @@ function Activity({ post }: PostProp) {
   const { white, metallicSunburst, secondaryBlack, roti, gray } =
     theme.colors.brand;
 
-  const getFullName = useRecoilValue(getFullNameSelector(post.user_id));
+  const getFullName = useRecoilValue(getFullNameSelector(post && post.user_id));
 
   function renderComment(comment?: any) {
     return (
@@ -270,7 +270,11 @@ function Activity({ post }: PostProp) {
     >
       <Flex p="2rem" alignItems="center" justifyContent="space-between">
         <Flex alignItems="center" gap="1rem">
-          <Avatar size="lg" name={getFullName} src={post.user_id.avatar} />
+          <Avatar
+            size="lg"
+            name={getFullName}
+            src={post && post.user_id && post.user_id.avatar}
+          />
           <Box>
             <Heading as="h3" fontWeight="600" fontSize="1.8rem">
               {getFullName}

@@ -22,8 +22,9 @@ import CommunityMainContent from "@/components/Dashboard/CommunityMainContent";
 import withAuth from "middleware/withAuth";
 import { endpoint } from "api_routes";
 import { Post, PostAtom } from "recoilStore/PostsAtom";
+import UserMainContent from "@/components/User/UserMainContent";
 
-function community(props: any) {
+function user(props: any) {
   const theme = useTheme();
   const setAuth = useSetRecoilState(AuthAtom);
   const setPost = useSetRecoilState(PostAtom);
@@ -39,6 +40,7 @@ function community(props: any) {
     }
   }, [props.initialRecoilState?.user]);
 
+  // Posts
   useEffect(() => {
     if (props.initialRecoilState?.posts) {
       setPost(props.initialRecoilState?.posts);
@@ -68,7 +70,7 @@ function community(props: any) {
           >
             <CommunityContentLayout>
               <CommunityLeftSidebar />
-              <CommunityMainContent />
+              <UserMainContent />
               <CommunityRightSidebar />
             </CommunityContentLayout>
           </Container>
@@ -78,7 +80,7 @@ function community(props: any) {
   );
 }
 
-export default community;
+export default user;
 
 export const getServerSideProps = withAuth(
   async (context: NextPageContext & { user: User }) => {

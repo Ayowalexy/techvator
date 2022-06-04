@@ -87,7 +87,7 @@ function CompleteProfile({}: CompleteProfileProps): JSX.Element {
         >
           <Flex
             w="100%"
-            p="1.2rem 5.6rem"
+            p={{ base: "1.6rem 2.5rem", md: "1.2rem 5.6rem" }}
             maxW="160rem"
             h="100%"
             borderRadius="lg"
@@ -112,6 +112,8 @@ function CompleteProfile({}: CompleteProfileProps): JSX.Element {
               </Box>
 
               <Btn
+                mt={{ base: "2rem" }}
+                p={{ base: "unset", md: "1rem 4rem" }}
                 border="unset !important"
                 background="unset"
                 h="unset"
@@ -119,12 +121,14 @@ function CompleteProfile({}: CompleteProfileProps): JSX.Element {
                 fontWeight="semibold"
                 onClick={() => onClose()}
                 color={black}
-                leftIcon={<Icon as={MdOutlineCancel} />}
+                leftIcon={<Icon as={MdOutlineCancel} boxSize="3rem" />}
                 _hover={{
                   color: white,
                 }}
               >
-                Skip, i will do it later
+                <Text display={{ base: "none", md: "inline-block" }}>
+                  Skip, i will do it later
+                </Text>
               </Btn>
             </Flex>
             <Box>

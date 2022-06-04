@@ -12,7 +12,7 @@ import withAuth from "middleware/withAuth";
 import { NextPageContext } from "next";
 import { useEffect } from "react";
 import { useRecoilValue, useSetRecoilState } from "recoil";
-import { AuthAtom, isAuthenticatedSelector } from "recoilStore/AuthAtom";
+import { AuthAtom, isAuthenticatedSelector, User } from "recoilStore/AuthAtom";
 
 export default function Home(props: any): JSX.Element {
   const setUser = useSetRecoilState(AuthAtom);
@@ -51,13 +51,15 @@ export default function Home(props: any): JSX.Element {
   );
 }
 
-export const getServerSideProps = withAuth(async (context: NextPageContext) => {
-  let user = null;
-  if (context.res["user"]) user = context.res["user"];
+export const getServerSideProps = withAuth(
+  async (context: NextPageContext & { user: User }) => {
+    let user = null;
+    if (context.user) user = context.user;
 
-  return {
-    props: {
-      initialRecoilState: { user },
-    },
-  };
-});
+    return {
+      props: {
+        initialRecoilState: { user },
+      },
+    };
+  }
+);

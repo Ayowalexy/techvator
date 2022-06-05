@@ -10,7 +10,7 @@ import { GlobalProvider } from "context/GlobalContext";
 import { NextPageContext } from "next";
 
 function MyApp({ Component, pageProps }: AppProps): JSX.Element {
-  const [root, setRoot] = useState(null);
+  const [root, setRoot] = useState<HTMLElement | null>(null);
   const RecoilizeDebugger = dynamic(
     () => {
       return import("recoilize");

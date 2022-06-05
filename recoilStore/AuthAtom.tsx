@@ -1,4 +1,5 @@
 import { atom, selector, selectorFamily } from "recoil";
+import { RecoilAtomKeys } from "./RecoilAtomKeys";
 // import { initialEffect } from "./initialEffect";
 
 export type User = {
@@ -14,7 +15,7 @@ export type User = {
 };
 
 export const AuthAtom = atom<User>({
-  key: "userState",
+  key: RecoilAtomKeys.userState,
   default: {
     _id: null,
     avatar: null,
@@ -30,7 +31,7 @@ export const AuthAtom = atom<User>({
 
 // Selectors
 export const isAuthenticatedSelector = selector({
-  key: "isAuthenticatedSelector",
+  key: RecoilAtomKeys.isAuthenticatedSelector,
   get: ({ get }) => {
     const user = get(AuthAtom);
     return !!user.token;
@@ -38,7 +39,7 @@ export const isAuthenticatedSelector = selector({
 });
 
 export const getFullNameSelector = selectorFamily({
-  key: "getFullNameSelector",
+  key: RecoilAtomKeys.getFullNameSelector,
   get: (user: User) => () => {
     // const user = get(AuthAtom);
 

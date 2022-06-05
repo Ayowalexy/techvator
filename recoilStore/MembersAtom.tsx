@@ -1,7 +1,8 @@
 import { atom } from "recoil";
 import { User } from "./AuthAtom";
+import { RecoilAtomKeys } from "./RecoilAtomKeys";
 
 export const MembersAtom = atom<Array<User>>({
-  key: "membersAtom",
+  key: RecoilAtomKeys.membersState,
   default: [],
 });

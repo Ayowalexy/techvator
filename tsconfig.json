@@ -24,7 +24,8 @@
     "next-env.d.ts",
     "**/*.ts",
     "**/*.tsx",
-    "components/Uploads/testfile"
+    "components/Uploads/testfile",
+    "next.config.js"
   ],
   "exclude": ["node_modules"]
 }

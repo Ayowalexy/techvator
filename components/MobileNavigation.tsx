@@ -4,168 +4,89 @@ import {
   ListItem,
   useTheme,
   useMediaQuery,
-  Popover,
-  PopoverTrigger,
-  PopoverContent,
-  PopoverArrow,
-  PopoverBody,
   UnorderedList,
+  Drawer,
+  DrawerBody,
+  DrawerOverlay,
+  DrawerContent,
+  DrawerCloseButton,
+  DrawerFooter,
 } from "@chakra-ui/react";
-import { MotionList } from "motion";
+
 import NextLink from "next/link";
-import { useRecoilValue } from "recoil";
+import { useRecoilState, useRecoilValue } from "recoil";
 import { collapseMenuAtom } from "recoilStore/CollapseMenuAtom";
 import { isAuthenticatedSelector } from "recoilStore/AuthAtom";
 import { navigation } from "../data/navigation";
-import ButtonLink from "./Button";
+import ButtonLink, { Btn } from "./Button";
 import Button from "./Button";
 
 function MobileNavigation() {
   const theme = useTheme();
   const [isMobileResponsive] = useMediaQuery("(max-width: 62em)");
   const { rotiLight, roti, white, black } = theme.colors.brand;
-  const collapse = useRecoilValue(collapseMenuAtom);
+  const [collapse, setCollapse] = useRecoilState(collapseMenuAtom);
   const isAuthenticated = useRecoilValue(isAuthenticatedSelector);
 
   return (
     isMobileResponsive && (
-      <MotionList
-        // display={{ base: "flex", md: "none", lg: "none", xl: "none" }}
-        flexDir={{ base: "column" }}
-        pos="relative"
-        zIndex={3}
-        bgColor={rotiLight}
-        w="100%"
-        px="2.4rem"
-        justifyContent="space-between"
-        alignItems="stretch"
-        overflow="hidden"
-        initial={{
-          height: 0,
-        }}
-        animate={{
-          height: collapse ? "0" : "100%",
-        }}
+      <Drawer
+        isOpen={!collapse}
+        onClose={() => setCollapse(true)}
+        placement="right"
       >
-        {navigation.map((nav, idx) => (
-          <ListItem key={idx} p="2.0rem" margin="0 auto">
-            <NextLink href={nav.path}>
-              <Link
-                color={white}
-                fontSize="1.6rem"
-                fontFamily="Roboto"
-                fontWeight="600"
-              >
-                {nav.label}
-              </Link>
-            </NextLink>
-          </ListItem>
-        ))}
-        <ListItem
-          bg={black}
-          border={black}
-          // borderRadius="3.0rem"
-          color={white}
-          margin="0 auto"
-          mb={["2rem", "2rem", "2rem", "0"]}
-          display={["none", "none", "none", "block"]}
-          px="1.8rem"
-          py="0.8rem"
-          transition="background-color 250ms ease"
-          _hover={{
-            backgroundColor: roti,
-            border: `1px solid ${roti}`,
-          }}
-          overflow="hidden"
-        >
-          {!isAuthenticated ? (
-            <Button
-              borderRadius="unset"
-              fontFamily="Roboto"
-              fontWeight="600"
-              label="Reach Out"
-              href="#"
-              border="unset"
-              p="unset"
-              textTransform="capitalize"
-              _hover={{
-                backgroundColor: "unset",
-                border: "unsett",
-                opacity: ".7",
-              }}
-            />
-          ) : (
-            <>
-              <Button
-                borderRadius="unset"
-                fontFamily="Roboto"
-                fontWeight="600"
-                label="My Account"
-                href="#"
-                border="unset"
-                p="unset"
-                textTransform="capitalize"
-                _hover={{
-                  backgroundColor: "unset",
-                  border: "unset",
-                  opacity: ".7",
-                }}
-                pos="relative"
-              />
-
-              <UnorderedList
-                pos="absolute"
-                zIndex="popover"
-                bg={"black"}
-                color="white"
-              >
-                <ListItem>My Profile</ListItem>
-                <ListItem>Community</ListItem>
-                <ListItem>Logout</ListItem>
-              </UnorderedList>
-            </>
-          )}
-        </ListItem>
-
-        {/* Mobile List Options
-      <ListItem
-        borderTop={`.5px solid ${white}`}
-        d={["flex", "flex", "flex", "none"]}
-        justifyContent="space-between"
-        margin="0 auto"
-        mb={["2rem", "2rem", "2rem", "0"]}
-        pt="2rem"
-      >
-        {!isAuthenticated && (
-          <ButtonLink
-            href="/create-account"
-            label="Become a member"
-            mr="1rem"
-          />
-        )}
-        {console.log(isAuthenticated, "IS AUTHENTICATED....")}
-        {/* <ButtonLink
-            href="/black-excellence"
-            label="Become a member"
-            mr="1rem"
-          /> 
-
-        <Button
-          fontFamily="Roboto"
-          fontWeight="600"
-          label="Reach Out"
-          borderRadius="unset"
-          href="#"
-          bg={black}
-          color={white}
-          border={black}
-          px="1.8rem"
-          pb="0.8rem"
-          textTransform="capitalize"
-          _hover={{ backgroundColor: "black", opacity: ".7" }}
-        />
-      </ListItem> */}
-      </MotionList>
+        <DrawerOverlay />
+        <DrawerContent bgColor={black} color={white}>
+          <DrawerCloseButton />
+          <DrawerBody>
+            <List pt="5rem">
+              {navigation.map((nav, idx) => (
+                <ListItem key={idx} p="1.0rem" margin="0 auto">
+                  <NextLink href={nav.path}>
+                    <Link
+                      color={white}
+                      fontSize="1.2rem"
+                      fontFamily="Roboto"
+                      fontWeight="600"
+                      _hover={{
+                        color: roti,
+                      }}
+                    >
+                      {nav.label}
+                    </Link>
+                  </NextLink>
+                </ListItem>
+              ))}
+              {isAuthenticated && (
+                <ListItem p="1.0rem" margin="0 auto">
+                  <NextLink href="/community">
+                    <Link
+                      color={white}
+                      fontSize="1.2rem"
+                      fontFamily="Roboto"
+                      fontWeight="600"
+                      _hover={{
+                        color: roti,
+                      }}
+                    >
+                      Community
+                    </Link>
+                  </NextLink>
+                </ListItem>
+              )}
+            </List>
+          </DrawerBody>
+          <DrawerFooter>
+            {!isAuthenticated ? (
+              <ButtonLink href="/create-account" label="Become a member" />
+            ) : (
+              <Btn w="100%" h="80%">
+                Logout
+              </Btn>
+            )}
+          </DrawerFooter>
+        </DrawerContent>
+      </Drawer>
     )
   );
 }

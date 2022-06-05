@@ -1,6 +1,7 @@
 import { atom } from "recoil";
+import { RecoilAtomKeys } from "./RecoilAtomKeys";
 
 export const collapseMenuAtom = atom<boolean>({
-  key: "collapseMenuState",
+  key: RecoilAtomKeys.collapseMenuState,
   default: true,
 });

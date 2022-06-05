@@ -143,7 +143,7 @@ function CompleteProfile({}: CompleteProfileProps): JSX.Element {
                   </Flex>
 
                   <Flex
-                    alignItems="center"
+                    alignItems="flex-start"
                     flexDir={["column", "column", "column", "row"]}
                     gap="2rem"
                   >
@@ -228,7 +228,7 @@ function CompleteProfile({}: CompleteProfileProps): JSX.Element {
                   </Flex>
 
                   <Flex
-                    alignItems="center"
+                    alignItems="flex-start"
                     flexDir={["column", "column", "column", "row"]}
                     gap="2rem"
                   >

@@ -1,5 +1,6 @@
 import { atom } from "recoil";
 import { User } from "./AuthAtom";
+import { RecoilAtomKeys } from "./RecoilAtomKeys";
 
 export type Post = {
   _id: string;
@@ -9,6 +10,6 @@ export type Post = {
 };
 
 export const PostAtom = atom<Array<Post>>({
-  key: "PostAtom",
+  key: RecoilAtomKeys.postState,
   default: [],
 });

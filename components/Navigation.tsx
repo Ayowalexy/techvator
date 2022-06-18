@@ -12,6 +12,7 @@ import {
   UnorderedList,
   Box,
   Icon,
+  Text,
 } from "@chakra-ui/react";
 import { MotionList } from "motion";
 import NextLink from "next/link";
@@ -81,22 +82,24 @@ function Navigation() {
           // }}
         >
           {!isAuthenticated ? (
-            <Button
-              borderRadius="unset"
-              fontFamily="Roboto"
-              fontWeight="600"
-              label="Reach Out"
-              href="#"
-              border="unset"
-              p="unset"
-              textTransform="capitalize"
-              _hover={{
-                backgroundColor: "unset",
-                border: "unset",
-                color: white,
-                // opacity: ".7",
-              }}
-            />
+            <NextLink href="/login">
+              <Button
+                borderRadius="unset"
+                fontFamily="Roboto"
+                fontWeight="600"
+                label="Login"
+                href="#"
+                border="unset"
+                p="unset"
+                textTransform="capitalize"
+                _hover={{
+                  backgroundColor: "unset",
+                  border: "unset",
+                  color: white,
+                  // opacity: ".7",
+                }}
+              />
+            </NextLink>
           ) : (
             <>
               <Button
@@ -136,9 +139,17 @@ function Navigation() {
                 p="2rem"
                 spacing="3"
               >
-                <ListItem>My Profile</ListItem>
-                <ListItem>Community</ListItem>
-                <ListItem>Logout</ListItem>
+                <ListItem cursor="pointer">
+                  <NextLink href="/user">
+                    <Text>My Profile</Text>
+                  </NextLink>
+                </ListItem>
+                <ListItem cursor="pointer">
+                  <NextLink href="/community">
+                    <Text>Community</Text>
+                  </NextLink>
+                </ListItem>
+                <ListItem cursor="pointer">Logout</ListItem>
               </UnorderedList>
             </>
           )}

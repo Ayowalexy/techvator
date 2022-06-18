@@ -10,7 +10,9 @@ import {
   Text,
   useTheme,
 } from "@chakra-ui/react";
-import React from "react";
+import dayjs from "dayjs";
+import relativeTime from "dayjs/plugin/relativeTime";
+import React, { useState } from "react";
 import { MdFavoriteBorder, MdFavorite } from "react-icons/md";
 import { useRecoilValue } from "recoil";
 import { getFullNameSelector } from "recoilStore/AuthAtom";
@@ -22,8 +24,11 @@ type PostProp = {
   post?: Post;
 };
 
+dayjs.extend(relativeTime);
+
 function Activity({ post }: PostProp) {
   const theme = useTheme();
+  const [like, setLike] = useState(false);
   const { white, metallicSunburst, secondaryBlack, roti, gray } =
     theme.colors.brand;
 
@@ -279,18 +284,29 @@ function Activity({ post }: PostProp) {
             <Heading as="h3" fontWeight="600" fontSize="1.8rem">
               {getFullName}
             </Heading>
-            <Text fontSize="1.2rem">April 28th at 6:17pm</Text>
+            <Text fontSize="1.2rem">
+              {dayjs(post && post?.createdAt).fromNow()}
+            </Text>
           </Box>
         </Flex>
 
         <Flex alignItems="center" gap="1rem">
-          <Text fontSize="1.2rem">No likes yet</Text>
+          <Text fontSize="1.2rem">
+            {post && post.likes > 0 ? post.likes : "No likes yet"}{" "}
+          </Text>
           <IconButton
             size="lg"
             borderRadius="full"
             bgColor={secondaryBlack["100"]}
             aria-label="Favorite"
-            icon={<Icon as={MdFavoriteBorder} boxSize="1.6rem" />}
+            onClick={() => setLike((prvLike) => !prvLike)}
+            icon={
+              <Icon
+                as={!like ? MdFavoriteBorder : MdFavorite}
+                boxSize="1.6rem"
+                fill={!like ? "white" : "red"}
+              />
+            }
           />
         </Flex>
       </Flex>

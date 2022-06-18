@@ -21,12 +21,12 @@ import CommunityRightSidebar from "@/components/Dashboard/CommunityRightSidebar"
 import CommunityMainContent from "@/components/Dashboard/CommunityMainContent";
 import withAuth from "middleware/withAuth";
 import { endpoint } from "api_routes";
-import { Post, PostAtom } from "recoilStore/PostsAtom";
+import { Post, PostsAtom } from "recoilStore/PostsAtom";
 
 function community(props: any) {
   const theme = useTheme();
   const setAuth = useSetRecoilState(AuthAtom);
-  const setPost = useSetRecoilState(PostAtom);
+  const setPost = useSetRecoilState(PostsAtom);
   const { secondaryBlack } = theme.colors.brand;
 
   useEffect(() => {

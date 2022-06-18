@@ -38,7 +38,7 @@ export const isAuthenticatedSelector = selector({
   },
 });
 
-export const getFullNameSelector = selectorFamily({
+export const getFullNameSelector = selectorFamily<string, User>({
   key: RecoilAtomKeys.getFullNameSelector,
   get: (user: User) => () => {
     // const user = get(AuthAtom);

@@ -78,7 +78,14 @@ function MobileNavigation() {
           </DrawerBody>
           <DrawerFooter>
             {!isAuthenticated ? (
-              <ButtonLink href="/create-account" label="Become a member" />
+              <ButtonLink
+                w="100%"
+                h="80%"
+                alignItems="center"
+                justifyContent="center"
+                href="/login"
+                label="Login"
+              />
             ) : (
               <Btn w="100%" h="80%">
                 Logout

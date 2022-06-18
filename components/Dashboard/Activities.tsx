@@ -1,7 +1,7 @@
 import { Box, Flex, Heading, Text, useTheme } from "@chakra-ui/react";
 import React, { Fragment } from "react";
 import { useRecoilValue } from "recoil";
-import { Post, PostAtom } from "recoilStore/PostsAtom";
+import { Post, PostsAtom } from "recoilStore/PostsAtom";
 import Activity from "./Activity";
 
 type ActivitiesProp = {

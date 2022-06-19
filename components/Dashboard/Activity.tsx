@@ -38,7 +38,7 @@ function Activity({ post }: PostProp) {
     return (
       <Flex gap="1rem" mb="1rem" alignItems="flex-start">
         <Avatar
-          size="xl"
+          boxSize={{ base: "4rem", md: "5rem" }}
           name="Christian Nwamba"
           src="https://bit.ly/code-beast"
           mt="1rem"
@@ -47,12 +47,14 @@ function Activity({ post }: PostProp) {
         <Box>
           <Box
             p="1rem"
-            maxW="30rem"
+            maxW={{ base: "20rem", md: "30rem" }}
             borderRadius="3xl"
             bgColor={secondaryBlack["100"]}
             pos="relative"
           >
-            <Text>Thanks so much it’s just some graduation memories 👍🏾</Text>
+            <Text fontSize={{ base: "1.2rem", md: "1.4rem" }}>
+              Thanks so much it’s just some graduation memories 👍🏾
+            </Text>
             <Text mt="0.5rem" fontSize="1rem">
               9 mins ago
             </Text>
@@ -142,9 +144,15 @@ function Activity({ post }: PostProp) {
 
   function renderReply(comment?: any) {
     return (
-      <Flex ml="2.5rem" mt="2rem" gap="1rem" mb="1rem" alignItems="flex-start">
+      <Flex
+        ml={{ base: "1.5rem", md: "2.5rem" }}
+        mt="2rem"
+        gap="1rem"
+        mb="1rem"
+        alignItems="flex-start"
+      >
         <Avatar
-          size="md"
+          boxSize={{ base: "3rem", md: "4rem" }}
           name="Christian Nwamba"
           src="https://bit.ly/code-beast"
           mt="1rem"
@@ -153,7 +161,7 @@ function Activity({ post }: PostProp) {
         <Box>
           <Box
             p="1rem"
-            maxW="35rem"
+            maxW={{ base: "23rem", md: "35rem" }}
             borderRadius="3xl"
             bgColor={secondaryBlack["100"]}
             pos="relative"
@@ -177,7 +185,9 @@ function Activity({ post }: PostProp) {
               right="2%"
               top="-40%"
             />
-            <Text>Thanks so much it’s just some graduation memories 👍🏾</Text>
+            <Text fontSize={{ base: "1.2rem", md: "1.4rem" }}>
+              Thanks so much it’s just some graduation memories 👍🏾
+            </Text>
             <Text mt="0.5rem" fontSize="1rem">
               9 mins ago
             </Text>
@@ -268,12 +278,17 @@ function Activity({ post }: PostProp) {
   return (
     <Box
       maxW="68.6rem"
+      w="full"
       mt="3rem"
       shadow="md"
       bg={secondaryBlack["200"]}
       borderRadius="2xl"
     >
-      <Flex p="2rem" alignItems="center" justifyContent="space-between">
+      <Flex
+        p={{ base: "1rem", md: "2rem" }}
+        alignItems="center"
+        justifyContent="space-between"
+      >
         <Flex alignItems="center" gap="1rem">
           <Avatar
             size="lg"
@@ -302,9 +317,15 @@ function Activity({ post }: PostProp) {
             onClick={() => setLike((prvLike) => !prvLike)}
             icon={
               <Icon
-                as={!like ? MdFavoriteBorder : MdFavorite}
+                as={
+                  post && typeof post.likes === "undefined"
+                    ? MdFavoriteBorder
+                    : MdFavorite
+                }
                 boxSize="1.6rem"
-                fill={!like ? "white" : "red"}
+                fill={
+                  post && typeof post.likes === "undefined" ? "white" : "red"
+                }
               />
             }
           />
@@ -312,8 +333,8 @@ function Activity({ post }: PostProp) {
       </Flex>
 
       {/* Text Content */}
-      <Box p="2rem">
-        <Text>{post.content}</Text>
+      <Box p={{ base: "1rem", md: "2rem" }}>
+        <Text fontSize={{ base: "1.2rem", md: "1.4rem" }}>{post.content}</Text>
       </Box>
 
       {/* Image Section check if image is one...use a flexible div to display image otherwise maxw:338 */}
@@ -373,12 +394,19 @@ function Activity({ post }: PostProp) {
           borderRadius="full"
           bgColor={secondaryBlack["100"]}
           aria-label="Favorite"
-          icon={<Icon as={MdFavoriteBorder} boxSize="1.6rem" />}
+          onClick={() => setLike((prvLike) => !prvLike)}
+          icon={
+            <Icon
+              as={!like ? MdFavoriteBorder : MdFavorite}
+              boxSize="1.6rem"
+              fill={!like ? "white" : "red"}
+            />
+          }
         />
       </Flex>
 
       {/*Render Comments List */}
-      <Box p="2rem">
+      <Box p={{ base: "1rem", md: "2rem" }}>
         <Box mb="1rem">
           {renderComment()}
 
@@ -402,15 +430,20 @@ function Activity({ post }: PostProp) {
       {/* Render Comment Section */}
       <Box
         mt="3rem"
-        p="2rem"
+        p={{ base: "1rem", md: "2rem" }}
         shadow="md"
         bg={secondaryBlack["200"]}
         borderRadius="2xl"
       >
         <form>
-          <Flex py="1rem" px="1rem" gap="2rem" alignItems="center">
+          <Flex
+            py="1rem"
+            px={{ base: "unset", md: "1rem" }}
+            gap={{ base: "1rem", md: "2rem" }}
+            alignItems="center"
+          >
             <Avatar
-              size="xl"
+              boxSize={{ base: "4rem", md: "6rem" }}
               name="Christian Nwamba"
               src="https://bit.ly/code-beast"
             />
@@ -422,8 +455,8 @@ function Activity({ post }: PostProp) {
                 alignItems: "center !important",
               }}
               inputProps={{
-                py: "2.5rem",
-                px: "2rem",
+                py: { base: "1rem", md: "2.5rem" },
+                px: { base: "1rem", md: "2rem" },
                 placeholder: "Write a Comment.......",
                 _placeholder: {
                   color: "white",
@@ -436,7 +469,9 @@ function Activity({ post }: PostProp) {
                   _hover={{ borderColor: metallicSunburst }}
                   bgColor="transparent"
                   py=".8rem"
+                  p={{ base: ".5rem 2rem !important", md: "1rem 1.4rem" }}
                   mr="1rem"
+                  mb=".5rem"
                 >
                   Comment
                 </Btn>

@@ -9,7 +9,12 @@ import UsersList from "./UsersList";
 function CommunityMainContent() {
   const posts = useRecoilValue(PostsAtom);
   return (
-    <Box minH="1000px" pb="5rem" px="2rem">
+    <Box
+      minH="1000px"
+      pb="5rem"
+      px={{ base: "unset", md: "2rem" }}
+      order={{ base: 3, md: 2 }}
+    >
       <UsersList />
       <MakePost />
       <Activities posts={posts} />

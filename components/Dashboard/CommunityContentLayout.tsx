@@ -8,7 +8,11 @@ function CommunityContentLayout({
   children,
 }: CommunityContentLayoutProps): JSX.Element {
   return (
-    <Grid py="5rem" gap="3rem" templateColumns="1fr auto 1fr">
+    <Grid
+      py={{ base: "2rem", md: "5rem" }}
+      gap="3rem"
+      templateColumns={{ base: "1fr", md: "1fr auto 1fr" }}
+    >
       {children}
     </Grid>
   );

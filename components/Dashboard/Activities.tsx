@@ -25,7 +25,7 @@ function Activities({ posts }: ActivitiesProp) {
           mt="3rem"
           alignItems="center"
           justifyContent="center"
-          p="2rem"
+          p={{ base: "1rem", md: "2rem" }}
           borderRadius="3xl"
           bgColor={secondaryBlack["200"]}
         >

@@ -5,9 +5,8 @@ import dynamic from "next/dynamic";
 import { RecoilRoot } from "recoil";
 import { theme } from "../styles/themes";
 import "../styles/globals.css";
-import Fonts from "../components/Fonts";
+import CustomStyle from "../components/CustomStyle";
 import { GlobalProvider } from "context/GlobalContext";
-import { NextPageContext } from "next";
 
 function MyApp({ Component, pageProps }: AppProps): JSX.Element {
   const [root, setRoot] = useState<HTMLElement | null>(null);
@@ -29,7 +28,7 @@ function MyApp({ Component, pageProps }: AppProps): JSX.Element {
       <RecoilRoot>
         {/* @ts-ignore */}
         <RecoilizeDebugger root={root} />
-        <Fonts />
+        <CustomStyle />
         <Component {...pageProps} />
       </RecoilRoot>
     </ChakraProvider>

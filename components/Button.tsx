@@ -54,12 +54,15 @@ function Btn({ children, _hover, ...rest }: BtnProps) {
 
   return (
     <Button
-      p="1rem 1.4rem"
+      p={{
+        base: ".5rem 2rem ",
+        md: "1rem 1.4rem ",
+      }}
       // borderRadius="3.0rem"
       border={`2px solid ${theme.colors.brand.roti}`}
       background={theme.colors.brand.roti}
       h="100%"
-      fontSize="1.4rem"
+      fontSize={{ base: "1rem ", md: "1.4rem " }}
       textDecoration="none !important"
       transition="all 250ms ease-in-out"
       _hover={{

@@ -19,6 +19,7 @@ import { AuthAtom, getFullNameSelector } from "recoilStore/AuthAtom";
 import { PostDataAtom, PostsAtom } from "recoilStore/PostsAtom";
 import { Btn } from "../Button";
 import FormInput from "../Forms/FormInput";
+import FormTextArea from "../Forms/FormTextArea";
 
 function MakePost() {
   const theme = useTheme();
@@ -52,6 +53,12 @@ function MakePost() {
             draft.unshift({ ...response.data.message, user_id: user });
           });
           set(PostsAtom, newPostsArray);
+
+          window.scrollTo({
+            top: 700,
+            //   left: 100,
+            behavior: "smooth",
+          });
         }
 
         return;
@@ -62,20 +69,32 @@ function MakePost() {
     <Fragment>
       <Box
         mt="3rem"
-        p="2rem"
+        p={{ base: "1rem", md: "2rem" }}
         shadow="md"
         bg={secondaryBlack["200"]}
         borderRadius="2xl"
       >
         <form onSubmit={(e) => sendMessage(e)}>
-          <Flex py="1rem" px="1rem" gap="2rem" alignItems="center">
-            <Avatar size="xl" name={userFullName} src={user?.avatar} />
-            <FormInput
+          <Flex
+            py="1rem"
+            px={{ base: "unset", md: "1rem" }}
+            gap={{ base: "1rem", md: "2rem" }}
+            alignItems="flex-start"
+          >
+            <Avatar
+              boxSize={{ base: "4rem", md: "6rem" }}
+              name={userFullName}
+              src={user?.avatar}
+            />
+            <FormTextArea
               containerProps={{
                 flexDir: "column",
+                border: "none",
               }}
-              inputProps={{
+              textAreaProps={{
                 value: postData && postData?.content,
+                rows: 1,
+                border: "none",
                 onChange: (e) =>
                   setPostData((prevPostInput) => ({
                     ...prevPostInput,
@@ -84,8 +103,8 @@ function MakePost() {
                 autoFocus: true,
                 bgColor: secondaryBlack["100"],
                 borderRadius: "lg",
-                py: "2.5rem",
-                px: "2rem",
+                py: { base: "1rem", md: "2.5rem" },
+                px: { base: "1rem", md: "2rem" },
                 placeholder: "Share something with us",
                 _placeholder: {
                   color: white,
@@ -100,14 +119,14 @@ function MakePost() {
             justifyContent="flex-end"
             mt="1rem"
           >
-            <Text fontSize="1.2rem" fontWeight="600">
+            <Text fontSize={{ base: "1rem", md: "1.2rem" }} fontWeight="600">
               Add Photo
             </Text>
             <IconButton
               borderRadius="full"
               outline="none"
               bg="transparent"
-              size="lg"
+              boxSize={{ base: "2.5rem", md: "3rem" }}
               aria-label="add-photo"
               icon={
                 <Img
@@ -130,6 +149,11 @@ function MakePost() {
               _hover={{ borderColor: metallicSunburst }}
               bgColor="transparent"
               py=".8rem"
+              // p={{
+              //   base: ".5rem 2rem !important",
+              //   md: "1rem 1.4rem !important",
+              // }}
+              // fontSize={{ base: "1rem !important", md: "1.4rem !important" }}
               type="submit"
               isLoading={isLoading}
               disabled={

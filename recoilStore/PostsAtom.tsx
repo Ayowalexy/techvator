@@ -1,3 +1,4 @@
+import { MediaProps } from "@/components/Media";
 import { atom } from "recoil";
 import { string } from "yup";
 import { User } from "./AuthAtom";
@@ -7,6 +8,7 @@ export type Post = {
   _id: string;
   archive: boolean;
   content: string;
+  image?: MediaProps[];
   user_id: User;
   likes?: number;
   hasLiked?: boolean;
@@ -17,13 +19,13 @@ export type Post = {
 
 export const PostDataAtom = atom<{
   content: string;
-  image?: string;
+  image?: MediaProps[];
   archive: boolean;
 }>({
   key: RecoilAtomKeys.postDataState,
   default: {
     content: "",
-    image: "",
+    image: [],
     archive: false,
   },
 });

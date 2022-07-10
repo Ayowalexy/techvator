@@ -16,13 +16,16 @@ import {
 } from "@chakra-ui/react";
 import { MotionList } from "motion";
 import NextLink from "next/link";
-import { useRecoilValue } from "recoil";
+import { useRecoilState, useRecoilValue } from "recoil";
+import { IoIosArrowDown } from "react-icons/io";
 import { collapseMenuAtom } from "recoilStore/CollapseMenuAtom";
 import { AuthAtom, isAuthenticatedSelector } from "recoilStore/AuthAtom";
 import { navigation } from "../data/navigation";
 import ButtonLink from "./Button";
 import Button from "./Button";
-import { IoIosArrowDown } from "react-icons/io";
+import { destroyTheCookie } from "helpers/cookieHandler";
+import { AMAHLUBI_ACCESS_TOKEN, AMAHLUBI_REFRESH_TOKEN } from "../constants";
+import Router from "next/router";
 
 function Navigation() {
   const theme = useTheme();
@@ -30,12 +33,22 @@ function Navigation() {
   const { rotiLight, roti, white, black } = theme.colors.brand;
   const collapse = useRecoilValue(collapseMenuAtom);
   const isAuthenticated = useRecoilValue(isAuthenticatedSelector);
-  const user = useRecoilValue(AuthAtom);
+  const [user, setUser] = useRecoilState(AuthAtom);
+
+  const logout = () => {
+    destroyTheCookie(undefined, AMAHLUBI_ACCESS_TOKEN);
+    destroyTheCookie(undefined, AMAHLUBI_REFRESH_TOKEN);
+    setUser({
+      token: "",
+      refreshToken: "",
+    });
+    Router.push("/");
+  };
 
   return (
     <Box pos="relative">
       <MotionList
-        display={{ base: "none", md: "flex" }}
+        display={{ base: "none", lg: "flex" }}
         flexDir="row"
         pos="relative"
         zIndex={3}
@@ -149,7 +162,9 @@ function Navigation() {
                     <Text>Community</Text>
                   </NextLink>
                 </ListItem>
-                <ListItem cursor="pointer">Logout</ListItem>
+                <ListItem cursor="pointer" onClick={logout}>
+                  Logout
+                </ListItem>
               </UnorderedList>
             </>
           )}

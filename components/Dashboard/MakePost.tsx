@@ -3,15 +3,18 @@ import {
   Box,
   color,
   Flex,
+  Grid,
   Heading,
   Icon,
   IconButton,
   Img,
+  Input,
   Text,
   useTheme,
+  useToast,
 } from "@chakra-ui/react";
 import axios from "axios";
-import React, { Fragment, useState } from "react";
+import React, { Fragment, useEffect, useRef, useState } from "react";
 import { useRecoilCallback, useRecoilState, useRecoilValue } from "recoil";
 import produce from "immer";
 import { endpoint } from "api_routes";
@@ -20,8 +23,12 @@ import { PostDataAtom, PostsAtom } from "recoilStore/PostsAtom";
 import { Btn } from "../Button";
 import FormInput from "../Forms/FormInput";
 import FormTextArea from "../Forms/FormTextArea";
+import Media, { MediaProps } from "../Media";
+import MediaPreview from "../MediaPreview";
 
 function MakePost() {
+  const filePickerRef = useRef<HTMLInputElement>(null);
+  const toast = useToast();
   const theme = useTheme();
   const { secondaryBlack, metallicSunburst, white } = theme.colors.brand;
   const user = useRecoilValue(AuthAtom);
@@ -29,41 +36,135 @@ function MakePost() {
   const posts = useRecoilValue(PostsAtom);
   const userFullName = useRecoilValue(getFullNameSelector(user));
   const [isLoading, setIsLoading] = useState(false);
+  const [selectedFiles, setSelectedFiles] = useState<File[]>([]);
+  const [selectedMediaPreview, setSelectedMediaPreview] = useState<
+    MediaProps[]
+  >([]);
+  const [generatedUrlArr, setGeneratedUrlArr] = useState([]); //keep track of generated mediafiles
+
   const sendMessage = useRecoilCallback(
     ({ set }) =>
       async (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
         setIsLoading(true);
-        const response = await axios.post(endpoint.POSTS, postData, {
-          headers: {
-            Authorization: `Bearer ${user.token}`,
-            "x-refresh-token": `${user.refreshToken}`,
-          },
+        const formData = new FormData();
+        formData.append("content", postData.content);
+        selectedMediaPreview.forEach((media) => {
+          formData.append("image", media.file);
         });
+        formData.append("archive", postData.archive.toString());
+        try {
+          const response = await axios.post(endpoint.POSTS, formData, {
+            headers: {
+              Authorization: `Bearer ${user.token}`,
+              "x-refresh-token": `${user.refreshToken}`,
+            },
+          });
 
-        if (response.status === 201) {
+          if (response.status === 201) {
+            setIsLoading(false);
+
+            setSelectedMediaPreview([]);
+            set(PostDataAtom, {
+              content: "",
+              image: [],
+              archive: false,
+            });
+
+            const newPostsArray = produce(posts, (draft) => {
+              draft.unshift({
+                ...response.data.message,
+                image: selectedMediaPreview,
+                user_id: user,
+              });
+            });
+            set(PostsAtom, newPostsArray);
+
+            window.scrollTo({
+              top: 700,
+              //   left: 100,
+              behavior: "smooth",
+            });
+          }
+        } catch (error) {
+          console.log("server err", error);
           setIsLoading(false);
-          set(PostDataAtom, {
-            content: "",
-            image: "",
-            archive: false,
-          });
-
-          const newPostsArray = produce(posts, (draft) => {
-            draft.unshift({ ...response.data.message, user_id: user });
-          });
-          set(PostsAtom, newPostsArray);
-
-          window.scrollTo({
-            top: 700,
-            //   left: 100,
-            behavior: "smooth",
-          });
         }
 
         return;
       }
   );
+
+  const onSetFiles = (e: React.ChangeEvent<HTMLInputElement>) => {
+    // console.log(filePickerRef.current.files);
+    const fileArr = Array.from(e.currentTarget?.files);
+    setSelectedFiles((prvFiles) => [...prvFiles, ...fileArr]);
+  };
+
+  const showMedia = () => {
+    if (selectedFiles.length > 4) {
+      toast({
+        // title: 'Account created.',
+        description: "Maximum number of photos allowed for upload is 4",
+        status: "info",
+        duration: 4000,
+        isClosable: false,
+      });
+      setSelectedFiles([]);
+      return;
+    }
+
+    // create a reader for each photo
+
+    for (let file = 0; file < selectedFiles.length; file++) {
+      if (generatedUrlArr.some((f) => f?.name === selectedFiles[file]?.name)) {
+        continue;
+      }
+      let reader = new FileReader();
+      reader.onloadend = () => {
+        setSelectedMediaPreview((prvMediaUrl) => [
+          ...prvMediaUrl,
+          {
+            name: selectedFiles[file]?.name,
+            dataUrl: reader.result.toString(),
+            file: selectedFiles[file],
+          },
+        ]);
+      };
+      reader.readAsDataURL(selectedFiles[file]);
+      setGeneratedUrlArr((prv) => [...prv, selectedFiles[file]]);
+    }
+  };
+
+  useEffect(() => {
+    showMedia();
+  }, [selectedFiles]);
+
+  // useEffect(() => {
+  //   console.log("Media Display", selectedMediaPreview);
+  // }, [selectedMediaPreview]);
+
+  const onRemoveMedia = (media: MediaProps) => {
+    setSelectedMediaPreview((prvMediaPreview) =>
+      prvMediaPreview.filter(
+        (mp) => mp.name.toLowerCase() !== media.name.toLowerCase()
+      )
+    );
+
+    // remove selected File as well
+    setSelectedFiles((prevSelectedFiles) => {
+      return prevSelectedFiles.filter(
+        (sf: File) => sf.name.toLowerCase() !== sf.name.toLowerCase()
+      );
+    });
+
+    // Remove From Generated Preview List as well
+    setGeneratedUrlArr((prevGeneratedFiles) => {
+      return prevGeneratedFiles.filter(
+        (gf: File) => gf.name.toLowerCase() !== gf.name.toLowerCase()
+      );
+    });
+  };
 
   return (
     <Fragment>
@@ -73,6 +174,8 @@ function MakePost() {
         shadow="md"
         bg={secondaryBlack["200"]}
         borderRadius="2xl"
+        // maxW="68.6rem"
+        w={{ lg: "68.6rem" }}
       >
         <form onSubmit={(e) => sendMessage(e)}>
           <Flex
@@ -108,10 +211,14 @@ function MakePost() {
                 placeholder: "Share something with us",
                 _placeholder: {
                   color: white,
+                  fontSize: { base: "1.2rem", md: "1.4rem" },
                 },
               }}
             />
           </Flex>
+          {/* Photo Uploads */}
+          <MediaPreview media={selectedMediaPreview} onRemove={onRemoveMedia} />
+          {/* End Photo  Uploads */}
           <Flex
             gap="2rem"
             px="1rem"
@@ -119,10 +226,16 @@ function MakePost() {
             justifyContent="flex-end"
             mt="1rem"
           >
-            <Text fontSize={{ base: "1rem", md: "1.2rem" }} fontWeight="600">
+            <Text
+              opacity={selectedMediaPreview.length === 4 ? 0.5 : 1}
+              fontSize={{ base: "1rem", md: "1.2rem" }}
+              fontWeight="600"
+            >
               Add Photo
             </Text>
             <IconButton
+              disabled={selectedMediaPreview.length === 4}
+              onClick={() => filePickerRef.current.click()}
               borderRadius="full"
               outline="none"
               bg="transparent"
@@ -157,12 +270,25 @@ function MakePost() {
               type="submit"
               isLoading={isLoading}
               disabled={
-                postData && postData?.content.length === 0 ? true : false
+                postData &&
+                postData?.content.length === 0 &&
+                selectedMediaPreview.length === 0
+                  ? true
+                  : false
               }
             >
               Publish
             </Btn>
           </Flex>
+          <Input
+            type="file"
+            hidden
+            multiple
+            max="4"
+            accept="image/png, image/jpeg"
+            onChange={onSetFiles}
+            ref={filePickerRef}
+          />
         </form>
       </Box>
     </Fragment>

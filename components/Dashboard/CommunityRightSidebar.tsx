@@ -17,9 +17,9 @@ function CommunityRightSidebar() {
   const theme = useTheme();
   const { secondaryBlack, white } = theme.colors.brand;
   return (
-    <Box pos="relative" order={{ base: 2, md: 3 }}>
+    <Box pos="relative" order={{ base: 2, lg: 3 }}>
       <Flex
-        flexDir={{ base: "row", md: "column" }}
+        flexDir={{ base: "row", lg: "column" }}
         gap="1rem"
         pos="sticky"
         top="2rem"
@@ -51,7 +51,7 @@ function CommunityRightSidebar() {
 
         {/* Fund Me */}
         <Box
-          mt={{ base: "unset", md: "2rem" }}
+          mt={{ base: "unset", lg: "2rem" }}
           p={{ base: "1rem", md: "2rem" }}
           shadow="md"
           bg={secondaryBlack["200"]}

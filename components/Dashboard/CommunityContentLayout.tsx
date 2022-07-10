@@ -11,7 +11,7 @@ function CommunityContentLayout({
     <Grid
       py={{ base: "2rem", md: "5rem" }}
       gap="3rem"
-      templateColumns={{ base: "1fr", md: "1fr auto 1fr" }}
+      templateColumns={{ base: "1fr", lg: "1fr auto 1fr" }}
     >
       {children}
     </Grid>

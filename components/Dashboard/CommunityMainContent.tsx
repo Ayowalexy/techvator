@@ -13,7 +13,7 @@ function CommunityMainContent() {
       minH="1000px"
       pb="5rem"
       px={{ base: "unset", md: "2rem" }}
-      order={{ base: 3, md: 2 }}
+      order={{ base: 3, lg: 2 }}
     >
       <UsersList />
       <MakePost />

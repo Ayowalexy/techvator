@@ -13,12 +13,14 @@ import {
 import dayjs from "dayjs";
 import relativeTime from "dayjs/plugin/relativeTime";
 import React, { useState } from "react";
+import { FaRegCommentDots } from "react-icons/fa";
 import { MdFavoriteBorder, MdFavorite } from "react-icons/md";
 import { useRecoilValue } from "recoil";
 import { getFullNameSelector } from "recoilStore/AuthAtom";
 import { Post } from "recoilStore/PostsAtom";
 import { Btn } from "../Button";
 import FormInput from "../Forms/FormInput";
+import MediaPreview from "../MediaPreview";
 
 type PostProp = {
   post?: Post;
@@ -277,7 +279,7 @@ function Activity({ post }: PostProp) {
 
   return (
     <Box
-      maxW="68.6rem"
+      maxW={{ lg: "68.6rem" }}
       w="full"
       mt="3rem"
       shadow="md"
@@ -305,7 +307,7 @@ function Activity({ post }: PostProp) {
           </Box>
         </Flex>
 
-        <Flex alignItems="center" gap="1rem">
+        {/* <Flex alignItems="center" gap="1rem">
           <Text fontSize="1.2rem">
             {post && post.likes > 0 ? post.likes : "No likes yet"}{" "}
           </Text>
@@ -329,7 +331,7 @@ function Activity({ post }: PostProp) {
               />
             }
           />
-        </Flex>
+        </Flex> */}
       </Flex>
 
       {/* Text Content */}
@@ -338,97 +340,69 @@ function Activity({ post }: PostProp) {
       </Box>
 
       {/* Image Section check if image is one...use a flexible div to display image otherwise maxw:338 */}
+      <MediaPreview media={post?.image} />
+      {/* End Image Section */}
+
       <Flex
-        flexWrap="wrap"
-        flexDirection="row"
-        minH="35rem"
-        w="100%"
-        maxW="68.6rem"
-        gap="1rem"
-      >
-        <Box w="100%" maxW="338px" flexShrink="0">
-          <Image
-            src="/imgs/community/large-placeholder.png"
-            alt=""
-            h="100%"
-            w="100%"
-          />
-        </Box>
-        <Box w="100%" maxW="338px" flexShrink="0">
-          <Image
-            src="/imgs/community/large-placeholder.png"
-            alt=""
-            h="100%"
-            w="100%"
-          />
-        </Box>
-        <Box w="100%" maxW="338px" flexShrink="0">
-          <Image
-            src="/imgs/community/large-placeholder.png"
-            alt=""
-            h="100%"
-            w="100%"
-          />
-        </Box>
-        <Box w="100%" maxW="338px" flexShrink="0">
-          <Image
-            src="/imgs/community/large-placeholder.png"
-            alt=""
-            h="100%"
-            w="100%"
-          />
-        </Box>
-      </Flex>
-      <Flex
-        py="1rem"
-        mt="2rem"
+        py={{ base: "1rem", lg: "2rem" }}
         mx="2rem"
-        borderBottom={`.3px solid ${gray}`}
+        // borderBottom={`.3px solid ${gray}`}
         alignItems="center"
         justifyContent="flex-end"
-        gap="1rem"
+        gap="2rem"
       >
-        <Text fontSize="1.2rem">Like Post</Text>
-        <IconButton
-          size="lg"
-          borderRadius="full"
-          bgColor={secondaryBlack["100"]}
-          aria-label="Favorite"
-          onClick={() => setLike((prvLike) => !prvLike)}
-          icon={
-            <Icon
-              as={!like ? MdFavoriteBorder : MdFavorite}
-              boxSize="1.6rem"
-              fill={!like ? "white" : "red"}
-            />
-          }
-        />
+        {/* Comments */}
+        <Flex align="center" gap="1rem">
+          <Text fontSize="1.2rem">0 Comment</Text>
+          <IconButton
+            pointerEvents="none"
+            size="lg"
+            borderRadius="full"
+            bgColor={secondaryBlack["100"]}
+            aria-label="Favorite"
+            // onClick={() => setLike((prvLike) => !prvLike)}
+            icon={<Icon as={FaRegCommentDots} boxSize="1.6rem" />}
+          />
+        </Flex>
+
+        {/* Likes */}
+        <Flex align="center" gap="1rem">
+          <Text fontSize="1.2rem">No likes yet</Text>
+          <IconButton
+            size="lg"
+            borderRadius="full"
+            bgColor={secondaryBlack["100"]}
+            aria-label="Favorite"
+            onClick={() => setLike((prvLike) => !prvLike)}
+            icon={
+              <Icon
+                as={!like ? MdFavoriteBorder : MdFavorite}
+                boxSize="1.6rem"
+                fill={!like ? "white" : "red"}
+              />
+            }
+          />
+        </Flex>
       </Flex>
 
       {/*Render Comments List */}
-      <Box p={{ base: "1rem", md: "2rem" }}>
+      {/* <Box p={{ base: "1rem", md: "2rem" }}>
         <Box mb="1rem">
           {renderComment()}
-
-          {/* Replies */}
           {renderReply()}
         </Box>
         <Box mb="1rem">
           {renderComment()}
-
-          {/* Replies */}
           {renderReply()}
         </Box>
         <Box mb="1rem">
           {renderComment()}
-
-          {/* Replies */}
           {renderReply()}
         </Box>
-      </Box>
+      </Box> */}
 
       {/* Render Comment Section */}
-      <Box
+      {/* <Box
         mt="3rem"
         p={{ base: "1rem", md: "2rem" }}
         shadow="md"
@@ -479,7 +453,7 @@ function Activity({ post }: PostProp) {
             />
           </Flex>
         </form>
-      </Box>
+      </Box> */}
     </Box>
   );
 }

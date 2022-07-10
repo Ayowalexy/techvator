@@ -15,6 +15,7 @@ import {
 
 import NextLink from "next/link";
 import { useRecoilState, useRecoilValue } from "recoil";
+import { Router } from "next/router";
 import { collapseMenuAtom } from "recoilStore/CollapseMenuAtom";
 import { isAuthenticatedSelector } from "recoilStore/AuthAtom";
 import { navigation } from "../data/navigation";
@@ -27,6 +28,14 @@ function MobileNavigation() {
   const { rotiLight, roti, white, black } = theme.colors.brand;
   const [collapse, setCollapse] = useRecoilState(collapseMenuAtom);
   const isAuthenticated = useRecoilValue(isAuthenticatedSelector);
+
+  // this can be outside of any component
+  Router.events.on("routeChangeComplete", (url, options) => {
+    // console.log({ url, options });
+    if (isMobileResponsive) {
+      setCollapse(true);
+    }
+  });
 
   return (
     isMobileResponsive && (

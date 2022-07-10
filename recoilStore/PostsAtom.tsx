@@ -10,7 +10,8 @@ export type Post = {
   content: string;
   image?: MediaProps[];
   user_id: User;
-  likes?: number;
+  likes_count?: number;
+  comments_count?: number;
   hasLiked?: boolean;
   createdAt: string;
   updatedAt?: string;

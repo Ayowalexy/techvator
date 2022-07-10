@@ -1,4 +1,5 @@
 import { Box, Flex, Heading, Text, useTheme } from "@chakra-ui/react";
+import Link from "next/link";
 import React, { Fragment } from "react";
 import { useRecoilValue } from "recoil";
 import { Post, PostsAtom } from "recoilStore/PostsAtom";
@@ -11,15 +12,20 @@ function Activities({ posts }: ActivitiesProp) {
   const theme = useTheme();
   const { secondaryBlack } = theme.colors.brand;
 
-  console.log("posts", posts);
   return (
     <Box mt="5rem">
       <Heading fontSize="4xl" mt="2rem">
         Activities
       </Heading>
       {/* List of Activities */}
-      {posts.length > 0 ? (
-        posts.map((post) => <Activity key={post._id} post={post} />)
+      {posts?.length > 0 ? (
+        posts.map((post) => (
+          <Link key={post?._id} href={`/post/${post?._id}`}>
+            <Box cursor="pointer">
+              <Activity post={post} />
+            </Box>
+          </Link>
+        ))
       ) : (
         <Flex
           mt="3rem"

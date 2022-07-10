@@ -186,7 +186,7 @@ function Navigation() {
               mr="1rem"
             />
           )}
-          {console.log(isAuthenticated, "IS AUTHENTICATED....")}
+          {/* {console.log(isAuthenticated, "IS AUTHENTICATED....")} */}
           {/* <ButtonLink
           href="/black-excellence"
           label="Become a member"

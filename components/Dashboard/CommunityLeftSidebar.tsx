@@ -150,10 +150,38 @@ function CommunityLeftSidebar() {
         justifyContent="space-between"
         px={{ base: "unset", md: "5rem", lg: "unset" }}
       >
-        {LEFT_SIDEBAR_MENU_ITEM.map((mi, idx) => (
-          <Link href={mi.url} key={idx}>
-            <a>
+        {LEFT_SIDEBAR_MENU_ITEM.map((mi, idx) => {
+          if (mi.type === "link") {
+            return (
+              <Link href={mi.url} key={idx}>
+                <a>
+                  <Flex
+                    flexDir="column"
+                    pb="1rem"
+                    display="flex"
+                    alignItems="center"
+                    gap=".5rem"
+                  >
+                    {mi.iconType === "svg" ? (
+                      <Avatar
+                        size="lg"
+                        // @ts-ignore
+                        icon={<Icon as={mi.icon} boxSize={6} color="white" />}
+                        bg={secondaryBlack["100"]}
+                      />
+                    ) : (
+                      mi.icon
+                    )}
+                    <Text fontSize="1rem">{mi.title}</Text>
+                  </Flex>
+                </a>
+              </Link>
+            );
+          } else if (mi.type === "button") {
+            return (
               <Flex
+                as="button"
+                onClick={() => mi.onClick(logout)}
                 flexDir="column"
                 pb="1rem"
                 display="flex"
@@ -172,9 +200,9 @@ function CommunityLeftSidebar() {
                 )}
                 <Text fontSize="1rem">{mi.title}</Text>
               </Flex>
-            </a>
-          </Link>
-        ))}
+            );
+          }
+        })}
         <Link href="/user">
           <Flex
             align="center"

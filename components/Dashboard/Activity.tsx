@@ -338,7 +338,9 @@ function Activity({ post }: PostProp) {
 
       {/* Text Content */}
       <Box p={{ base: "1rem", md: "2rem" }}>
-        <Text fontSize={{ base: "1.2rem", md: "1.4rem" }}>{post?.content}</Text>
+        <Text fontSize={{ base: "1.2rem", md: "1.4rem" }} whiteSpace="pre-wrap">
+          {post?.content}
+        </Text>
       </Box>
 
       {/* Image Section check if image is one...use a flexible div to display image otherwise maxw:338 */}

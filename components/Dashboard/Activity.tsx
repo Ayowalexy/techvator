@@ -10,20 +10,29 @@ import {
   Text,
   useTheme,
 } from "@chakra-ui/react";
-import React from "react";
+import dayjs from "dayjs";
+import relativeTime from "dayjs/plugin/relativeTime";
+import { useRouter } from "next/router";
+import React, { useState } from "react";
+import { FaRegCommentDots } from "react-icons/fa";
 import { MdFavoriteBorder, MdFavorite } from "react-icons/md";
 import { useRecoilValue } from "recoil";
 import { getFullNameSelector } from "recoilStore/AuthAtom";
 import { Post } from "recoilStore/PostsAtom";
 import { Btn } from "../Button";
 import FormInput from "../Forms/FormInput";
+import MediaPreview from "../MediaPreview";
 
 type PostProp = {
   post?: Post;
 };
 
+dayjs.extend(relativeTime);
+
 function Activity({ post }: PostProp) {
+  const router = useRouter();
   const theme = useTheme();
+  const [like, setLike] = useState(false);
   const { white, metallicSunburst, secondaryBlack, roti, gray } =
     theme.colors.brand;
 
@@ -33,7 +42,7 @@ function Activity({ post }: PostProp) {
     return (
       <Flex gap="1rem" mb="1rem" alignItems="flex-start">
         <Avatar
-          size="xl"
+          boxSize={{ base: "4rem", md: "5rem" }}
           name="Christian Nwamba"
           src="https://bit.ly/code-beast"
           mt="1rem"
@@ -42,12 +51,14 @@ function Activity({ post }: PostProp) {
         <Box>
           <Box
             p="1rem"
-            maxW="30rem"
+            maxW={{ base: "20rem", md: "30rem" }}
             borderRadius="3xl"
             bgColor={secondaryBlack["100"]}
             pos="relative"
           >
-            <Text>Thanks so much it’s just some graduation memories 👍🏾</Text>
+            <Text fontSize={{ base: "1.2rem", md: "1.4rem" }}>
+              Thanks so much it’s just some graduation memories 👍🏾
+            </Text>
             <Text mt="0.5rem" fontSize="1rem">
               9 mins ago
             </Text>
@@ -137,9 +148,15 @@ function Activity({ post }: PostProp) {
 
   function renderReply(comment?: any) {
     return (
-      <Flex ml="2.5rem" mt="2rem" gap="1rem" mb="1rem" alignItems="flex-start">
+      <Flex
+        ml={{ base: "1.5rem", md: "2.5rem" }}
+        mt="2rem"
+        gap="1rem"
+        mb="1rem"
+        alignItems="flex-start"
+      >
         <Avatar
-          size="md"
+          boxSize={{ base: "3rem", md: "4rem" }}
           name="Christian Nwamba"
           src="https://bit.ly/code-beast"
           mt="1rem"
@@ -148,7 +165,7 @@ function Activity({ post }: PostProp) {
         <Box>
           <Box
             p="1rem"
-            maxW="35rem"
+            maxW={{ base: "23rem", md: "35rem" }}
             borderRadius="3xl"
             bgColor={secondaryBlack["100"]}
             pos="relative"
@@ -172,7 +189,9 @@ function Activity({ post }: PostProp) {
               right="2%"
               top="-40%"
             />
-            <Text>Thanks so much it’s just some graduation memories 👍🏾</Text>
+            <Text fontSize={{ base: "1.2rem", md: "1.4rem" }}>
+              Thanks so much it’s just some graduation memories 👍🏾
+            </Text>
             <Text mt="0.5rem" fontSize="1rem">
               9 mins ago
             </Text>
@@ -262,13 +281,18 @@ function Activity({ post }: PostProp) {
 
   return (
     <Box
-      maxW="68.6rem"
+      maxW={{ lg: "68.6rem" }}
+      w="full"
       mt="3rem"
       shadow="md"
       bg={secondaryBlack["200"]}
       borderRadius="2xl"
     >
-      <Flex p="2rem" alignItems="center" justifyContent="space-between">
+      <Flex
+        p={{ base: "1rem", md: "2rem" }}
+        alignItems="center"
+        justifyContent="space-between"
+      >
         <Flex alignItems="center" gap="1rem">
           <Avatar
             size="lg"
@@ -279,156 +303,177 @@ function Activity({ post }: PostProp) {
             <Heading as="h3" fontWeight="600" fontSize="1.8rem">
               {getFullName}
             </Heading>
-            <Text fontSize="1.2rem">April 28th at 6:17pm</Text>
+            <Text fontSize="1.2rem">
+              {dayjs(post && post?.createdAt).fromNow()}
+            </Text>
           </Box>
         </Flex>
 
-        <Flex alignItems="center" gap="1rem">
-          <Text fontSize="1.2rem">No likes yet</Text>
+        {/* <Flex alignItems="center" gap="1rem">
+          <Text fontSize="1.2rem">
+            {post && post.likes > 0 ? post.likes : "No likes yet"}{" "}
+          </Text>
           <IconButton
             size="lg"
             borderRadius="full"
             bgColor={secondaryBlack["100"]}
             aria-label="Favorite"
-            icon={<Icon as={MdFavoriteBorder} boxSize="1.6rem" />}
+            onClick={() => setLike((prvLike) => !prvLike)}
+            icon={
+              <Icon
+                as={
+                  post && typeof post.likes === "undefined"
+                    ? MdFavoriteBorder
+                    : MdFavorite
+                }
+                boxSize="1.6rem"
+                fill={
+                  post && typeof post.likes === "undefined" ? "white" : "red"
+                }
+              />
+            }
+          />
+        </Flex> */}
+      </Flex>
+
+      {/* Text Content */}
+      <Box p={{ base: "1rem", md: "2rem" }}>
+        <Text fontSize={{ base: "1.2rem", md: "1.4rem" }} whiteSpace="pre-wrap">
+          {post?.content}
+        </Text>
+      </Box>
+
+      {/* Image Section check if image is one...use a flexible div to display image otherwise maxw:338 */}
+      <MediaPreview media={post?.image} />
+      {/* End Image Section */}
+
+      <Flex
+        py={{ base: "1rem", lg: "2rem" }}
+        mx="2rem"
+        borderBottom={
+          router.pathname === "/post/[id]" ? `.3px solid ${gray}` : "unset"
+        }
+        alignItems="center"
+        justifyContent="flex-end"
+        gap="2rem"
+      >
+        {/* Comments */}
+        <Flex align="center" gap="1rem">
+          <Text fontSize="1.2rem">
+            {post?.comments_count > 0
+              ? `${post?.comments_count} Comments`
+              : `${post?.comments_count} Comment`}
+          </Text>
+          <IconButton
+            pointerEvents="none"
+            size="lg"
+            borderRadius="full"
+            bgColor={secondaryBlack["100"]}
+            aria-label="Favorite"
+            // onClick={() => setLike((prvLike) => !prvLike)}
+            icon={<Icon as={FaRegCommentDots} boxSize="1.6rem" />}
+          />
+        </Flex>
+
+        {/* Likes */}
+        <Flex align="center" gap="1rem">
+          <Text fontSize="1.2rem">
+            {post?.likes_count === 0
+              ? "No likes yet"
+              : post?.likes_count > 1
+              ? `${post?.likes_count} Likes`
+              : `${post?.likes_count} Like`}
+          </Text>
+          <IconButton
+            size="lg"
+            borderRadius="full"
+            bgColor={secondaryBlack["100"]}
+            aria-label="Favorite"
+            onClick={() => setLike((prvLike) => !prvLike)}
+            icon={
+              <Icon
+                as={!like ? MdFavoriteBorder : MdFavorite}
+                boxSize="1.6rem"
+                fill={!like ? "white" : "red"}
+              />
+            }
           />
         </Flex>
       </Flex>
 
-      {/* Text Content */}
-      <Box p="2rem">
-        <Text>{post.content}</Text>
-      </Box>
-
-      {/* Image Section check if image is one...use a flexible div to display image otherwise maxw:338 */}
-      <Flex
-        flexWrap="wrap"
-        flexDirection="row"
-        minH="35rem"
-        w="100%"
-        maxW="68.6rem"
-        gap="1rem"
-      >
-        <Box w="100%" maxW="338px" flexShrink="0">
-          <Image
-            src="/imgs/community/large-placeholder.png"
-            alt=""
-            h="100%"
-            w="100%"
-          />
-        </Box>
-        <Box w="100%" maxW="338px" flexShrink="0">
-          <Image
-            src="/imgs/community/large-placeholder.png"
-            alt=""
-            h="100%"
-            w="100%"
-          />
-        </Box>
-        <Box w="100%" maxW="338px" flexShrink="0">
-          <Image
-            src="/imgs/community/large-placeholder.png"
-            alt=""
-            h="100%"
-            w="100%"
-          />
-        </Box>
-        <Box w="100%" maxW="338px" flexShrink="0">
-          <Image
-            src="/imgs/community/large-placeholder.png"
-            alt=""
-            h="100%"
-            w="100%"
-          />
-        </Box>
-      </Flex>
-      <Flex
-        py="1rem"
-        mt="2rem"
-        mx="2rem"
-        borderBottom={`.3px solid ${gray}`}
-        alignItems="center"
-        justifyContent="flex-end"
-        gap="1rem"
-      >
-        <Text fontSize="1.2rem">Like Post</Text>
-        <IconButton
-          size="lg"
-          borderRadius="full"
-          bgColor={secondaryBlack["100"]}
-          aria-label="Favorite"
-          icon={<Icon as={MdFavoriteBorder} boxSize="1.6rem" />}
-        />
-      </Flex>
-
       {/*Render Comments List */}
-      <Box p="2rem">
-        <Box mb="1rem">
-          {renderComment()}
-
-          {/* Replies */}
-          {renderReply()}
+      {router.pathname === "/post/[id]" && (
+        <Box p={{ base: "1rem", md: "2rem" }}>
+          <Box mb="1rem">
+            {renderComment()}
+            {renderReply()}
+          </Box>
+          <Box mb="1rem">
+            {renderComment()}
+            {renderReply()}
+          </Box>
+          <Box mb="1rem">
+            {renderComment()}
+            {renderReply()}
+          </Box>
         </Box>
-        <Box mb="1rem">
-          {renderComment()}
-
-          {/* Replies */}
-          {renderReply()}
-        </Box>
-        <Box mb="1rem">
-          {renderComment()}
-
-          {/* Replies */}
-          {renderReply()}
-        </Box>
-      </Box>
+      )}
 
       {/* Render Comment Section */}
-      <Box
-        mt="3rem"
-        p="2rem"
-        shadow="md"
-        bg={secondaryBlack["200"]}
-        borderRadius="2xl"
-      >
-        <form>
-          <Flex py="1rem" px="1rem" gap="2rem" alignItems="center">
-            <Avatar
-              size="xl"
-              name="Christian Nwamba"
-              src="https://bit.ly/code-beast"
-            />
-            <FormInput
-              containerProps={{
-                flexDir: "column",
-                bgColor: secondaryBlack["100"],
-                borderRadius: "lg",
-                alignItems: "center !important",
-              }}
-              inputProps={{
-                py: "2.5rem",
-                px: "2rem",
-                placeholder: "Write a Comment.......",
-                _placeholder: {
-                  color: "white",
-                },
-              }}
-              inputRightAddon={
-                <Btn
-                  borderColor={white}
-                  borderRadius="xl"
-                  _hover={{ borderColor: metallicSunburst }}
-                  bgColor="transparent"
-                  py=".8rem"
-                  mr="1rem"
-                >
-                  Comment
-                </Btn>
-              }
-            />
-          </Flex>
-        </form>
-      </Box>
+      {router.pathname === "/post/[id]" && (
+        <Box
+          mt="3rem"
+          p={{ base: "1rem", md: "2rem" }}
+          shadow="md"
+          bg={secondaryBlack["200"]}
+          borderRadius="2xl"
+        >
+          <form>
+            <Flex
+              py="1rem"
+              px={{ base: "unset", md: "1rem" }}
+              gap={{ base: "1rem", md: "2rem" }}
+              alignItems="center"
+            >
+              <Avatar
+                boxSize={{ base: "4rem", md: "6rem" }}
+                name="Christian Nwamba"
+                src="https://bit.ly/code-beast"
+              />
+              <FormInput
+                containerProps={{
+                  flexDir: "column",
+                  bgColor: secondaryBlack["100"],
+                  borderRadius: "lg",
+                  alignItems: "center !important",
+                }}
+                inputProps={{
+                  py: { base: "1rem", md: "2.5rem" },
+                  px: { base: "1rem", md: "2rem" },
+                  placeholder: "Write a Comment.......",
+                  _placeholder: {
+                    color: "white",
+                  },
+                }}
+                inputRightAddon={
+                  <Btn
+                    borderColor={white}
+                    borderRadius="xl"
+                    _hover={{ borderColor: metallicSunburst }}
+                    bgColor="transparent"
+                    py=".8rem"
+                    p={{ base: ".5rem 2rem !important", md: "1rem 1.4rem" }}
+                    mr="1rem"
+                    mb=".5rem"
+                  >
+                    Comment
+                  </Btn>
+                }
+              />
+            </Flex>
+          </form>
+        </Box>
+      )}
     </Box>
   );
 }

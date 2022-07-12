@@ -84,11 +84,11 @@ function login() {
             response.data?.message?.refreshToken
           );
 
-          setUser({
-            ...response.data?.message?.user,
-            token: response.data?.message?.accessToken,
-            refreshToken: response.data?.message?.refreshToken,
-          });
+          // setUser({
+          //   ...response.data?.message?.user,
+          //   token: response.data?.message?.accessToken,
+          //   refreshToken: response.data?.message?.refreshToken,
+          // });
           toast({
             title: "Login",
             description: "Login successful",

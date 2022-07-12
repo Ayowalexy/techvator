@@ -160,11 +160,14 @@ function UsersList() {
         New Members
       </Heading>
       <Box
-        w="68.6rem"
+        maxW={{ base: "93vw", lg: "68.6rem" }}
+        w="100%"
         ref={carouselRef}
         overflow="hidden"
-        minH="20rem"
+        // minH="20rem"
         pos="relative"
+        // display={{ base: "block", md: "flex", lg: "block" }}
+        // justifyContent={{ base: "unset", md: "center", lg: "unset" }}
       >
         {/* <Flex
           flexWrap="nowrap"

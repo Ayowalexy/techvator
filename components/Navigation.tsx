@@ -12,16 +12,20 @@ import {
   UnorderedList,
   Box,
   Icon,
+  Text,
 } from "@chakra-ui/react";
 import { MotionList } from "motion";
 import NextLink from "next/link";
-import { useRecoilValue } from "recoil";
+import { useRecoilState, useRecoilValue } from "recoil";
+import { IoIosArrowDown } from "react-icons/io";
 import { collapseMenuAtom } from "recoilStore/CollapseMenuAtom";
 import { AuthAtom, isAuthenticatedSelector } from "recoilStore/AuthAtom";
 import { navigation } from "../data/navigation";
 import ButtonLink from "./Button";
 import Button from "./Button";
-import { IoIosArrowDown } from "react-icons/io";
+import { destroyTheCookie } from "helpers/cookieHandler";
+import { AMAHLUBI_ACCESS_TOKEN, AMAHLUBI_REFRESH_TOKEN } from "../constants";
+import Router from "next/router";
 
 function Navigation() {
   const theme = useTheme();
@@ -29,12 +33,22 @@ function Navigation() {
   const { rotiLight, roti, white, black } = theme.colors.brand;
   const collapse = useRecoilValue(collapseMenuAtom);
   const isAuthenticated = useRecoilValue(isAuthenticatedSelector);
-  const user = useRecoilValue(AuthAtom);
+  const [user, setUser] = useRecoilState(AuthAtom);
+
+  const logout = () => {
+    destroyTheCookie(undefined, AMAHLUBI_ACCESS_TOKEN);
+    destroyTheCookie(undefined, AMAHLUBI_REFRESH_TOKEN);
+    setUser({
+      token: "",
+      refreshToken: "",
+    });
+    Router.push("/");
+  };
 
   return (
     <Box pos="relative">
       <MotionList
-        display={{ base: "none", md: "flex" }}
+        display={{ base: "none", lg: "flex" }}
         flexDir="row"
         pos="relative"
         zIndex={3}
@@ -81,22 +95,24 @@ function Navigation() {
           // }}
         >
           {!isAuthenticated ? (
-            <Button
-              borderRadius="unset"
-              fontFamily="Roboto"
-              fontWeight="600"
-              label="Reach Out"
-              href="#"
-              border="unset"
-              p="unset"
-              textTransform="capitalize"
-              _hover={{
-                backgroundColor: "unset",
-                border: "unset",
-                color: white,
-                // opacity: ".7",
-              }}
-            />
+            <NextLink href="/login">
+              <Button
+                borderRadius="unset"
+                fontFamily="Roboto"
+                fontWeight="600"
+                label="Login"
+                href="#"
+                border="unset"
+                p="unset"
+                textTransform="capitalize"
+                _hover={{
+                  backgroundColor: "unset",
+                  border: "unset",
+                  color: white,
+                  // opacity: ".7",
+                }}
+              />
+            </NextLink>
           ) : (
             <>
               <Button
@@ -136,9 +152,19 @@ function Navigation() {
                 p="2rem"
                 spacing="3"
               >
-                <ListItem>My Profile</ListItem>
-                <ListItem>Community</ListItem>
-                <ListItem>Logout</ListItem>
+                <ListItem cursor="pointer">
+                  <NextLink href="/user">
+                    <Text>My Profile</Text>
+                  </NextLink>
+                </ListItem>
+                <ListItem cursor="pointer">
+                  <NextLink href="/community">
+                    <Text>Community</Text>
+                  </NextLink>
+                </ListItem>
+                <ListItem cursor="pointer" onClick={logout}>
+                  Logout
+                </ListItem>
               </UnorderedList>
             </>
           )}
@@ -160,7 +186,7 @@ function Navigation() {
               mr="1rem"
             />
           )}
-          {console.log(isAuthenticated, "IS AUTHENTICATED....")}
+          {/* {console.log(isAuthenticated, "IS AUTHENTICATED....")} */}
           {/* <ButtonLink
           href="/black-excellence"
           label="Become a member"

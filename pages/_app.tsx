@@ -5,7 +5,7 @@ import dynamic from "next/dynamic";
 import { RecoilRoot } from "recoil";
 import { theme } from "../styles/themes";
 import "../styles/globals.css";
-import Fonts from "../components/Fonts";
+import CustomStyle from "../components/CustomStyle";
 import { GlobalProvider } from "context/GlobalContext";
 import { NextPageContext } from "next";
 import { useRef } from "react";
@@ -34,7 +34,7 @@ function MyApp({ Component, pageProps }: AppProps): JSX.Element {
       <RecoilRoot>
         {/* @ts-ignore */}
         <RecoilizeDebugger root={root} />
-        <Fonts />
+        {/* <Fonts /> */}
         <QueryClientProvider client={queryClent.current}>
           <Hydrate state={pageProps.dehydratedState}>
             <Component {...pageProps} />

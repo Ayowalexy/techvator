@@ -21,12 +21,12 @@ import CommunityRightSidebar from "@/components/Dashboard/CommunityRightSidebar"
 import CommunityMainContent from "@/components/Dashboard/CommunityMainContent";
 import withAuth from "middleware/withAuth";
 import { endpoint } from "api_routes";
-import { Post, PostAtom } from "recoilStore/PostsAtom";
+import { Post, PostAtom, PostsAtom } from "recoilStore/PostsAtom";
 
 function community(props: any) {
   const theme = useTheme();
   const setAuth = useSetRecoilState(AuthAtom);
-  const setPost = useSetRecoilState(PostAtom);
+  const setPost = useSetRecoilState(PostsAtom);
   const { secondaryBlack } = theme.colors.brand;
 
   useEffect(() => {
@@ -41,7 +41,17 @@ function community(props: any) {
 
   useEffect(() => {
     if (props.initialRecoilState?.posts) {
-      setPost(props.initialRecoilState?.posts);
+      let postsData = [];
+      if (Array.isArray(props.initialRecoilState?.posts)) {
+        postsData = props.initialRecoilState?.posts.map((post: Post) => {
+          return {
+            ...post,
+            image: [{ dataUrl: post?.image }],
+          };
+        });
+      }
+      setPost(postsData);
+      // setPost(props.initialRecoilState?.posts);
     }
   }, [props.initialRecoilState?.posts]);
 

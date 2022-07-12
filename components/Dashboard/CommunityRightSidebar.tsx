@@ -17,16 +17,31 @@ function CommunityRightSidebar() {
   const theme = useTheme();
   const { secondaryBlack, white } = theme.colors.brand;
   return (
-    <Box pos="relative">
-      <Box pos="sticky" top="2rem" right="0" pb="1rem">
-        <Box p="2rem" shadow="md" bg={secondaryBlack["200"]} borderRadius="2xl">
+    <Box pos="relative" order={{ base: 2, lg: 3 }}>
+      <Flex
+        flexDir={{ base: "row", lg: "column" }}
+        gap="1rem"
+        pos="sticky"
+        top="2rem"
+        right="0"
+        pb="1rem"
+      >
+        <Box
+          p={{ base: "1rem", md: "2rem" }}
+          shadow="md"
+          bg={secondaryBlack["200"]}
+          borderRadius="2xl"
+          flex={1}
+        >
           <Flex align="center" gap="2rem">
             <Avatar
               size="md"
               icon={<Icon as={MdEventAvailable} boxSize={8} color={white} />}
               bg={secondaryBlack["100"]}
             />
-            <Heading fontSize="2rem">Upcoming Events</Heading>
+            <Heading fontSize={{ base: "1.2rem", md: "2rem" }}>
+              Upcoming Events
+            </Heading>
           </Flex>
 
           <Flex align="center" justify="center" h="4rem" mt="1rem">
@@ -36,11 +51,13 @@ function CommunityRightSidebar() {
 
         {/* Fund Me */}
         <Box
-          mt="2rem"
-          p="2rem"
+          mt={{ base: "unset", lg: "2rem" }}
+          p={{ base: "1rem", md: "2rem" }}
           shadow="md"
           bg={secondaryBlack["200"]}
           borderRadius="2xl"
+          flex={1}
+          maxH={{ base: "10rem", md: "unset" }}
         >
           <Flex align="center" gap="2rem">
             <Avatar
@@ -48,7 +65,9 @@ function CommunityRightSidebar() {
               icon={<Icon as={MdEventAvailable} boxSize={8} color={white} />}
               bg={secondaryBlack["100"]}
             />
-            <Heading fontSize="2rem">Ongoing Fund me</Heading>
+            <Heading fontSize={{ base: "1.2rem", md: "2rem" }}>
+              Ongoing Fund me
+            </Heading>
           </Flex>
 
           <Box minH="4rem" mt="3rem">
@@ -89,7 +108,7 @@ function CommunityRightSidebar() {
             </Flex> */}
           </Box>
         </Box>
-      </Box>
+      </Flex>
     </Box>
   );
 }

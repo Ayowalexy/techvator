@@ -8,6 +8,8 @@ import "../styles/globals.css";
 import Fonts from "../components/Fonts";
 import { GlobalProvider } from "context/GlobalContext";
 import { NextPageContext } from "next";
+import { useRef } from "react";
+import { Hydrate, QueryClient, QueryClientProvider } from 'react-query'
 
 function MyApp({ Component, pageProps }: AppProps): JSX.Element {
   const [root, setRoot] = useState<HTMLElement | null>(null);
@@ -24,13 +26,20 @@ function MyApp({ Component, pageProps }: AppProps): JSX.Element {
     }
   }, [root]);
 
+  const queryClent = useRef(new QueryClient())
+
+
   return (
     <ChakraProvider resetCSS theme={theme}>
       <RecoilRoot>
         {/* @ts-ignore */}
         <RecoilizeDebugger root={root} />
         <Fonts />
-        <Component {...pageProps} />
+        <QueryClientProvider client={queryClent.current}>
+          <Hydrate state={pageProps.dehydratedState}>
+            <Component {...pageProps} />
+          </Hydrate>
+        </QueryClientProvider>
       </RecoilRoot>
     </ChakraProvider>
   );

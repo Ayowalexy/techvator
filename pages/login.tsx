@@ -37,6 +37,7 @@ import { AMAHLUBI_ACCESS_TOKEN, AMAHLUBI_REFRESH_TOKEN } from "../constants";
 import { setTheCookie } from "helpers/cookieHandler";
 import withAuth from "../middleware/withAuth";
 import { AuthAtom } from "recoilStore/AuthAtom";
+import AsyncStorage from "@react-native-async-storage/async-storage";
 
 function login() {
   const theme = useTheme();
@@ -69,6 +70,10 @@ function login() {
         const response = await axios.post(endpoint.LOGIN, values);
 
         if (response.status === 200) {
+
+          //EMMMANUEL ADDED THIS
+          await AsyncStorage.setItem('userData', JSON.stringify(response?.data?.message))
+
           // store access token in cookie
           setTheCookie(
             AMAHLUBI_ACCESS_TOKEN,
